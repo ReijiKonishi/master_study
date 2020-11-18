@@ -1,3 +1,76 @@
 %!TEX root = ../thesis.tex
 
-\subsection{記法}
+本章ではまず、本論文で用いる数学記号を導入し、
+非巡回有向グラフ(Directed Acyclic Graph, DAG)モデルを定義する。
+その後、既存研究として、2次分散関数(Quadratic Variance Function)DAGモデル\cite{Park2017-hw}と、
+混合因果モデル(Mixed Causal Model)\cite{Wenjuan2018-nm}について概説し、
+本論文で提案するモデルの詳細について述べる。
+
+\subsection{数学的準備}
+
+グラフは頂点(node)の集合$V=\{1,2,\dots,p\}$と、
+頂点同士をつなぐ辺(edge)の集合$E\subset V \times V$ によって、
+$G=(V,E)$と表現される。
+グラフの辺は有向辺(矢線)と無向辺(双方向矢線)に分けることができ、
+2つの頂点$j,k\in V$において、
+$(j,k)\in E$かつ$(k,j)\notin E$のとき、$j$から$k$への矢線があるという。
+これを$j \rightarrow k$と表現することもある。
+一方で、$(j,k)\in E$かつ$(k,j)\in E$のとき、$j$と$k$の間に双方向矢線があるという。
+すべての辺が有向辺であるグラフを有向グラフ(directed graph)という。
+本論文では、特に断りのない限り、頂点$j$から$k$への矢線がある場合、
+$j$が$k$の原因であるといった因果関係があることを表すとする。
+つまり、本論文で扱うグラフにおける矢線の有無は因果関係の有無を表しており、
+矢線の始点が原因で、矢線の終点が結果である。
+このような定性的な因果関係を表すグラフを因果グラフ(causal graph)という。
+また、グラフ$G$からすべての矢印を取り除くことによって得られるグラフを
+$G$のスケルトンという。
+
+頂点の系列$\alpha_1, \alpha_2, \dots, \alpha_{n+1}$について、
+すべての$i=1,2,\dots, n$で、
+$\alpha_i \rightarrow \alpha_{i+1}$、または$\alpha_{i+1} \rightarrow \alpha_i$となる矢線がある時、
+長さ$n$の道(path)という。
+特に、すべての$i=1,2,\dots, n$で、$\alpha_i \rightarrow \alpha_{i+1}$となる矢線がある時、
+長さ$n$の有向道(directed path)という。
+また、長さ$n$の有向道で、$\alpha_1 = \alpha_{n+1}$となるものを巡回閉路(cycle)という。
+一方で、巡回閉路のない有向グラフは非巡回的(acyclic)であるという。
+本論文では、非巡回有向グラフ(Directed Acyclic Graph; DAG)のみを扱う。
+
+頂点$j$から$k$への矢線がある時、$j$を$k$の親(parent)といい、$k$を$j$の子(child)という。
+また、$(j,k)\in E$であるすべての頂点$j$からなる集合を$Pa(k)$と表記する。
+頂点$j$から$k$への有向道がある時、$j$を$k$の祖先(ancestor)、
+$k$を$j$の子孫(descendant)という。
+頂点$k$のすべての祖先からなる集合を$An(k)$、すべての子孫からなる集合を$De(k)$と表記する。
+また、すべての頂点から$k$と$k$の子孫を除いたものを、$k$の非子孫(non-descendant)といい、
+その集合を$Nd(k) \equiv V \backslash (\{k \} \cup De(k))$と表記する。
+さらに、因果的順序(causal oredering)について定義する。
+因果的順序とは、その順序に従って変数を並び替えると、
+すべての矢線$(j,k)\in E)$について、$k$が$j$の原因になることがない順序のことであり、
+$\pi =(\pi_1, \dots, \pi_p)$と表記する。
+DAGで表現される因果グラフには、このような順序が(一意とは限らないが)存在するという特徴がある。
+つまり、因果グラフを同定することは、因果的順序を同定することとスケルトンを同定することという
+2つの工程に分解することができる。
+
+有向グラフ$G$における頂点上の標本空間$\mathcal X_V$の確率分布に従う
+確率変数の集合$X \equiv (X_j)_{j \in V}$について考える。
+ここで、確率変数ベクトル$X$は、同時確率密度関数$P(G)=P(X_1, X_2, \dots, X_p)$で与えられていると仮定する。
+$V$の任意の部分集合$S$について、$X_S \equiv \{X_j:j\in S \subset V \}$と
+$\mathcal X_S \equiv \times_{j \in S} \mathcal X_j$を定義する。
+ただし、$\mathcal X_j$は$X_j$の確率空間である。
+また、任意の頂点$j\in V$について、
+確率変数ベクトル$X_S$を与えたときの変数$X_j$の
+条件付き確率を$P(X_j|X_S)$と表記する。
+すると、DAG $G$によるモデルは以下のように因数分解することができる\cite{Pearl2009-oh}。
+
+\begin{equation}
+  P(G)=P(X_1, X_2, \dots, X_p) = \prod_{j=1}^p (X_j | X_{Pa(j)})
+\end{equation}
+
+ここで、$(X_j | X_{Pa(j)})$は、$X_j$の
+親変数$X_{Pa(j)} \equiv \{ X_k:k\in Pa(j) \subset V \}$を与えた条件付き確率である。
+
+
+
+\subsection{2次分散関数 (QVF) DAGモデル}
+
+本節では、Park and Raskutti(2017)\cite{Park2017-hw}によって提案された
+2次分散関数 (QVF) DAGモデル

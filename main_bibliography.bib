@@ -1,0 +1,109 @@
+
+@ARTICLE{Park2017-hw,
+  title     = "Learning quadratic variance function ({QVF}) {DAG} models via
+               overdispersion scoring ({ODS})",
+  author    = "Park, Gunwoong and Raskutti, Garvesh",
+  abstract  = "Learning DAG or Bayesian network models is an important problem
+               in multi-variate causal inference. However, a number of
+               challenges arises in learning large-scale DAG models including
+               model identifiability and computational complexity since the
+               space of directed graphs is huge. In this paper, we address
+               these issues in a number of steps for a broad class of DAG
+               models where the noise or variance is signal-dependent. Firstly
+               we introduce a new class of identifiable DAG models, where each
+               node has a distribution where the variance is a quadratic
+               function of the mean (QVF DAG models). Our QVF DAG models
+               include many interesting classes of distributions such as
+               Poisson, Binomial, Geometric, Exponential, Gamma and many other
+               distributions in which the noise variance depends on the mean.
+               We prove that this class of QVF DAG models is identifiable, and
+               introduce a new algorithm, the OverDispersion Scoring (ODS)
+               algorithm, for learning large-scale QVF DAG models. Our
+               algorithm is based on firstly learning the moralized or
+               undirected graphical model representation of the DAG to reduce
+               the DAG search-space, and then exploiting the quadratic variance
+               property to learn the ordering. We show through theoretical
+               results and simulations that our algorithm is statistically
+               consistent in the high-dimensional p > n setting provided that
+               the degree of the moralized graph is bounded and performs well
+               compared to state-of-the-art DAG-learning algorithms. We also
+               demonstrate through a real data example involving multi-variate
+               count data, that our ODS algorithm is wellsuited to estimating
+               DAG models for count data in comparison to other methods used
+               for discrete data.",
+  journal   = "J. Mach. Learn. Res.",
+  publisher = "JMLR.org",
+  volume    =  18,
+  number    =  1,
+  pages     = "8300--8342",
+  month     =  jan,
+  year      =  2017,
+  keywords  = "identifiability, directed acyclic graph, overdispersion,
+               multi-variate count distribution, Bayesian networks"
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@INPROCEEDINGS{Wenjuan2018-nm,
+  title       = "Mixed causal structure discovery with application to
+                 prescriptive pricing",
+  booktitle   = "Proceedings of the 27th International Joint Conference on
+                 Artificial Intelligence",
+  author      = "Wenjuan, Wei and Lu, Feng and Chunchen, Liu",
+  abstract    = "Prescriptive pricing is one of the most advanced pricing
+                 techniques, which derives the optimal price strategy to
+                 maximize the future profit/revenue by carrying out a two-stage
+                 process, demand modeling and price optimization. Demand
+                 modeling tries to reveal price- demand laws by discovering
+                 causal relationships among demands, prices, and objective
+                 factors, which is the foundation of price optimization.
+                 Existing methods either use regression or causal learning for
+                 uncovering the price-demand relations, but suffer from pain
+                 points in …",
+  publisher   = "ijcai.org",
+  pages       = "5126--5134",
+  institution = "AAAI Press",
+  year        =  2018
+}
+
+
+@BOOK{Pearl2009-oh,
+  title     = "Causality: Models, Reasoning and Inference",
+  author    = "Pearl, Judea",
+  abstract  = "Written by one of the preeminent researchers in the field, this
+               book provides a comprehensive exposition of modern analysis of
+               causation. It shows how causality has grown from a nebulous
+               concept into a mathematical theory with significant applications
+               in the fields of statistics, artificial intelligence, economics,
+               philosophy, cognitive science, and the health and social
+               sciences. Judea Pearl presents and unifies the probabilistic,
+               manipulative, counterfactual, and structural approaches to
+               causation and devises simple mathematical tools for studying the
+               relationships between causal connections and statistical
+               associations. The book will open the way for including causal
+               analysis in the standard curricula of statistics, artificial
+               intelligence, business, epidemiology, social sciences, and
+               economics. Students in these fields will find natural models,
+               simple inferential procedures, and precise mathematical
+               definitions of causal concepts that traditional texts have
+               evaded or made unduly complicated. The first edition of
+               Causality has led to a paradigmatic change in the way that
+               causality is treated in statistics, philosophy, computer
+               science, social science, and economics. Cited in more than 3,000
+               scientific publications, it continues to liberate scientists
+               from the traditional molds of statistical thinking. In this
+               revised edition, Judea Pearl elucidates thorny issues, answers
+               readers' questions, and offers a panoramic view of recent
+               advances in this field of research. Causality will be of
+               interests to students and professionals in a wide variety of
+               fields. Anyone who wishes to elucidate meaningful relationships
+               from data, predict effects of actions and policies, assess
+               explanations of reported events, or form theories of causal
+               understanding and causal speech will find this book stimulating
+               and invaluable.",
+  publisher = "Cambridge University Press",
+  edition   = "2nd",
+  year      =  2009,
+  address   = "USA"
+}
