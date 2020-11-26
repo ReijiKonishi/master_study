@@ -17,3 +17,26 @@ QVF-DAGモデルは、各頂点の親による条件付き分布$\mathcal P$の�
 \mathit{Var}(X_j|X_{Pa(j)}) = \beta_{j0} E(X_j | X_{Pa(j)}) + \beta_{j1} E(X_j | X_{Pa(j)})^2
 \end{equation}
 \end{df}
+
+2次分散関数による確率分布は、Morris(1982)\cite{Morris1982-nc}によって
+正準型指数分布族の文脈において導入され、
+ポアソン分布、二項分布、負の二項分布、ガンマ分布が含まれる。
+DAGモデルの文脈においては、各頂点の分布がその頂点の親集合からの影響を受けていると考えるため、
+各頂点の親による条件付き分布は以下のように記述することができる。
+
+\begin{equation}
+  P(X_j|X_{Pa(j)}) = \exp \left( \theta_{jj}X_j  + \sum_{(k,j)\in E} \theta_{jk}X_k X_j -
+  B_j(X_j) - A_j \left( \theta_{jj} + \sum_{(k,j) \in E} \theta_{jk} X_k \right) \right)
+\end{equation}
+
+ここで、$A_j(\cdot)$は対数分配関数(log-partition function)、
+$B_j(\cdot)$は指数分布族によって決まる関数、
+$\theta_{jk}\in \mathbb R$は頂点$j$に対応するパラメータである。
+DAGモデルの因数分解(\ref{eq:factorization})式により、QVF-DAGモデルの同時確率分布は、
+以下のように記述することができる。
+
+\begin{equation}
+  P(X) = \exp \left( \sum_{j\in V} \theta_{jj}X_j + \sum_{(k,j)\in E} \theta_{jk}X_k X_j
+  - \sum_{j \in V} B_j(X_j) - \sum_{j \in V} A_j
+  \left( \theta_{jj} + \sum_{(k,j)\in E} \theta_{jk} X_k \right)\right)
+\end{equation}
