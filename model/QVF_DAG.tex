@@ -1,0 +1,19 @@
+%!TEX root = ../thesis.tex
+
+\subsection{2次分散関数 (QVF) DAGモデル}
+
+本節では、Park and Raskutti(2017)\cite{Park2017-hw}によって提案された
+2次分散関数 (QVF) DAGモデルについて概説する。
+
+QVF-DAGモデルは、各頂点の親による条件付き分布$\mathcal P$の分散が、
+平均の2次式で与えられているというモデルであり、
+以下のように定義される。
+
+\begin{df}[QVF-DAGモデル\cite{Park2017-hw}]
+2次分散関数(Quadratic variance function, QVF)DAGモデルは、
+各頂点の親による条件付き分布の分散が、平均の2次式で表現できるDAGモデルである。
+つまり、すべての$j \in V$について、以下を満たすような$\beta_{j0}, \beta_{j1} \in \mathbb R$が存在する。
+\begin{equation}
+\mathit{Var}(X_j|X_{Pa(j)}) = \beta_{j0} E(X_j | X_{Pa(j)}) + \beta_{j1} E(X_j | X_{Pa(j)})^2
+\end{equation}
+\end{df}

@@ -2,7 +2,7 @@
 
 本章ではまず、本論文で用いる数学記号を導入し、
 非巡回有向グラフ(Directed Acyclic Graph, DAG)モデルを定義する。
-その後、既存研究として、2次分散関数(Quadratic Variance Function)DAGモデル\cite{Park2017-hw}と、
+その後、既存研究として、2次分散関数(Quadratic Variance Function, QVF)DAGモデル\cite{Park2017-hw}と、
 混合因果モデル(Mixed Causal Model)\cite{Wenjuan2018-nm}について概説し、
 本論文で提案するモデルの詳細について述べる。
 
@@ -52,25 +52,44 @@ DAGで表現される因果グラフには、このような順序が(一意と�
 
 有向グラフ$G$における頂点上の標本空間$\mathcal X_V$の確率分布に従う
 確率変数の集合$X \equiv (X_j)_{j \in V}$について考える。
-ここで、確率変数ベクトル$X$は、同時確率密度関数$P(G)=P(X_1, X_2, \dots, X_p)$で与えられていると仮定する。
+ここで、確率変数ベクトル$X$は、同時確率密度関数$f_G(X)=f_G(X_1, X_2, \dots, X_p)$で与えられていると仮定する。
 $V$の任意の部分集合$S$について、$X_S \equiv \{X_j:j\in S \subset V \}$と
 $\mathcal X_S \equiv \times_{j \in S} \mathcal X_j$を定義する。
 ただし、$\mathcal X_j$は$X_j$の確率空間である。
 また、任意の頂点$j\in V$について、
 確率変数ベクトル$X_S$を与えたときの変数$X_j$の
-条件付き確率を$P(X_j|X_S)$と表記する。
+条件付き確率を$f_j(X_j|X_S)$と表記する。
 すると、DAG $G$によるモデルは以下のように因数分解することができる\cite{Pearl2009-oh}。
 
 \begin{equation}
-  P(G)=P(X_1, X_2, \dots, X_p) = \prod_{j=1}^p (X_j | X_{Pa(j)})
+  f_G(X)=f_G(X_1, X_2, \dots, X_p) = \prod_{j=1}^p f_j(X_j | X_{Pa(j)})
 \end{equation}
 
-ここで、$(X_j | X_{Pa(j)})$は、$X_j$の
+ここで、$f_j(X_j | X_{Pa(j)})$は、$X_j$の
 親変数$X_{Pa(j)} \equiv \{ X_k:k\in Pa(j) \subset V \}$を与えた条件付き確率である。
 
+また、本論文では観察データから因果グラフを同定するという問題を扱うため、
+因果グラフの識別可能性について定義する。
+識別可能性を直感的に説明すると、条件付き確率分布$f_j(X_j|X_{Pa(j)})$に対してある仮定を置くと、
+同時確率密度関数$f_G(X)$を与えたDAG $G$の構造を一意に決定付けることができるということである。
 
+識別可能性について詳細に定義するために、すべての$j \in V$に関する
+条件付き確率分布$f_j(X_j|X_{Pa(j)})$の集合を$\mathcal P$と表記する。
+また、グラフ$G=(V,E)$について、グラフ$G$に関する同時分布のクラスと、
+分布$\mathcal P$のクラスを以下で定義する。
 
-\subsection{2次分散関数 (QVF) DAGモデル}
+\begin{equation}
+  \mathcal F(G;\mathcal P) \equiv \{ f_G(X) = \prod_{j \in V} f_j(X_j|X_{Pa(j)}) ;
+  \text{where} f_j(X_j|X_{Pa(j)}) \in \mathcal P \quad \forall j \in V \}
+\end{equation}
 
-本節では、Park and Raskutti(2017)\cite{Park2017-hw}によって提案された
-2次分散関数 (QVF) DAGモデル
+続いて、$p$個の変数からなる非巡回的有向グラフの集合を$\mathcal G_p$と表記する。
+そこで、DAG $\mathcal G_p$の空間上の確率分布のクラス$\mathcal P$における
+識別可能性を以下のように定義する。
+
+\begin{df}[識別可能性]
+  条件付き分布のクラス$\mathcal P$が$\mathcal G_p$において識別可能であるとは、
+  $G,G' \in \mathcal G_p$において$G \neq G'$であるならば、
+  $f_G = f_{G'}$を満たすような、$f_G \in \mathcal F(G; \mathcal P)$と
+  $f_G' \in \mathcal F(G'; \mathcal P)$が存在しないことである。
+\end{df}
