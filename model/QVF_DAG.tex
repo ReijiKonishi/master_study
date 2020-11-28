@@ -15,28 +15,27 @@ QVF-DAGモデルは、各頂点の親による条件付き分布$\mathcal P$の�
 満たすようなDAGモデルである。
 
 すべての$j \in V$について、以下を満たすような$\beta_{j0}, \beta_{j1} \in \mathbb R$が存在する。
-\begin{equation}
-\mathit{Var}(X_j|X_{Pa(j)}) = \beta_{j0} E(X_j | X_{Pa(j)}) + \beta_{j1} E(X_j | X_{Pa(j)})^2
-\label{QVF}
-\end{equation}
+  \begin{equation}
+      \mathit{Var}(X_j|X_{Pa(j)}) = \beta_{j0} E(X_j | X_{Pa(j)}) + \beta_{j1} E(X_j | X_{Pa(j)})^2
+      \label{QVF}
+  \end{equation}
+ただし、各頂点の条件付き期待値は、任意の単調で微分可能な
+リンク関数$g_j \colon \mathcal X_{Pa(j)} \rightarrow \mathbb R^+$によって、
+$E(X_j|X_{Pa(j)}) = g_j(X_{Pa(j)})$で定められる。
 \end{df}
 
 また、本論文の後半では、各頂点間の関係について線形性を仮定するため、
 QVF-DAGモデルの特殊系として、
 QVF構造方程式モデル(structural quation model, SEM)を導入する。
-QVF-SEMは、一般化線形モデル(GLM)のように各頂点のパラメータについて線形な関係を仮定したものである。
+QVF-SEMは、リンク関数$g_j$がパラメータに関して線形であることを仮定したものである。
 
 \begin{equation}
-  \begin{align}
-    E(X_j | X_{Pa(j)}) &= \mu_j \\
-    g_j(\mu_j) &= \theta_j + \sum_{k \in Pa(j)} \theta_{jk}X_k
-  \end{align}
+  g_j(X_{Pa(j)}) = g_j \left(\theta_j + \sum_{k \in Pa(j)} \theta_{jk}X_k \right)
 \end{equation}
 
-ここで、$g_j$はリンク関数、
-$(\theta_{jk})_{k \in Pa(j)}$は重み付け係数である。
-例えば、ポアソン分布による一般化線形モデルの場合、
-$\mu_j = \exp(\theta_j + \sum_{k \in Pa(j)} \theta_{jk}X_k)$
+ここで、$(\theta_{jk})_{k \in Pa(j)}$は親変数の重み付け係数である。
+例えば、ある頂点の条件付き確率分布がポアソン分布の場合、
+$g_j(X_{Pa(j)}) = \exp(\theta_j + \sum_{k \in Pa(j)} \theta_{jk}X_k)$
 となる。
 
 より一般的には、指数分布族の定義を用いて、以下のように表現することができる。
