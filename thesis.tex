@@ -13,6 +13,22 @@
 \newtheorem{fact}[df]{事実}
 \newtheorem{nex}[df]{反例}
 
+%
+% \qed を自動で入れない proof 環境を再定義
+%
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+  \normalfont
+  \topsep6\p@\@plus6\p@ \trivlist
+  \item[\hskip\labelsep{\bfseries #1}\@addpunct{\bfseries.}]\ignorespaces
+}{%
+  \endtrivlist
+}
+\renewcommand{\proofname}{証明}
+\newcommand{\relmiddle}[1]{\mathrel{}\middle#1\mathrel{}}
+\makeatother
+
+
 \title{マーケティング・リサーチにおける \\ 統計的因果探索を用いた因果仮説構築に関する研究}
 \author{データサイエンス研究科, 株式会社マクロミル \\ 小西 伶児}
 \date{\today}
