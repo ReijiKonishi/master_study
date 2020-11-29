@@ -19,6 +19,7 @@ Park and Raskutti(2017)\cite{Park2017-hw}によって初めて証明されたが
     \frac{E(X_j^2)}
     {E \left[ \beta_0 E(X_j | X_{S_j}) + (\beta_1 + 1)E(X_j | X_{S_j})^2 \right]}
     \geq 1
+    \label{eq:MRS}
   \end{equation}
   同様に、
   \begin{equation}
@@ -91,6 +92,7 @@ Park and Raskutti(2017)\cite{Park2017-hw}によって初めて証明されたが
   $E(\mathit{Var}( E(X_j | X_{Pa(j)}) | X_{S_j} )) \geq 0$と
   同値であることを証明する。
   \textcolor{red}{分散の公式を用いると… ここ書く…}
+  \qed
 
 \end{proof}
 
@@ -133,3 +135,65 @@ $G_2$においては、以下が成り立つ。
 \end{equation*}
 つまり、モーメント比$E(X_j^2) / (E(X_j) + E(X_j)^2)$によって、
 真のグラフ構造を同定することが可能である。
+
+命題\ref{prop:MRS}のモーメント比を用いる方法は、
+一般的な$p$変数のQVF-DAGモデルにも適用することが可能であり、
+モーメント比~\eqref{eq:MRS}が1か1以上かを確かめることで識別可能性を証明することができる。
+
+\begin{theo}[QVF-DAGモデルの識別可能性]
+  2次分散関数性を満たす係数$(\beta_{j0}, \beta{j1})_{j=1}^p$が存在し、
+  QVF-DAGモデル\eqref{eq:factorization}のクラスについて考える。
+  任意の頂点$j \in V$について、$\beta_{j1} > -1$であり、
+  リンク関数$g_j(\cdot)$が非退化であるならば、
+  QVF-DAGモデルは識別可能である。
+\end{theo}
+
+\begin{proof}
+  一般性を失わずに、真の因果順序が一意であり、$\pi = (\pi_1, \dots, \pi_p)$であると仮定する。
+  また、簡単のために、$X_{1:j} = (X_{\pi_1}, X_{\pi_2}, \dots, X_{\pi_j})$、
+  $X_{1:0} = \emptyset$と定義する。
+  加えて、モーメント関連関数$f(\mu) = \beta_0 \mu, (\beta_1 + 1)\mu^2$を定義する。
+
+  ここからは数学的帰納法を用いてQVF-DAGモデルの識別可能性を証明する。
+
+  \textbf{Step(1)}
+  因果順序が最初である$\pi_1$について、
+  命題\ref{prop:MRS}を用いると、
+  $E(X_{\pi_1}^2) = E(f(E(X_{\pi_1})))$であるのに対し、
+  任意の頂点$j \in V \backslash \{ \pi_1 \}$については、
+  $E(X_j ^2) > E(f(E(X_j)))$である。
+  よって、因果順序が1番目の要素$\pi_1$を特定することができる。
+
+  \textbf{Step(m-1)}
+  因果順序が$(m-1)$番目の要素について、
+  因果順序が先の$m-1$個の要素とその親が正しく推定されていると仮定する。
+
+  \textbf{Step(m)}
+  因果順序が$m$番目の要素とその親について考える。
+  命題\ref{prop:MRS}より、$\pi_m$は、
+  $E(X_{\pi_m}^2) = E(f(E(X_{\pi_m} | X_{1:(m-1)})))$である。
+  一方で、$j \in \{ \pi_{m+1}, \dots, \pi_p \}$については、
+  $E(X_j^2) > E(f(E(X_j | X_{1:(m-1)})))$である。
+  よって、因果順序が$m$番目の要素$\pi_m$を推定することができる。
+
+  親変数に関しては、$P(G)$の因数分解\eqref{eq:factorization}による
+  以下の条件付き独立関係より導くことができる。
+  \begin{align*}
+    E(X_{\pi_m}^2) &= E(f(E(X_{\pi_m} | X_{1:(m-1)}))) \\
+                   &= E(f(E(X_{\pi_m} | X_{Pa(\pi_m)})))
+  \end{align*}
+  つまり、上記の関係が成立するような最小の集合を
+  $X_{1:(m-1)}$の中から$\pi_m$の親として選択することができる。
+
+\qed
+\end{proof}
+
+Park and Raskutti(2017)\cite{Park2017-hw}によって証明された
+QVF-DAGモデルの識別可能条件には、
+$Pa(j) \nsubseteq S_j$のとき、すべての$x \in \mathcal X_{S_j}$について、
+$\mathit{Var}(E(X_j | X_{Pa(j)}) | X_{S_j} = x) > 0$という
+仮定が含まれていた。
+しかし、本論文における識別可能条件にはそのような仮定は含まれていない。
+つまり、従来の識別可能条件\cite{Park2017-hw}を緩和している。
+この識別可能条件の緩和によってPoisson-SEMの学習が容易になることが、
+Park and Park(2019)\cite{Park2019-qy}の3.2節において議論されている。

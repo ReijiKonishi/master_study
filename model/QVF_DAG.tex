@@ -2,7 +2,8 @@
 
 \subsection{2次分散関数 (QVF) DAGモデル}
 
-本節では、Park and Raskutti(2017)\cite{Park2017-hw}によって提案された
+本節では、主に離散変数を扱うDAGモデルとして、
+Park and Raskutti(2017)\cite{Park2017-hw}によって提案された
 2次分散関数 (QVF) DAGモデルについて概説する。
 QVF-DAGモデルは、各頂点の親による条件付き分布$\mathcal P$の分散が、
 平均の2次式で与えられているというモデルであり、
@@ -19,10 +20,13 @@ QVF-DAGモデルは、各頂点の親による条件付き分布$\mathcal P$の�
       \mathit{Var}(X_j|X_{Pa(j)}) = \beta_{j0} E(X_j | X_{Pa(j)}) + \beta_{j1} E(X_j | X_{Pa(j)})^2
       \label{QVF}
   \end{equation}
-ただし、各頂点の条件付き期待値は、任意の単調で微分可能な
-リンク関数$g_j \colon \mathcal X_{Pa(j)} \rightarrow \mathbb R^+$によって、
-$E(X_j|X_{Pa(j)}) = g_j(X_{Pa(j)})$で定められる。
 \end{df}
+
+QVF確率分布のクラスには、ポアソン分布、二項分布、負の二項分布、ガンマ分布などが含まれることが知られている。
+DAGモデルにおいては、各頂点の分布がその頂点の親変数の影響を受けており、
+各頂点の条件付き期待値は、任意の単調で微分可能な
+リンク関数$g_j \colon \mathcal X_{Pa(j)} \rightarrow \mathbb R^+$によって、
+$E(X_j|X_{Pa(j)}) = g_j(X_{Pa(j)})$で表現される。
 
 また、本論文の後半では、各頂点間の関係について線形性を仮定するため、
 QVF-DAGモデルの特殊系として、

@@ -1,0 +1,24 @@
+%!TEX root = ../thesis.tex
+
+\subsection{LiNGAM}
+
+本節では、連続変数データから因果構造を推定するモデルとして、
+LiNGAM\cite{Shimizu2006-yu}について概説する。
+
+LiNGAMは、観測データがDAGによって表現されるデータ生成過程から生成されるものと仮定する。
+$p$個の観測変数$X = \{X_1, \dots, X_p \}$に対するLiNGAMは以下のように書ける。
+
+\begin{equation}
+  X_j = e_j + b_{j0} + \sum_{k \in Pa(j)} b_{jk}X_j
+  \quad \text{with} \quad e_j \sim \text{non-Gaussian}
+  \label{eq:lingam}
+\end{equation}
+
+各観測変数$X_j$は、その変数以外の観測変数$X_k$とその誤差変数$e_j$の線形和である。
+また、それぞれの係数$b_{jk}$は、変数$X_k$から変数$X_j$への直接的な因果効果の大きさを表す。
+加えて、誤差変数$e_j$はすべて平均0、分散非ゼロの非ガウス分布に従う連続確率変数であり、
+お互いに独立であることを仮定する。
+つまり、潜在交絡変数が存在しないことを仮定する\cite{Spirtes2000-mf}。
+
+LiNGAMはShimizu \textit{et al.}(2006)\cite{Shimizu2006-yu}によって、
+因果グラフとグラフを構成するパラメータが一意に識別可能であることが証明されている。

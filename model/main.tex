@@ -1,8 +1,29 @@
 \section{モデルと識別可能性}
 \label{part:model}
+
+本章ではまず、本論文で用いる数学記号を導入し、
+非巡回有向グラフ(Directed Acyclic Graph, DAG)モデルとその識別可能性を定義する。
+その後、本論文の提案モデルを構成する2つの既存モデルについて概説する。
+既存モデルの1つ目は、連続変数を扱うDAGモデルで、
+Shimizu \textit{et al.}(2006)\cite{Shimizu2006-yu}によって提案された
+線形非ガウス非巡回モデル(Linear Non-Gaussian Acyclic Model; LiNGAM)である。
+2つ目は、主に離散変数を扱うDAGモデルで、
+Park and Raskutti(2017)\cite{Park2017-hw}によって提案された
+2次分散関数(Quadratic Variance Function, QVF)DAGモデルである。
+QVF-DAGモデルの識別可能性は、Park and Raskutti(2017)\cite{Park2017-hw}によって
+過分散スコアを用いて証明されたが、
+本論文ではPark and Park(2019)\cite{Park2019-qy}が提案した
+モーメント比スコアを拡張することで、識別可能条件の緩和を行う。
+最後に、連続変数と離散変数が混合したデータにおけるDAGモデルを提案し、
+その識別可能性について議論する。
+
 %
 \input{model/notation}
+%
+\input{model/lingam}
 %
 \input{model/QVF_DAG}
 %
 \input{model/QVF_DAG_identifiability}
+%
+\input{model/proposal_model}
