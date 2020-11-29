@@ -11,7 +11,7 @@ Park and Raskutti(2017)\cite{Park2017-hw}によって初めて証明されたが
 まず初めに、QVF-DAGモデルにおけるモーメント(積率)について
 以下のような関係性が成立していることを示し、識別可能性の証明に利用する。
 
-\begin{prop}
+\begin{prop} \label{prop:MRS}
   リンク関数$(g_j(X_{Pa(j)}))_{j \in V}$が非退化であるQVF-DAGモデル~\eqref{QVF}において、
   任意の頂点$j \in V$、任意の集合$S_j \subset \mathit{Nd}(j)$に関して、
   以下のモーメント関係が成立している。
@@ -22,7 +22,7 @@ Park and Raskutti(2017)\cite{Park2017-hw}によって初めて証明されたが
   \end{equation}
   同様に、
   \begin{equation}
-    E(\mathit{Var}( E(X_j | X_{Pa(j)}) | X_{S_j} )) \geq 1
+    E(\mathit{Var}( E(X_j | X_{Pa(j)}) | X_{S_j} )) \geq 0
   \end{equation}
   等号成立は、$S_j$が頂点$j$の親変数すべてを含むとき($Pa(j)\subset S_j$)である。
 \end{prop}
@@ -79,12 +79,57 @@ Park and Raskutti(2017)\cite{Park2017-hw}によって初めて証明されたが
     E(X_j^2) - E\bigl( \beta_0 E(X_j | S_j) +
     (\beta_1 + 1) E(X_j | S_j)^2 \bigl) & \geq 0
   \end{equation*}
-  が得られる。
-
-  よって、以下が成り立つ。
+  が得られる。 よって、以下が成り立つ。
   \begin{equation*}
     \frac{E(X_j^2)}
     {E\bigl( \beta_0 E(X_j | S_j) + (\beta_1 + 1) E(X_j | S_j)^2 \bigl)}
     \geq 1
   \end{equation*}
+
+  ここからは、$E(X_j^2) \geq E\bigl( \beta_0 E(X_j | S_j) +
+  (\beta_1 + 1) E(X_j | S_j)^2 \bigl)$ が、
+  $E(\mathit{Var}( E(X_j | X_{Pa(j)}) | X_{S_j} )) \geq 0$と
+  同値であることを証明する。
+  \textcolor{red}{分散の公式を用いると… ここ書く…}
+
 \end{proof}
+
+直感的な理解を得るために、各頂点の親変数による条件付き確率分布がポアソン分布である
+2変数DAGモデルを例にその識別可能性を証明する。
+そこで、図\ref{fig:ex_bivariate}のようなDAGモデルを考える。
+
+\begin{itemize}
+  \item $G_1 \colon X_1 \sim \mathtext{Poisson}(\lambda_1),
+         \quad X_2 \sim \mathtext{Poisson}(\lambda_2) \quad$ ただし、$X_1$と$X_2$は独立
+
+  \item $G_2 \colon X_1 \sim \mathtext{Poisson}(\lambda_1),
+         \quad X_2|X_1 \sim \mathtext{Poisson}(g_2(X_1))$
+
+  \item $G_3 \colon X_2 \sim \mathtext{Poisson}(\lambda_2),
+         \quad X_1|X_2 \sim \mathtext{Poisson}(g_1(X_2))$
+
+  ただし、$g_1$と$g_2$は非退化な任意の関数である。
+  $(g_1, g_2 \colon \mathbb{N} \cup \{ 0 \} \rightarrow \mathbb{R}^+)$
+\end{itemize}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{./picture/bivariate.pdf}
+  \caption{2変数のDAGモデル}
+  \label{fig:ex_bivariate}
+\end{figure}
+
+命題\ref{prop:MRS}より、$G_1$におけるすべての頂点$j \in \{ 1,2 \}$について、
+$E(X_j^2) = E(X_j) + E(X_j)^2$である。
+$G_2$においては、以下が成り立つ。
+\begin{equation*}
+  E(X_1^2) = E(X_1) + E(X_1)^2, \quad \text{and} \quad
+  E(X_2^2) > E(X_2) + E(X_2)^2
+\end{equation*}
+同様に、$G_3$においては、以下が成り立つ。
+\begin{equation*}
+  E(X_1^2) > E(X_1) + E(X_1)^2, \quad \text{and} \quad
+  E(X_2^2) = E(X_2) + E(X_2)^2
+\end{equation*}
+つまり、モーメント比$E(X_j^2) / (E(X_j) + E(X_j)^2)$によって、
+真のグラフ構造を同定することが可能である。

@@ -1,10 +1,15 @@
 %!TEX root = ../thesis.tex
 
 本章ではまず、本論文で用いる数学記号を導入し、
-非巡回有向グラフ(Directed Acyclic Graph, DAG)モデルを定義する。
-その後、既存研究として、2次分散関数(Quadratic Variance Function, QVF)DAGモデル\cite{Park2017-hw}と、
-混合因果モデル(Mixed Causal Model)\cite{Wenjuan2018-nm}について概説し、
-本論文で提案するモデルの詳細について述べる。
+非巡回有向グラフ(Directed Acyclic Graph, DAG)モデルとその識別可能性を定義する。
+その後、2次分散関数(Quadratic Variance Function, QVF)DAGモデル\cite{Park2017-hw}
+について概説し、その識別可能性を証明する。
+QVF-DAGモデルの識別可能性は、Park and Raskutti(2017)\cite{Park2017-hw}によって
+過分散スコアを用いて証明されたが、
+本論文ではPark and Park(2019)\cite{Park2019-qy}が提案した
+モーメント比スコアを拡張することで、識別可能条件の緩和を行う。
+最後に、離散変数と連続変数が混合したデータにおけるDAGモデルを提案し、
+その識別可能性について議論する。
 
 \subsection{数学的準備}
 

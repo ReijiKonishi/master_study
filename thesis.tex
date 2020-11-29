@@ -3,6 +3,10 @@
 \usepackage{float}
 \usepackage[scaled]{helvet}
 \usepackage{amsthm}
+\usepackage{color}
+\usepackage[dvipdfmx]{graphicx}
+
+% 定理環境
 \theoremstyle{definition}
 \newtheorem{df}{定義}[section]
 \newtheorem{theo}[df]{定理}
@@ -16,14 +20,7 @@
 %
 % \qed を自動で入れない proof 環境を再定義
 %
-\makeatletter
-\renewenvironment{proof}[1][\proofname]{\par
-  \normalfont
-  \topsep6\p@\@plus6\p@ \trivlist
-  \item[\hskip\labelsep{\bfseries #1}\@addpunct{\bfseries.}]\ignorespaces
-}{%
-  \endtrivlist
-}
+
 \renewcommand{\proofname}{証明}
 \newcommand{\relmiddle}[1]{\mathrel{}\middle#1\mathrel{}}
 \makeatother
