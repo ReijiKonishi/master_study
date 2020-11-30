@@ -240,3 +240,141 @@
   year      =  2004,
   language  = "ja"
 }
+
+
+@ARTICLE{Varian2016-se,
+  title     = "Causal inference in economics and marketing",
+  author    = "Varian, Hal R",
+  abstract  = "This is an elementary introduction to causal inference in
+               economics written for readers familiar with machine learning
+               methods. The critical step in any causal analysis is estimating
+               the counterfactual-a prediction of what would have happened in
+               the absence of the treatment. The powerful techniques used in
+               machine learning may be useful for developing better estimates
+               of the counterfactual, potentially improving causal inference.",
+  journal   = "Proc. Natl. Acad. Sci. U. S. A.",
+  publisher = "National Acad Sciences",
+  volume    =  113,
+  number    =  27,
+  pages     = "7310--7315",
+  month     =  jul,
+  year      =  2016,
+  keywords  = "causal inference; economics; machine learning; marketing",
+  language  = "en"
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@INCOLLECTION{Park2015-tj,
+  title     = "Learning {Large-Scale} Poisson {DAG} Models based on
+               {OverDispersion} Scoring",
+  booktitle = "Advances in Neural Information Processing Systems 28",
+  author    = "Park, Gunwoong and Raskutti, Garvesh",
+  editor    = "Cortes, C and Lawrence, N D and Lee, D D and Sugiyama, M and
+               Garnett, R",
+  abstract  = "In this paper, we address the question of identifiability and
+               learning algorithms for large- scale Poisson Directed Acyclic
+               Graphical (DAG) models. We define general Poisson DAG models as
+               models where each node is a Poisson random variable with rate
+               parameter depending on the values of the parents in the
+               underlying DAG. First, we prove that Poisson DAG models are
+               identifiable from observational data, and present a
+               polynomial-time algorithm that learns the Poisson DAG model
+               under suitable regularity conditions. The main …",
+  publisher = "Curran Associates, Inc.",
+  pages     = "631--639",
+  year      =  2015
+}
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@INPROCEEDINGS{Wenjuan2018-nm,
+  title       = "Mixed causal structure discovery with application to
+                 prescriptive pricing",
+  booktitle   = "Proceedings of the 27th International Joint Conference on
+                 Artificial Intelligence",
+  author      = "Wenjuan, Wei and Lu, Feng and Chunchen, Liu",
+  abstract    = "Prescriptive pricing is one of the most advanced pricing
+                 techniques, which derives the optimal price strategy to
+                 maximize the future profit/revenue by carrying out a two-stage
+                 process, demand modeling and price optimization. Demand
+                 modeling tries to reveal price- demand laws by discovering
+                 causal relationships among demands, prices, and objective
+                 factors, which is the foundation of price optimization.
+                 Existing methods either use regression or causal learning for
+                 uncovering the price-demand relations, but suffer from pain
+                 points in …",
+  publisher   = "ijcai.org",
+  pages       = "5126--5134",
+  institution = "AAAI Press",
+  year        =  2018
+}
+
+
+@ARTICLE{Li2018-aw,
+  title         = "Combining Linear {Non-Gaussian} Acyclic Model with Logistic
+                   Regression Model for Estimating Causal Structure from Mixed
+                   Continuous and Discrete Data",
+  author        = "Li, Chao and Shimizu, Shohei",
+  abstract      = "Estimating causal models from observational data is a
+                   crucial task in data analysis. For continuous-valued data,
+                   Shimizu et al. have proposed a linear acyclic non-Gaussian
+                   model to understand the data generating process, and have
+                   shown that their model is identifiable when the number of
+                   data is sufficiently large. However, situations in which
+                   continuous and discrete variables coexist in the same
+                   problem are common in practice. Most existing causal
+                   discovery methods either ignore the discrete data and apply
+                   a continuous-valued algorithm or discretize all the
+                   continuous data and then apply a discrete Bayesian network
+                   approach. These methods possibly loss important information
+                   when we ignore discrete data or introduce the approximation
+                   error due to discretization. In this paper, we define a
+                   novel hybrid causal model which consists of both continuous
+                   and discrete variables. The model assumes: (1) the value of
+                   a continuous variable is a linear function of its parent
+                   variables plus a non-Gaussian noise, and (2) each discrete
+                   variable is a logistic variable whose distribution
+                   parameters depend on the values of its parent variables. In
+                   addition, we derive the BIC scoring function for model
+                   selection. The new discovery algorithm can learn causal
+                   structures from mixed continuous and discrete data without
+                   discretization. We empirically demonstrate the power of our
+                   method through thorough simulations.",
+  month         =  feb,
+  year          =  2018,
+  archivePrefix = "arXiv",
+  primaryClass  = "cs.LG",
+  eprint        = "1802.05889"
+}
+
+
+@ARTICLE{Yamayoshi2020-gu,
+  title     = "An estimation of causal structure based on Latent {LiNGAM} for
+               mixed data",
+  author    = "Yamayoshi, Mako and Tsuchida, Jun and Yadohisa, Hiroshi",
+  abstract  = "The linear non-gaussian acyclic model (LiNGAM) has been proposed
+               as a method for estimating causal structures using structural
+               equation modeling (SEM). LiNGAM is useful as an exploratory
+               estimation method for a causal structure. However, the
+               assumptions that all observed variables in LiNGAM are continuous
+               is not applicable in case of mixed data (i.e., when discrete
+               variables are also included in the dataset). Therefore, we
+               propose the Latent LiNGAM (L-LiNGAM), where each variable
+               corresponds to a continuous latent variable and is observed as
+               data through transformation via a link function. In the
+               numerical study, when mixing discrete variables, the estimation
+               of causal structure using L-LiNGAM is proven useful in terms of
+               sum of squared error and path recovery. Moreover, from
+               real-world data applications, the causal structure estimated by
+               L-LiNGAM is shown to be the best for evaluation under SEM. The
+               model fit is also superior to that of existing methods.",
+  journal   = "Behaviormetrika",
+  publisher = "Springer",
+  volume    =  47,
+  number    =  1,
+  pages     = "105--121",
+  month     =  jan,
+  year      =  2020
+}

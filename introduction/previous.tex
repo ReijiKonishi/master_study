@@ -61,4 +61,18 @@ GLMは説明変数を与えたときの目的変数の条件付き確率分布�
 
 \subsubsection{統計的因果探索}
 
-aaa
+統計的因果探索とは、因果構造が未知である際に、
+どのような条件で観測データから因果構造が復元することが可能であるかを明らかにする学問分野である。
+
+\textcolor{red}{以下の内容あたりをまとめる。}
+\begin{itemize}
+  \item 忠実性を仮定すると、条件付き独立関係からマルコフ同値類まで探索することができる
+  \item 関数形や誤差分布などに仮定を置くと、因果構造が一意に復元可能なモデルが提案されている(LiNGAMなどのANM)
+  \item ほとんどの既存手法は、データがすべて離散かすべて連続を仮定している
+  \item カウントデータを仮定したモデルとしてPark and Raskutti(2015)\cite{Park2015-tj}
+  \item それを拡張する方法などとして、Park and Raskutti(2017)\cite{Park2017-hw}や、
+        Park and Park(2019)\cite{Park2019-qy}
+  \item 連続・離散混在のモデルとして、Wenjuan \textit{et al.}(2018)\cite{Wenjuan2018-nm} や、
+        Li and Shimizu(2018)\cite{Li2018-aw}や、
+        Yamayoshi \textit{et al.}(2020)\cite{Yamayoshi2020-gu}など
+\end{itemize}
