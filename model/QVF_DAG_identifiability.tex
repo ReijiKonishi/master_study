@@ -31,13 +31,13 @@ Park and Raskutti(2017)\cite{Park2017-hw}によって初めて証明されたが
 \begin{proof}
   分散とモーメントの関係性と、2次分散関数性の定義を利用すると、
   2次分散関数性を満たす確率変数$X$のモーメントについて、以下の関係性が成り立つ。
-  \begin{alignat*}
+  \begin{alignat*}{2}
     \mathit{Var}(X) &= E(X^2) - E(X)^2 & \qquad & \text{分散の公式より} \\
                     &= \beta_0 E(X) + \beta_1 E(X)^2 && \text{2次分散関数性の定義より}
   \end{alignat*}
   よって、
   \begin{equation*}
-    E(X^2) &= \beta_0 E(X) + (\beta_1 + 1) E(X)^2
+    E(X^2) = \beta_0 E(X) + (\beta_1 + 1) E(X)^2
   \end{equation*}
 
   ここで、記号の簡単のために、$f(\mu) = \beta_0 \mu + (\beta_1 + 1)\mu^2$と関数を定義する。
@@ -77,8 +77,7 @@ Park and Raskutti(2017)\cite{Park2017-hw}によって初めて証明されたが
   となり、
   さらに期待値を取ることで、
   \begin{equation*}
-    E(X_j^2) - E\bigl( \beta_0 E(X_j | S_j) +
-    (\beta_1 + 1) E(X_j | S_j)^2 \bigl) & \geq 0
+    E(X_j^2) - E\bigl(\beta_0 E(X_j | S_j) + (\beta_1 + 1) E(X_j | S_j)^2 \bigl) \geq 0
   \end{equation*}
   が得られる。 よって、以下が成り立つ。
   \begin{equation*}
@@ -101,14 +100,14 @@ Park and Raskutti(2017)\cite{Park2017-hw}によって初めて証明されたが
 そこで、図\ref{fig:ex_bivariate}のようなDAGモデルを考える。
 
 \begin{itemize}
-  \item $G_1 \colon X_1 \sim \mathtext{Poisson}(\lambda_1),
-         \quad X_2 \sim \mathtext{Poisson}(\lambda_2) \quad$ ただし、$X_1$と$X_2$は独立
+  \item $G_1 \colon X_1 \sim \mathit{Poisson}(\lambda_1),
+         \quad X_2 \sim \mathit{Poisson}(\lambda_2) \quad$ ただし、$X_1$と$X_2$は独立
 
-  \item $G_2 \colon X_1 \sim \mathtext{Poisson}(\lambda_1),
-         \quad X_2|X_1 \sim \mathtext{Poisson}(g_2(X_1))$
+  \item $G_2 \colon X_1 \sim \mathit{Poisson}(\lambda_1),
+         \quad X_2|X_1 \sim \mathit{Poisson}(g_2(X_1))$
 
-  \item $G_3 \colon X_2 \sim \mathtext{Poisson}(\lambda_2),
-         \quad X_1|X_2 \sim \mathtext{Poisson}(g_1(X_2))$
+  \item $G_3 \colon X_2 \sim \mathit{Poisson}(\lambda_2),
+         \quad X_1|X_2 \sim \mathit{Poisson}(g_1(X_2))$
 
   ただし、$g_1$と$g_2$は非退化な任意の関数である。
   $(g_1, g_2 \colon \mathbb{N} \cup \{ 0 \} \rightarrow \mathbb{R}^+)$
@@ -172,6 +171,7 @@ $G_2$においては、以下が成り立つ。
   因果順序が$m$番目の要素とその親について考える。
   命題\ref{prop:MRS}より、$\pi_m$は、
   $E(X_{\pi_m}^2) = E(f(E(X_{\pi_m} | X_{1:(m-1)})))$である。
+  
   一方で、$j \in \{ \pi_{m+1}, \dots, \pi_p \}$については、
   $E(X_j^2) > E(f(E(X_j | X_{1:(m-1)})))$である。
   よって、因果順序が$m$番目の要素$\pi_m$を推定することができる。
