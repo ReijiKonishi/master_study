@@ -1,0 +1,47 @@
+%!TEX root = ../thesis.tex
+
+\subsection{提案モデル}
+
+提案モデルにおける変数は、離散変数と連続変数に分けられ、
+離散変数は0以上の整数を取る確率変数であると仮定する。
+そこで提案モデルを以下のように定義する。
+
+\begin{enumerate}
+  \item
+  $p$個の観測変数$X = \{ X_1, \dots, X_p \}$は
+  DAGによって表現されるデータ生成仮定から生成されており、
+  各変数の親変数がその変数の直接的な原因である。
+
+  \item
+  連続変数に割り当てられた変数$X_j$は、
+  その親変数$Pa(j)$と誤差変数$e_j$の線形和である。
+
+  \begin{equation}
+    X_j = e_j + \theta_{j} + \sum_{k \in Pa(j)} \theta_{jk}X_j
+    \quad \text{with} \quad e_j \sim \mathit{Laplace}(0, b_j)
+    \label{eq:lingam_prop}
+  \end{equation}
+
+  それぞれの係数$\theta_{jk}$は、変数$X_k$から変数$X_j$への直接的な因果効果の大きさを表す。
+  また、誤差変数$e_j$はラプラス分布に従う確率変数であり、お互いに独立である。
+
+  \item
+  離散変数に割り当てられた変数$X_j$は、
+  その親変数$Pa(j)$による条件付き確率が、2次分散関数性を満たす。
+  つまり、以下を満たすような$\beta_{j0},\beta_{j1} \in \mathbb{R}$が存在する。
+
+  \begin{equation}
+    \mathit{Var}(X_j|X_{Pa(j)}) = \beta_{j0} E(X_j | X_{Pa(j)}) + \beta_{j1} E(X_j | X_{Pa(j)})^2
+    \label{QVF_prop}
+  \end{equation}
+
+  また、各変数の条件付き期待値は、
+  その変数の親変数$Pa(j)$と
+  任意の単調で微分可能なリンク関数$g_j \colon \mathcal X_{Pa(j)} \rightarrow \mathbb R^+$
+  によって以下のように記述される。
+  \begin{equation}
+    E(X_j | X_{Pa(j)})
+    = g_j(X_{Pa(j)})
+    = g_j \left(\theta_j + \sum_{k \in Pa(j)} \theta_{jk}X_k \right)
+  \end{equation}
+\end{enumerate}
