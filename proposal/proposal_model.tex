@@ -13,17 +13,22 @@
   各変数の親変数がその変数の直接的な原因である。
 
   \item
+  $p$個の観測変数$X = \{ X_1, \dots, X_p \}$は、
+  連続変数($X_j \in \mathbb R$)か離散変数($X_j \in \{0, \mathbb N$\})の
+  いずれかに割り当てられる。
+
+  \item
   連続変数に割り当てられた変数$X_j$は、
   その親変数$Pa(j)$と誤差変数$e_j$の線形和である。
 
   \begin{equation}
     X_j = e_j + \theta_{j} + \sum_{k \in Pa(j)} \theta_{jk}X_j
-    \quad \text{with} \quad e_j \sim \mathit{Laplace}(0, b_j)
+    \quad \text{with} \quad e_j \sim \text{non-Gaussian}
     \label{eq:lingam_prop}
   \end{equation}
 
   それぞれの係数$\theta_{jk}$は、変数$X_k$から変数$X_j$への直接的な因果効果の大きさを表す。
-  また、誤差変数$e_j$はラプラス分布に従う確率変数であり、お互いに独立である。
+  また、誤差変数$e_j$は非ガウス分布に従う確率変数であり、お互いに独立である。
 
   \item
   離散変数に割り当てられた変数$X_j$は、
@@ -44,4 +49,8 @@
     = g_j(X_{Pa(j)})
     = g_j \left(\theta_j + \sum_{k \in Pa(j)} \theta_{jk}X_k \right)
   \end{equation}
+
+  ここで、モデルの解釈性を優先させるため、
+  リンク関数$g_i$はパラメータ$\theta$に関して線形な関数であることを仮定しているが、
+  以降の識別可能性の議論などではそのような仮定は必要ではない。
 \end{enumerate}
