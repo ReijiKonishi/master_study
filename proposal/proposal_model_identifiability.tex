@@ -71,17 +71,17 @@
       そのため、因果順序が1番目の要素$\pi_1$を特定することができる。
 
       \item
-      \underline{$X_{\pi_1} = X_j \in X_D$の場合}
+      \underline{$X_{\pi_1} = X_j \in X_C$の場合}
       \begin{enumerate}[label=(ii - \alph*)]
         \item
         $X_{\pi_2} = X_k \in X_D$の場合 \\
         命題\ref{prop:MRS}より、$E[X_{\pi_2}^2] = E[f(E[X_{\pi_2} | X_{\pi_1}])]$が成立する。
         一方で、頂点$k \in X_D \backslash \{\pi_2\}$では、
-        $E[X_k^2] > E[f(E[X_k] | X_{\pi_1})]$となる。
+        $E[X_k^2] > E[f(E[X_k | X_{\pi_1}])]$となる。
         そのため、$X_{\pi_1} = X_j \in X_C, X_{\pi_2} = X_k \in X_D$が、
         $E[X_{\pi_2}^2] = E[f(E[X_{\pi_2} | X_{\pi_1}])]$を満たすような
         $X_j \in X_C, X_k \in X_D$を、
-        それぞれ因果順序の1番目と2番目の要素$\pi_1, \pi_2$を特定することができる。
+        それぞれ因果順序が1番目と2番目の要素$\pi_1, \pi_2$を特定することができる。
 
         \item
         $X_{\pi_2} = X_k \in X_C$の場合 \\
@@ -101,7 +101,53 @@
   \end{quote}
 
   \begin{quote}
-    \textbf{Step()}
+    \textbf{Step(m-1)} \\
+    因果順序が$(m-1)$番目の要素について、因果順序が先の$(m-1)$個の要素とその親が正しく推定されていると仮定する。
+  \end{quote}
+
+  \begin{quote}
+    \textbf{Step(m)} \\
+    因果順序が$m$番目の要素とその親について考える。
+    \begin{enumerate}[label=(\roman*)]
+      \item
+      \underline{$X_{\pi_m} = X_j \in X_D$の場合} \\
+      命題\ref{prop:MRS}より、$E[X_{\pi_m}^2] = E[f(E[X_{\pi_m} | X_{1:(m-1)}])]$が成立する。
+      一方で、頂点$j \in \{\{ \pi_{m+1}, \dots, \pi_p\} \cap X_D\}$では、
+      $E[X_j^2] > E[f(E[X_j | X_{1:(m-1)}])]$となる。
+      そのため、因果順序が$m$番目の要素$\pi_m$を特定することができる。
+
+      \item
+      \underline{$X_{\pi_m} = X_j \in X_C$の場合}
+      \begin{enumerate}[label=(ii - \alph*)]
+        \item
+        $X_{\pi_{m+1}} = X_k \in X_D$の場合 \\
+        命題\ref{prop:MRS}より、$E[X_{\pi_{m+1}}^2] = E[f(E[X_{\pi_{m+1}} | X_{\pi_{1:m}}])]$が成立する。
+        一方で、頂点$k \in \{\{ \pi_{m+2} \dots, \pi_{p} \} \cap X_D\}$では、
+        $E[X_{\pi_{k}}^2] > E[f(E[X_{\pi_{k}} | X_{\pi_{1:m}}])]$となる。
+        そのため、$X_{\pi_m} = X_j \in X_C, X_{\pi_{m+1}} = X_k \in X_D$が、
+        $E[X_{\pi_{m+1}}^2] > E[f(E[X_{\pi_{m+1}} | X_{\pi_{1:m}}])]$を満たすような
+        $X_j \in X_C, X_k \in X_D$を、それぞれ因果順序が$m$番目と$(m+1)$番目の要素
+        $\pi_{m}, \pi_{m+1}$を特定することができる。
+
+        \item
+        $X_{\pi_m} = X_j \in X_C$の場合 \\
+        $X_C$のデータ生成過程はLiNGAM\cite{Shimizu2006-yu}と同様である。
+        Shimizu \textit{et al.}(2011)\cite{Shimizu2011-pd}の補題2により、
+        Step(1)と同様に、Shimizu \textit{et al.}(2011)\cite{Shimizu2011-pd}の補題1を用いることによって、
+        因果順序が$m$番目の要素$\pi_m$を特定することができる。
+
+      \end{enumerate}
+
+    \end{enumerate}
+
+    親変数に関しては$P(G)の因数分解$\eqref{eq:factorization}による
+    以下の条件付き独立関係より導くことができる。
+    \begin{align*}
+      E(X_{\pi_m}^2) &= E(f(E(X_{\pi_m} | X_{1:(m-1)}))) \\
+                     &= E(f(E(X_{\pi_m} | X_{Pa(\pi_m)})))
+    \end{align*}
+    つまり、上記の関係が成立するような最小の集合を
+    $X_{1:(m-1)}$の中から$\pi_m$の親として選択することができる。
   \end{quote}
 
   \qed
