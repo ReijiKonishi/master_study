@@ -6,57 +6,58 @@
 離散変数は0以上の整数を取る確率変数であると仮定する。
 そこで提案モデルを以下のように定義する。
 
-\begin{enumerate}
-  \item
+\begin{df}[提案モデル] \label{prop_model}
   $p$個の観測変数$X = \{ X_1, \dots, X_p \}$は
-  DAGによって表現されるデータ生成仮定から生成されており、
+  DAGによって表現されるデータ生成過程から生成されており、
   各変数の親変数がその変数の直接的な原因である。
-
-  \item
-  $p$個の観測変数$X = \{ X_1, \dots, X_p \}$は、
+  また、$p$個の観測変数$X = \{ X_1, \dots, X_p \}$は、
   連続変数($X_j \in \mathbb R$)か離散変数($X_j \in \{0, \mathbb N$\})の
-  いずれかに割り当てられる。
+  いずれかに割り当てられ、
+  それぞれ以下のデータ生成過程により生成されている。
 
-  \item
-  連続変数に割り当てられた変数$X_j$は、
-  その親変数$Pa(j)$と誤差変数$e_j$の線形和である。
+  \begin{enumerate}
+    \setlength{\itemsep}{0.3cm}
+    \item
+    連続変数に割り当てられた変数$X_j$は、
+    その親変数$Pa(j)$と誤差変数$e_j$の線形和である。
 
-  \begin{equation}
-    X_j = e_j + \theta_{j} + \sum_{k \in Pa(j)} \theta_{jk}X_k
-    \quad \text{with} \quad e_j \sim \text{non-Gaussian}
-    \label{eq:lingam_prop}
-  \end{equation}
+    \begin{equation}
+      X_j = e_j + \theta_{j} + \sum_{k \in Pa(j)} \theta_{jk}X_k
+      \quad \text{with} \quad e_j \sim \text{non-Gaussian}
+      \label{eq:lingam_prop}
+    \end{equation}
 
-  それぞれの係数$\theta_{jk}$は、変数$X_k$から変数$X_j$への直接的な因果効果の大きさを表す。
-  また、誤差変数$e_j$は非ガウス分布に従う確率変数であり、お互いに独立である。
+    それぞれの係数$\theta_{jk}$は、変数$X_k$から変数$X_j$への直接的な因果効果の大きさを表す。
+    また、誤差変数$e_j$は非ガウス分布に従う確率変数であり、お互いに独立である。
 
-  \item
-  離散変数に割り当てられた変数$X_j$は、
-  その親変数$Pa(j)$による条件付き確率が、2次分散関数性を満たす。
-  つまり、以下を満たすような$\beta_{j0},\beta_{j1} \in \mathbb{R}$が存在する。
+    \item
+    離散変数に割り当てられた変数$X_j$は、
+    その親変数$Pa(j)$による条件付き確率が、2次分散関数性を満たす。
+    つまり、以下を満たすような$\beta_{j0},\beta_{j1} \in \mathbb{R}$が存在する。
 
-  \begin{equation}
-    \mathit{Var}(X_j|X_{Pa(j)}) = \beta_{j0} E(X_j | X_{Pa(j)}) + \beta_{j1} E(X_j | X_{Pa(j)})^2
-    \label{QVF_prop}
-  \end{equation}
+    \begin{equation}
+      \mathit{Var}(X_j|X_{Pa(j)}) = \beta_{j0} E(X_j | X_{Pa(j)}) + \beta_{j1} E(X_j | X_{Pa(j)})^2
+      \label{QVF_prop}
+    \end{equation}
 
-  また、各変数の条件付き期待値は、
-  その変数の親変数$Pa(j)$と
-  任意の単調で微分可能なリンク関数$g_j \colon \mathcal X_{Pa(j)} \rightarrow \mathbb R^+$
-  によって以下のように記述される。
-  \begin{equation}
-    E(X_j | X_{Pa(j)})
-    = g_j(X_{Pa(j)})
-    = g_j \left(\theta_j + \sum_{k \in Pa(j)} \theta_{jk}X_k \right)
-  \end{equation}
+    また、各変数の条件付き期待値は、
+    その変数の親変数$Pa(j)$と
+    任意の単調で微分可能なリンク関数$g_j \colon \mathcal X_{Pa(j)} \rightarrow \mathbb R^+$
+    によって以下のように記述される。
+    ただし、全ての$k \in Pa(j)$について$|\theta_{jk}| > 0$とする。
+    \begin{equation}
+      E(X_j | X_{Pa(j)})
+      = g_j(X_{Pa(j)})
+      = g_j \left(\theta_j + \sum_{k \in Pa(j)} \theta_{jk}X_k \right)
+    \end{equation}
 
-  ここで、モデルの解釈性を優先させるため、
-  リンク関数$g_i$はパラメータ$\theta$に関して線形な関数であることを仮定しているが、
-  以降の識別可能性の議論などではそのような仮定は必要ではない。
-\end{enumerate}
+    ここで、モデルの解釈性を優先させるため、
+    リンク関数$g_i$はパラメータ$\theta$に関して線形な関数であることを仮定しているが、
+    以降の識別可能性の議論などではそのような仮定は必要ではない。
+  \end{enumerate}
+\end{df}
 
 マーケティング・リサーチの文脈において、上記のような因果モデルが有用であると考えられるかについて述べる。
-
 まず第一に、消費者行動の研究のうち、「消費者の知覚、選好および選択」を扱った分野との親和性である。
 消費者の知覚・選好・選択モデルは、消費者がどのようにブランドを理解し、
 そのブランドに対してどのような態度形成を経て購買に至るかをモデル化したものであり、
