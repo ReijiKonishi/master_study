@@ -15,20 +15,94 @@
 2変数モデルを用いてその識別可能性を示す。
 ここで$X$は連続変数、$Y$は離散変数であるとする。
 
-\begin{itemize}
-  \item $G_1 \colon X_1 \sim \mathit{Poisson}(\lambda_1),
-         \quad X_2 \sim \mathit{Poisson}(\lambda_2) \quad$ ただし、$X_1$と$X_2$は独立
+\begin{align*}
+  G_1 \colon & X = e_1, \quad e_1 \sim \mathit{Laplace}(0, b_1) \\
+             & Y|X \sim \mathit{Poisson}(\lambda_1), \quad \log(\lambda_1) = \theta_Y + \theta_{YX}X
+\end{align*}
 
-  \item $G_2 \colon X_1 \sim \mathit{Poisson}(\lambda_1),
-         \quad X_2|X_1 \sim \mathit{Poisson}(g_2(X_1))$
+\begin{align*}
+  G_2 \colon & X = \theta_X + \theta_{XY}Y + e_2, \quad e_2 \sim \mathit{Laplace}(0, b_2) \\
+             & Y \sim \mathit{Possion}(\lambda_2)
+\end{align*}
 
-  ただし、$g_1$と$g_2$は非退化な任意の関数である。
-  $(g_1, g_2 \colon \mathbb{N} \cup \{ 0 \} \rightarrow \mathbb{R}^+)$
-\end{itemize}
-
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics{./picture/prop_bivariate.pdf}
   \caption{2変数のDAGモデル}
   \label{fig:ex_prop_bivariate}
 \end{figure}
+
+命題\ref{prop:MRS}より、$G_1$においては
+\begin{align*}
+  E(Y^2) > E(Y) + E(Y)^2
+\end{align*}
+である一方で、$G_2$においては
+\begin{align*}
+  E(Y^2) = E(Y) + E(Y)^2
+\end{align*}
+が成立する。
+よって、連続変数と離散変数の両方が含まれる2変数モデルは、
+離散変数のモーメント比~\eqref{eq:MRS}が1か1以上かを確かめることで識別可能である。
+
+ここからは、上記の2変数モデルでの証明の方針とLiNGAMの識別可能性の証明\cite{Shimizu2011-pd}を
+利用することによって、提案モデルが一般的なp変数の場合においても識別可能であることを証明する。
+
+\begin{theo}[提案モデルの識別可能性]
+  定義\ref{prop_model}によって定義されるDAGモデルは、識別可能である。
+\end{theo}
+
+\begin{proof}
+  一般性を失わずに、真の因果順序が一意であり、$\pi = (\pi_1, \dots, \pi_p)$であると仮定する。
+  また、簡単のために、$X_{1:j} = (X_{\pi_1}, X_{\pi_2}, \dots, X_{\pi_j})$、
+  $X_{1:0} = \emptyset$と定義する。
+  連続変数に割り当てられた変数集合を$X_C$、
+  離散変数に割り当てられた変数集合を$X_D$とする。
+  加えて、モーメント関連関数$f(\mu) = \beta_0 \mu + (\beta_1 + 1)\mu^2$を定義する。
+  ここから数学的帰納法を用いて提案モデルの識別可能性を証明する。
+
+  \begin{quote}
+    \textbf{Step(1)}
+    \begin{enumerate}[label=(\roman*)]
+      \item
+      \underline{$X_{\pi_1} = X_j \in X_D$の場合} \\
+      命題\ref{prop:MRS}より、$E[X_{\pi_1}^2] = E[f(E[X_{\pi_1}])]$が成立する。
+      一方で、頂点$j \in X_D \backslash \{\pi_1\}$では、
+      $E[X_j^2] > E[f(E[X_j])]$となる。
+      そのため、因果順序が1番目の要素$\pi_1$を特定することができる。
+
+      \item
+      \underline{$X_{\pi_1} = X_j \in X_D$の場合}
+      \begin{enumerate}[label=(ii - \alph*)]
+        \item
+        $X_{\pi_2} = X_k \in X_D$の場合 \\
+        命題\ref{prop:MRS}より、$E[X_{\pi_2}^2] = E[f(E[X_{\pi_2} | X_{\pi_1}])]$が成立する。
+        一方で、頂点$k \in X_D \backslash \{\pi_2\}$では、
+        $E[X_k^2] > E[f(E[X_k] | X_{\pi_1})]$となる。
+        そのため、$X_{\pi_1} = X_j \in X_C, X_{\pi_2} = X_k \in X_D$が、
+        $E[X_{\pi_2}^2] = E[f(E[X_{\pi_2} | X_{\pi_1}])]$を満たすような
+        $X_j \in X_C, X_k \in X_D$を、
+        それぞれ因果順序の1番目と2番目の要素$\pi_1, \pi_2$を特定することができる。
+
+        \item
+        $X_{\pi_2} = X_k \in X_C$の場合 \\
+        $X_C$のデータ生成過程はLiNGAM\cite{Shimizu2006-yu}と同様である。
+        そこで、Shimizu \textit{et al.}(2011)\cite{Shimizu2011-pd}の補題1を用いる。
+        $X_j$を$X_k$に回帰したときの残差を
+        $r_j^{(k)} = X_j - \frac{\text{cov}(X_j, X_k)}{\text{var}(X_k)} X_k$
+        で表す。
+        この時、$X_k$が因果順序において最初の変数に成ることができるのは、
+        $X_k$がその残差すべて$r_j^{(k)} (j = 1,\dots,p; j \neq k)$と独立であるときで、
+        かつそのときに限る。
+        そのため、因果順序が1番目の要素$\pi_1$を特定することができる。
+
+      \end{enumerate}
+
+    \end{enumerate}
+  \end{quote}
+
+  \begin{quote}
+    \textbf{Step()}
+  \end{quote}
+
+  \qed
+\end{proof}
