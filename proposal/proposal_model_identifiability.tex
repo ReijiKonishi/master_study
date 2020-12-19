@@ -16,13 +16,13 @@
 ここで$X$は連続変数、$Y$は離散変数であるとする。
 
 \begin{align*}
-  G_1 \colon & X = e_1, \quad e_1 \sim \mathit{Laplace}(0, b_1) \\
-             & Y|X \sim \mathit{Poisson}(\lambda_1), \quad \log(\lambda_1) = \theta_Y + \theta_{YX}X
+  G_1 \colon & X = \theta_{X}^{(1)} + e^{(1)}, \quad e^{(1)} \sim \mathit{Laplace}(0, b^{(1)}) \\
+             & Y|X \sim \mathit{Poisson}(\lambda^{(1)}), \quad \log(\lambda^{(1)}) = \theta_Y^{(1)} + \theta_{YX}X
 \end{align*}
 
 \begin{align*}
-  G_2 \colon & X = \theta_X + \theta_{XY}Y + e_2, \quad e_2 \sim \mathit{Laplace}(0, b_2) \\
-             & Y \sim \mathit{Possion}(\lambda_2)
+  G_2 \colon & X = \theta_{X}^{(2)} + \theta_{XY}Y + e^{(2)}, \quad e^{(2)} \sim \mathit{Laplace}(0, b^{(2)}) \\
+             & Y \sim \mathit{Possion}(\lambda^{(2)})
 \end{align*}
 
 \begin{figure}[ht]
@@ -130,7 +130,7 @@
         $\pi_{m}, \pi_{m+1}$を特定することができる。
 
         \item
-        $X_{\pi_m} = X_j \in X_C$の場合 \\
+        $X_{\pi_{m+1}} = X_k \in X_C$の場合 \\
         $X_C$のデータ生成過程はLiNGAM\cite{Shimizu2006-yu}と同様である。
         Shimizu \textit{et al.}(2011)\cite{Shimizu2011-pd}の補題2により、
         Step(1)と同様に、Shimizu \textit{et al.}(2011)\cite{Shimizu2011-pd}の補題1を用いることによって、
