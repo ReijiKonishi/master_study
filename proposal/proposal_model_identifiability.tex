@@ -55,8 +55,9 @@
   一般性を失わずに、真の因果順序が一意であり、$\pi = (\pi_1, \dots, \pi_p)$であると仮定する。
   また、簡単のために、$X_{1:j} = (X_{\pi_1}, X_{\pi_2}, \dots, X_{\pi_j})$、
   $X_{1:0} = \emptyset$と定義する。
-  連続変数に割り当てられた変数集合を$X_C$、
-  離散変数に割り当てられた変数集合を$X_D$とする。
+  DAG $G$において、
+  連続変数に割り当てられた変数からなる頂点の集合を$C$、
+  離散変数に割り当てられた変数からなる頂点の集合を$D$とする。
   加えて、モーメント関連関数$f(\mu) = \beta_0 \mu + (\beta_1 + 1)\mu^2$を定義する。
   ここから数学的帰納法を用いて提案モデルの識別可能性を証明する。
 
@@ -64,27 +65,29 @@
     \textbf{Step(1)}
     \begin{enumerate}[label=(\roman*)]
       \item
-      \underline{$X_{\pi_1} = X_j \in X_D$の場合} \\
+      \underline{$\pi_1 = j \in D$の場合} \\
       命題\ref{prop:MRS}より、$E[X_{\pi_1}^2] = E[f(E[X_{\pi_1}])]$が成立する。
-      一方で、頂点$j \in X_D \backslash \{\pi_1\}$では、
+      一方で、頂点$j \in D \backslash \{\pi_1\}$では、
       $E[X_j^2] > E[f(E[X_j])]$となる。
-      そのため、因果順序が1番目の要素$\pi_1$を特定することができる。
+      そのため、因果順序が1番目の要素$\pi_1$は、
+      $E[X_j^2] = E[f(E[X_j])]$となるような$j \in D$である。
+      もし、そのような変数が存在しなければ、$X_{\pi_1}$は連続変数である。
 
       \item
-      \underline{$X_{\pi_1} = X_j \in X_C$の場合}
+      \underline{$\pi_1 = j \in C$の場合}
       \begin{enumerate}[label=(ii - \alph*)]
         \item
         $X_{\pi_2} = X_k \in X_D$の場合 \\
         命題\ref{prop:MRS}より、$E[X_{\pi_2}^2] = E[f(E[X_{\pi_2} | X_{\pi_1}])]$が成立する。
         一方で、頂点$k \in X_D \backslash \{\pi_2\}$では、
         $E[X_k^2] > E[f(E[X_k | X_{\pi_1}])]$となる。
-        そのため、$X_{\pi_1} = X_j \in X_C, X_{\pi_2} = X_k \in X_D$が、
+        そのため、$\pi_1 = j \in C, \pi_2 = k \in D$が、
         $E[X_{\pi_2}^2] = E[f(E[X_{\pi_2} | X_{\pi_1}])]$を満たすような
-        $X_j \in X_C, X_k \in X_D$を、
-        それぞれ因果順序が1番目と2番目の要素$\pi_1, \pi_2$を特定することができる。
+        $j \in C, k \in D$を、
+        それぞれ因果順序が1番目と2番目の要素$\pi_1, \pi_2$として特定することができる。
 
         \item
-        $X_{\pi_2} = X_k \in X_C$の場合 \\
+        $\pi_2 = k \in C$の場合 \\
         $X_C$のデータ生成過程はLiNGAM\cite{Shimizu2006-yu}と同様である。
         そこで、Shimizu \textit{et al.}(2011)\cite{Shimizu2011-pd}の補題1を用いる。
         $X_j$を$X_k$に回帰したときの残差を
@@ -110,27 +113,29 @@
     因果順序が$m$番目の要素とその親について考える。
     \begin{enumerate}[label=(\roman*)]
       \item
-      \underline{$X_{\pi_m} = X_j \in X_D$の場合} \\
+      \underline{$\pi_m = j \in D$の場合} \\
       命題\ref{prop:MRS}より、$E[X_{\pi_m}^2] = E[f(E[X_{\pi_m} | X_{1:(m-1)}])]$が成立する。
-      一方で、頂点$j \in \{\{ \pi_{m+1}, \dots, \pi_p\} \cap X_D\}$では、
+      一方で、頂点$j \in \{\{ \pi_{m+1}, \dots, \pi_p\} \cap D\}$では、
       $E[X_j^2] > E[f(E[X_j | X_{1:(m-1)}])]$となる。
-      そのため、因果順序が$m$番目の要素$\pi_m$を特定することができる。
+      そのため、因果順序が$m$番目の要素$\pi_m$は、
+      $E[X_j^2] = E[f(E[X_j | X_{1:(m-1)}])]$となるような$j \in D$である。
+      もし、そのような変数が存在しなければ、$X_{\pi_m}$は連続変数である。
 
       \item
-      \underline{$X_{\pi_m} = X_j \in X_C$の場合}
+      \underline{$\pi_m = j \in C$の場合}
       \begin{enumerate}[label=(ii - \alph*)]
         \item
-        $X_{\pi_{m+1}} = X_k \in X_D$の場合 \\
+        $\pi_{m+1} = k \in D$の場合 \\
         命題\ref{prop:MRS}より、$E[X_{\pi_{m+1}}^2] = E[f(E[X_{\pi_{m+1}} | X_{\pi_{1:m}}])]$が成立する。
-        一方で、頂点$k \in \{\{ \pi_{m+2} \dots, \pi_{p} \} \cap X_D\}$では、
+        一方で、頂点$k \in \{\{ \pi_{m+2} \dots, \pi_{p} \} \cap D\}$では、
         $E[X_{\pi_{k}}^2] > E[f(E[X_{\pi_{k}} | X_{\pi_{1:m}}])]$となる。
         そのため、$X_{\pi_m} = X_j \in X_C, X_{\pi_{m+1}} = X_k \in X_D$が、
         $E[X_{\pi_{m+1}}^2] > E[f(E[X_{\pi_{m+1}} | X_{\pi_{1:m}}])]$を満たすような
-        $X_j \in X_C, X_k \in X_D$を、それぞれ因果順序が$m$番目と$(m+1)$番目の要素
-        $\pi_{m}, \pi_{m+1}$を特定することができる。
+        $j \in C, k \in D$を、それぞれ因果順序が$m$番目と$(m+1)$番目の要素
+        $\pi_{m}, \pi_{m+1}$として特定することができる。
 
         \item
-        $X_{\pi_{m+1}} = X_k \in X_C$の場合 \\
+        $\pi_{m+1} = k \in C$の場合 \\
         $X_C$のデータ生成過程はLiNGAM\cite{Shimizu2006-yu}と同様である。
         Shimizu \textit{et al.}(2011)\cite{Shimizu2011-pd}の補題2により、
         Step(1)と同様に、Shimizu \textit{et al.}(2011)\cite{Shimizu2011-pd}の補題1を用いることによって、
