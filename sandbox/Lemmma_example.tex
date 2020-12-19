@@ -1,0 +1,124 @@
+\documentclass[uplatex]{jsarticle}
+\usepackage{amsmath,amssymb}
+\usepackage{float}
+\usepackage[scaled]{helvet}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{enumitem}
+
+% 定理環境
+\theoremstyle{definition}
+\newtheorem{df}{定義}[section]
+\newtheorem{theo}[df]{定理}
+\newtheorem{prop}[df]{命題}
+\newtheorem{lemm}[df]{補題}
+\newtheorem{cor}[df]{系}
+\newtheorem{ex}[df]{例}
+\newtheorem{fact}[df]{事実}
+\newtheorem{nex}[df]{反例}
+
+%
+% \qed を自動で入れない proof 環境を再定義
+%
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+  \normalfont
+  \topsep6\p@\@plus6\p@ \trivlist
+  \item[\hskip\labelsep{\bfseries #1}\@addpunct{\bfseries.}]\ignorespaces
+}{%
+  \endtrivlist
+}
+\renewcommand{\proofname}{証明}
+\newcommand{\relmiddle}[1]{\mathrel{}\middle#1\mathrel{}}
+\makeatother
+
+
+\title{Step(m)の証明}
+\author{Reiji Konishi}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+\section{ii-bについて}
+
+MLPシリーズ「統計的因果探索」の図4.10の例とほぼ同じモデルで考える。
+($x_3 \rightarrow x_1 \rightarrow x_2$)
+
+
+
+\begin{align*}
+  x_3 &\sim Poisson(\lambda) \\
+  x_1 &= b_{13}x_3 + e_1 \\
+  x_2 &= b_{21}x_1 + e_2
+\end{align*}
+
+まず最初に、因果順序が最も早い変数を探索する。
+
+$E(x_3^2) = E(x_3) + E(x_3)^2$が成立しているため、
+命題2.3を使って、因果順序が最も早い変数は$x_3$だと特定できる。
+(もし親となる変数があれば、$E(x_3^2) > E(x_3) + E(x_3)^2$ となってしまう。)
+
+次に、因果順序が最も早い$x_3$による寄与を他の変数$x_1, x_2$から取り除く。
+この時の残差$r_1^{(3)}$と$r_2^{(3)}$が、LiNGAMの形式で書ければ、因果順序が2番目の変数を特定できる。
+
+変数$x_1$と$x_2$を目的変数に、$x_3$を説明変数にして回帰分析をして、
+残差$r_1^{(3)}$と$r_2^{(3)}$を求める。
+
+\begin{align}
+  r_1^{(3)} &= x_1 - \frac{\text{cov}(x_3, x_1)}{\text{var}(x_3)} x_3
+\end{align}
+
+ここで、
+\begin{align}
+  \text{cov}(x_3, x_1) &= E[x_3 x_1] - E[x_3]E[x_1] \\
+                       &= E[x_3 (b_{13}x_3 + e_1)] - E[x_3]E[b_{13}x_3 + e_1] \\
+                       &= b_{13}E[x_3^2] + E[x_3 e_1] - b_{13}E[x_3]^2 - E[x_3]E[e_1] \\
+                       &= b_{13}E[x_3^2] + E[x_3]E[e_1] - b_{13}E[x_3]^2 - E[x_3]E[e_1] \\
+                       &= b_{13}E[x_3^2] - b_{13}E[x_3]^2 \\
+                       &= b_{13}(E[x_3^2] - E[x_3]^2) \\
+                       &= b_{13}\text{var}(x_3)
+\end{align}
+
+よって、式(1)は以下となる。
+\begin{align}
+  r_1^{(3)} &= x_1 - b_{13} x_3 \\
+            &= e_1
+\end{align}
+
+次に$r_2^{(3)}$を求める。
+
+\begin{align}
+  r_2^{(3)} = x_2 - \frac{\text{cov}(x_3, x_2)}{\text{var}(x_3)} x_3
+\end{align}
+
+ここで、
+\begin{align}
+  \text{cov}(x_3, x_2) &= E[x_3 x_2] - E[x_3]E[x_2] \\
+                       &= E[x_3 (b_{21}x_1 + e_2)] - E[x_3]E[b_{21}x_1 + e_2] \\
+                       &= E[x_3 (b_{21}(b_{13} x_3 + e_1) + e_2)] - E[x_3]E[b_{21}(b_{13} x_3 + e_1) + e_2] \\
+                       &= E[x_3 (b_{21}b_{13} x_3 + b_{21}e_1 + e_2)] - E[x_3]E[b_{21}b_{13} x_3 + b_{21}e_1 + e_2] \\
+                       &= b_{21}b_{13} E[x_3^2] + b_{21} E[x_3 e_1] + E[x_3 e_2] \notag \\
+                       & \quad - b_{21}b_{13} E[x_3]^2 - b_{21}E[x_e]E[e_1] - E[x_3]E[e_2] \\
+                       &= b_{21}b_{13} (E[x_3^2] - E[x_3]^2) \\
+                       &= b_{21}b_{13}\text{var}(x_3)
+\end{align}
+
+よって、式(11)は以下となる。
+\begin{align}
+  r_2^{(3)} &= x_2 - b_{21}b_{13} x_3 \\
+            &= x_2 - b_{21}(x_1 - e_1) \\
+            &= x_2 - b_{21}x_1 + b_{21} e_1 \\
+            &= e_2 + b_{21}e_1
+\end{align}
+
+まとめると、$x_3$に関する項は含まれない形で、
+$r_1^{(3)}$と$r_2^{(3)}$に関するLiNGAMの形式で書ける。
+\begin{align}
+  r_1^{(3)} &= e_1 \\
+  r_2^{(3)} &= b_{21}r_1^{(3)} + e_2
+\end{align}
+
+\end{document}
