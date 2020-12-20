@@ -53,7 +53,8 @@ $\mathcal X_S \equiv \times_{j \in S} \mathcal X_j$を定義する。
 また、任意の頂点$j\in V$について、
 確率変数ベクトル$X_S$を与えたときの変数$X_j$の
 条件付き確率を$f_j(X_j|X_S)$と表記する。
-すると、DAG $G$によるモデルは以下のように因数分解することができる\cite{Pearl2009-oh}。
+すると、DAG $G$によるモデルは因果マルコフ条件により以下のように因数分解することができる
+\cite{Pearl2009-oh}。
 
 \begin{equation}
   f_G(X)=f_G(X_1, X_2, \dots, X_p) = \prod_{j=1}^p f_j(X_j | X_{Pa(j)})
@@ -63,7 +64,17 @@ $\mathcal X_S \equiv \times_{j \in S} \mathcal X_j$を定義する。
 ここで、$f_j(X_j | X_{Pa(j)})$は、$X_j$の
 親変数$X_{Pa(j)} \equiv \{ X_k:k\in Pa(j) \subset V \}$を与えた条件付き確率である。
 
-また、本論文では観察データから因果グラフを同定するという問題を扱うため、
+また、本論文で扱う因果モデルには、因果極小性(causal minimality)を仮定する。
+因果極小性とは、DAG $G$で表現される因果構造に従って生成された分布$f_G(X)$は、
+$G$の部分グラフにおいては因果マルコフ条件を満たさないことを言う\cite{Zhang2011-da}。
+つまり、全ての頂点$j \in V$とその親の1つ$k \in Pa(j)$について、以下が成り立つ。
+
+\begin{equation}
+  \forall Pa(j)\backslash\{k\} \subset S \subset Nd(k) \backslash\{k\},
+  \quad X_j \notindep X_k | X_S
+\end{equation}
+
+最後に、本論文では観察データから因果グラフを同定するという問題を扱うため、
 因果グラフの識別可能性について定義する。
 識別可能性を直感的に説明すると、条件付き確率分布$f_j(X_j|X_{Pa(j)})$に対してある仮定を置くと、
 同時確率密度関数$f_G(X)$を与えたDAG $G$の構造を一意に決定付けることができるということである。
