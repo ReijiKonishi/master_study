@@ -8,7 +8,7 @@
 
 \begin{df}[提案モデル] \label{prop_model}
   $p$個の観測変数$X = \{ X_1, \dots, X_p \}$は
-  DAGによって表現されるデータ生成過程から生成されており、
+  DAG $G$ によって表現されるデータ生成過程から生成されており、
   各変数の親変数がその変数の直接的な原因である。
   また、$p$個の観測変数$X = \{ X_1, \dots, X_p \}$は、
   連続変数($X_j \in \mathbb R$)か離散変数($X_j \in \{0, \mathbb N$\})の
@@ -23,12 +23,14 @@
 
     \begin{equation}
       X_j = e_j + \theta_{j} + \sum_{k \in Pa(j)} \theta_{jk}X_k
-      \quad \text{with} \quad e_j \sim \text{non-Gaussian}
+      \quad , e_j \sim (0, \sigma_j^2)
       \label{eq:lingam_prop}
     \end{equation}
 
-    それぞれの係数$\theta_{jk}$は、変数$X_k$から変数$X_j$への直接的な因果効果の大きさを表す。
-    また、誤差変数$e_j$は非ガウス分布に従う確率変数であり、お互いに独立である。
+    それぞれの係数$\theta_{jk}$は、DAG $G$ における変数$X_k$から変数$X_j$への直接的な因果効果の大きさを表す。
+    つまり、頂点$k$が頂点$j$の親であるときは$\theta_{jk} \neq 0$であり、それ以外のときは$\theta_{jk} = 0$である。
+    また、誤差変数$e_j$は平均ゼロでそれぞれ異なる分散$(\sigma_j^2)_{j \in V}$に従う
+    互いに独立な確率変数である。
 
     \item
     離散変数に割り当てられた変数$X_j$は、
@@ -44,7 +46,8 @@
     その変数の親変数$Pa(j)$と
     任意の単調で微分可能なリンク関数$g_j \colon \mathcal X_{Pa(j)} \rightarrow \mathbb R^+$
     によって以下のように記述される。
-    ただし、全ての$k \in Pa(j)$について$|\theta_{jk}| > 0$とする。
+    ここで、それぞれの係数$\theta_{jk}$は、DAG $G$における変数$X_k$から変数$X_j$への直接的な因果効果の大きさを表す。
+    つまり、頂点$k$が頂点$j$の親であるときは$\theta_{jk} \neq 0$であり、それ以外のときは$\theta_{jk} = 0$である。
     \begin{equation}
       E(X_j | X_{Pa(j)})
       = g_j(X_{Pa(j)})
