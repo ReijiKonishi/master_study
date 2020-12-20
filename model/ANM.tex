@@ -19,11 +19,13 @@ ANMは、観測変数の同時分布が、
   \label{def:ANM}
 \end{equation}
 
-ここで、$(f_j)_{j\in V}$は任意の関数であり、
+$(f_j)_{j\in V}$は任意の関数であり、
 $(e_j)_{j\in V}$は平均ゼロでそれぞれ異なる分散$(\sigma_j^2)_{j\in V}$に従う
 互いに独立な確率変数である。
+ここで、$(e_j)_{j\in V}$の分布の形は任意である。
+つまりガウス分布など特定の分布であるとは限らない。
 
-また、ANMの特殊形として、$(f_j)_{j\in V}$が全て線形な関数で記述されるモデルを、
+また、ANMの特殊形として、$(f_j)_{j\in V}$が全て線形な関数で記述されるモデルを
 線形構造方程式モデル(SEM)という。
 つまり、観測変数の同時分布が以下の線形方程式で定義されるDAGモデルである。
 
@@ -62,11 +64,10 @@ $(e_j)_{j\in V}$は平均ゼロでそれぞれ異なる分散$(\sigma_j^2)_{j\in
 
 \begin{theo}[ANMの識別可能条件\cite{Park2020-ey}]
   同時確率$f(X)$がDAG $G$のANM(\ref{def:ANM})から生成されているとする。
-  このとき、以下の2つの条件のいずれかが満たされているならば、
+  このとき、任意の頂点$j = \pi_m \in V, k \in De(j), l \in An(j)$に関して、
+  以下の2つの条件のいずれかが満たされているならば、
   DAG $G$は一意に識別可能である。
   ここでDAG $G$における因果順序を$\pi$で表す。
-
-  任意の頂点$j = \pi_m \in V, k \in De(j), l \in An(j)$に関して、
   \begin{align*}
     (\text{A}) \quad &\sigma_j^2 < \sigma_k^2 + E(\mathit{Var}(E(X_k | X_{Pa(k)}) | X_{\pi_1}, \dots, X_{\pi_{m-1}})) \\
     (\text{B}) \quad &\sigma_j^2 > \sigma_l^2 - E(\mathit{Var}(E(X_l | X_{\pi_1}, \dots, X_{\pi_m} \backslash X_l) | X_{Pa(l)}))
