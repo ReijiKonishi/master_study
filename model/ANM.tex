@@ -1,0 +1,55 @@
+%!TEX root = ../thesis.tex
+
+\subsection{Additive Noise Model}
+
+本節では、連続変数データを扱うDAGモデルとして、
+広く用いられているAdditive Noise Model(ANM)
+\cite{Shimizu2006-yu}
+\cite{Hoyer2008-oo}
+\cite{Peters2013-eb}
+\cite{Peters2014-ro}
+\cite{Park2020-ey}
+とその識別可能性について概説する。
+
+ANMは、観測変数の同時分布が、
+以下の構造方程式と誤差から生成されるDAGモデルである。
+
+\begin{equation}
+  X_j = f_j(X_{Pa(j)}) + e_j , \quad e_j \sim (0, \sigma_j^2)
+  \label{def:ANM}
+\end{equation}
+
+ここで、$(f_j)_{j\in V}$は任意の関数であり、
+$(e_j)_{j\in V}$は平均ゼロでそれぞれ異なる分散$(\sigma_j^2)_{j\in V}$に従う
+互いに独立な確率変数である。
+
+また、ANMの特殊形として、$(f_j)_{j\in V}$が全て線形な関数で記述されるモデルを、
+線形構造方程式モデル(SEM)という。
+つまり、観測変数の同時分布が以下の線形方程式で定義されるDAGモデルである。
+
+\begin{equation}
+  X_j = \theta_j + \sum_{k \in Pa(j)} \theta_{jk} X_k + e_j, \quad e_j \sim (0, \sigma_j^2)
+\end{equation}
+
+ここで、それぞれの係数$\theta_{jk}$は、DAG $G$における頂点$k$から頂点$j$の
+直接的な因果効果の大きさを表す。
+つまり、頂点$k$が頂点$k$の親であるときは$\theta_{jk} \neq 0$であり、
+それ以外のときは$\theta_{jk}=0$である。
+
+これらのDAGモデルは、関数形や誤差変数の分布についていくつかの制約を課すと、
+識別可能であることが証明されている。
+代表的な識別可能条件について以下に簡単にまとめる。
+
+\begin{itemize}
+  \item
+  全ての関数$(f_j)_{j \in V}$が非線形である非線形ANM\cite{Hoyer2008-oo}
+
+  \item
+  全ての関数$(f_j)_{j \in V}$が線形であり、
+  観測変数$(X_j)_{j \in V}$または誤差変数$(e_j)_{j\in V}$のいずれかの確率分布が、
+  非ガウス分布に従う線形非ガウス非巡回モデル(LiNGAM)\cite{Shimizu2006-yu}
+
+  \item
+  全ての関数$(f_j)_{j \in V}$が線形であり、
+  誤差変数$e_j$の分散が全て等しい、または全て既知である線形ANM\cite{Peters2013-eb}
+\end{itemize}
