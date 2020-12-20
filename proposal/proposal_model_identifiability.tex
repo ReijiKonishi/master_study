@@ -2,54 +2,108 @@
 
 \subsection{提案モデルの識別可能性}
 
-本節では、前節で定義したDAGモデルの識別可能性を証明する
+本節では、前節で定義したDAGモデルの識別可能性を証明する。
 提案モデルは、連続変数と離散変数とが混在することを許容するDAGモデルであるため、
 その特殊形として、全てが連続変数であるモデルや全てが離散変数であるモデルを考えることも可能である。
-全てが連続変数である場合は、LiNGAM\cite{Shimizu2006-yu}と同様となる。
-つまり、全てが連続変数である場合の識別可能性は既に証明されている\cite{Shimizu2006-yu}。
-また、全てが離散変数である場合は、QVF-DAGモデル\cite{Park2017-hw}と同様となる。
-つまり、全てが離散変数である場合の識別可能性も既に証明されている\cite{Park2017-hw}。
-そこで以下では、観測変数集合に連続変数と離散変数の両方が含まれる場合についてのみ述べる。
+全てが連続変数である場合は、Additive Noise Modelとなり、
+モデルの識別可能条件が複数証明されている\cite{Shimizu2006-yu}
+\cite{Hoyer2008-oo}
+\cite{Peters2013-eb}
+\cite{Peters2014-ro}
+\cite{Park2020-ey}。
+また、全てが離散変数である場合は、QVF-DAGモデル\cite{Park2017-hw}となり、
+識別可能性が既に証明されている\cite{Park2017-hw}。
+そこで以下では、観測変数集合に連続変数と離散変数の両方が含まれる場合に関する識別可能条件について議論する。
 まず、証明の方針について直感的な理解を得るために、
-図\ref{fig:ex_prop_bivariate}のようなDAGモデルを用いて
-2変数モデルを用いてその識別可能性を示す。
-ここで$X$は連続変数、$Y$は離散変数であるとする。
+図\ref{fig:prop_three_variate}のような3変数モデルを用いてその識別可能性を示す。
+ここで$X,Z$は連続変数、$Y$は離散変数であるとする。
+図\ref{fig:prop_three_variate}の3つの因果グラフから生成される分布は、
+いずれも$X \indep Z | Y$という条件付き独立関係が成立しており、
+因果マルコフ条件のみでは識別できない例である。
+しかし、以下で示すように、提案モデルの特徴を利用すると識別することが可能である。
 
 \begin{align*}
-  G_1 \colon & X = \theta_{X}^{(1)} + e^{(1)}, \quad e^{(1)} \sim \mathit{Laplace}(0, b^{(1)}) \\
-             & Y|X \sim \mathit{Poisson}(\lambda^{(1)}), \quad \log(\lambda^{(1)}) = \theta_Y^{(1)} + \theta_{YX}X
+  G_1 \colon & X = \theta_{X} + e_X, \quad e_X \sim N(0, \sigma_X^2) \\
+             & Y|X \sim \mathit{Poisson}(\lambda), \quad \log(\lambda) = \theta_Y + \theta_{YX}X \\
+             & Z = \theta_Z + \theta_{ZY}Y + e_Z, \quad e_Z \sim N(0, \sigma_Z^2)
 \end{align*}
 
 \begin{align*}
-  G_2 \colon & X = \theta_{X}^{(2)} + \theta_{XY}Y + e^{(2)}, \quad e^{(2)} \sim \mathit{Laplace}(0, b^{(2)}) \\
-             & Y \sim \mathit{Possion}(\lambda^{(2)})
+  G_2 \colon & X = \theta_X + \theta_{XY}Y + e_X, \quad e_X \sim N(0, \sigma_X^2) \\
+             & Y|Z \sim \mathit{Possion}(\lambda), \quad \log(\lambda) = \theta_Y + \theta_{YZ}Z \\
+             & Z = \theta_{Z} + e_Z, \quad e_Z \sim N(0, \sigma_Z^2)
+\end{align*}
+
+\begin{align*}
+  G_3 \colon & X = \theta_X + \theta_{XY}Y + e_X, \quad e_X \sim N(0, \sigma_X^2) \\
+             & Y \sim \mathit{Poisson}(\lambda) \\
+             & Z = \theta_{Z} + e_Z, \quad e_Z \sim N(0, \sigma_Z^2)
 \end{align*}
 
 \begin{figure}[ht]
   \centering
-  \includegraphics{./picture/prop_bivariate.pdf}
-  \caption{2変数のDAGモデル}
-  \label{fig:ex_prop_bivariate}
+  \includegraphics{./picture/prop_three_variate.pdf}
+  \caption{3変数のDAGモデル}
+  \label{fig:prop_three_variate}
 \end{figure}
 
-命題\ref{prop:MRS}より、$G_1$においては
+命題\ref{prop:MRS}より、$G_1, G2$においては
 \begin{align*}
   E(Y^2) > E(Y) + E(Y)^2
 \end{align*}
-である一方で、$G_2$においては
+である一方で、$G_3$においては
 \begin{align*}
   E(Y^2) = E(Y) + E(Y)^2
 \end{align*}
-が成立する。
-よって、連続変数と離散変数の両方が含まれる2変数モデルは、
-離散変数のモーメント比~\eqref{eq:MRS}が1か1以上かを確かめることで識別可能である。
+となる。
+よって、離散変数のモーメント比~\eqref{eq:MRS}が1か1以上かを確かめることで
+$G_1, G_2$と$G_3$は識別可能である。
 
-ここからは、上記の2変数モデルでの証明の方針とLiNGAMの識別可能性の証明\cite{Shimizu2011-pd}を
-利用することによって、提案モデルが一般的なp変数の場合においても識別可能であることを証明する。
+次に$G_1$について、もし連続変数$X, Z$の誤差変数の分散が
+$\sigma_X^2 < \sigma_Z^2 + \mathit{Var}(E(Z|Y))$を満たすならば、
+全分散の公式を用いて以下が成り立つ。
+\begin{align*}
+  \mathit{Var}(Z) &= E(\mathit{Var}(Z|Y)) + \mathit{Var}(E(Z|Y)) \\
+                  &= \sigma_Z^2 + \mathit{Var}(E(Z|Y)) \\
+                  &> \sigma_X^2 \\
+                  &= \mathit{Var}(X)
+\end{align*}
+
+よって、$X$のほうが因果順序が早いことが分かる。
+つまり、誤差変数の分散が$\sigma_X^2 < \sigma_Z^2 + \mathit{Var}(E(Z|Y))$を満たすならば、
+因果順序を特定することが可能である。
+
+$G_2$についても同様に、
+連続変数$X, Z$の誤差変数の分散が、
+$\sigma_Z^2 < \sigma_X^2 + \mathit{Var}(E(X|Y))$を満たすならば、
+真の因果順序$\pi = (Z, Y, X)$を特定することが可能である。
+
+
+ここからは、上記の3変数モデルでの証明の方針を拡張し、
+提案モデルが一般的なp変数の場合においても識別可能であることを証明する。
 
 \begin{theo}[提案モデルの識別可能性]
-  定義\ref{prop_model}によって定義されるDAGモデルは、識別可能である。
+  \label{theo:prop_identifiability}
+  定義\ref{prop_model}によって定義されるDAGモデルは、以下の仮定を満たすとき識別可能である。
+  ただし、DAG $G$における因果順序を$\pi$で表す。
+  \begin{itemize}
+    \item
+    連続変数が割り当てられた任意の頂点$j = \pi_m \in C, k \in De(j) \subset C$の
+    データ生成過程における誤差変数の分散について、以下が満たされている。
+    \begin{equation*}
+      \sigma_j^2 < \sigma_k^2 + E(\mathit{Var}(E(X_k | X_{Pa(k)}) | X_{\pi_1}, \dots, X_{\pi_{m-1}}))
+    \end{equation*}
+
+    \item
+    離散変数が割り当てあられた任意の頂点$j \in D$について、
+    $\beta_{j1} > -1$が満たされている。
+  \end{itemize}
 \end{theo}
+
+2点目の仮定は、ベルヌーイ分布や多項分布によるDAGモデルを除外するための仮定である。
+なぜななら、ベルヌーイ分布や多項分布によるDAGモデルは識別不能であることが知られているためである\cite{Heckerman1995-es}。
+
+以下では、定理\ref{theo:prop_identifiability}を証明する。
 
 \begin{proof}
   一般性を失わずに、真の因果順序が一意であり、$\pi = (\pi_1, \dots, \pi_p)$であると仮定する。
