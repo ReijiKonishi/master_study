@@ -47,7 +47,7 @@
   \label{fig:prop_three_variate}
 \end{figure}
 
-命題\ref{prop:MRS}より、$G_1, G2$においては
+命題\ref{prop:MRS}より、$G_1, G_2$においては
 \begin{align*}
   E(Y^2) > E(Y) + E(Y)^2
 \end{align*}
@@ -71,7 +71,7 @@ $\sigma_X^2 < \sigma_Z^2 + \mathit{Var}(E(Z|Y))$を満たすならば、
 
 よって、$X$のほうが因果順序が早いことが分かる。
 つまり、誤差変数の分散が$\sigma_X^2 < \sigma_Z^2 + \mathit{Var}(E(Z|Y))$を満たすならば、
-因果順序を特定することが可能である。
+$G_1$の因果順序を特定することが可能である。
 
 $G_2$についても同様に、
 連続変数$X, Z$の誤差変数の分散が、
@@ -168,11 +168,11 @@ $\sigma_Z^2 < \sigma_X^2 + \mathit{Var}(E(X|Y))$を満たすならば、
     \begin{enumerate}[label=(\roman*)]
       \item
       \underline{$\pi_1 = j \in D$の場合} \\
-      補題\ref{lem_prop_MRS}より、$E[X_{\pi_1}^2] = E[f(E[X_{\pi_1}])]$が成立する。
+      補題\ref{lem_prop_MRS}より、$E(X_{\pi_1}^2) = E(f(E(X_{\pi_1})))$が成立する。
       一方で、頂点$j \in D \backslash \{\pi_1\}$では、
-      $E[X_j^2] > E[f(E[X_j])]$となる。
+      $E(X_j^2) > E(f(E(X_j)))$となる。
       そのため、因果順序が1番目の要素$\pi_1$は、
-      $E[X_j^2] = E[f(E[X_j])]$となるような$j \in D$である。
+      $E(X_j^2) = E(f(E(X_j)))$となるような$j \in D$である。
       もし、そのような変数が存在しなければ、$X_{\pi_1}$は連続変数である。
 
       \item
@@ -185,12 +185,13 @@ $\sigma_Z^2 < \sigma_X^2 + \mathit{Var}(E(X|Y))$を満たすならば、
                                 &= E(\mathit{Var}(X_k | X_{Pa(k)})) + \mathit{Var}(E(X_k | X_{Pa(k)})) \\
                                 &= \mathit{Var}(X_k)
       \end{align*}
+      よって、因果順序が1番目の要素$\pi_1$を特定することができる。
     \end{enumerate}
   \end{quote}
 
   \begin{quote}
     \textbf{Step(m-1)} \\
-    因果順序が$(m-1)$番目の要素について、因果順序が先の$(m-1)$個の要素とその親が正しく推定されていると仮定する。
+    因果順序が$(m-1)$番目の要素について、因果順序が早い$(m-1)$個の要素とその親が正しく推定されていると仮定する。
   \end{quote}
 
   \begin{quote}
@@ -199,28 +200,41 @@ $\sigma_Z^2 < \sigma_X^2 + \mathit{Var}(E(X|Y))$を満たすならば、
     \begin{enumerate}[label=(\roman*)]
       \item
       \underline{$\pi_m = j \in D$の場合} \\
-      補題\ref{lem_prop_MRS}より、$E[X_{\pi_m}^2] = E[f(E[X_{\pi_m} | X_{1:(m-1)}])]$が成立する。
+      補題\ref{lem_prop_MRS}より、$E(X_{\pi_m}^2) = E(f(E(X_{\pi_m} | X_{1:(m-1)})))$が成立する。
       一方で、頂点$j \in \{\{ \pi_{m+1}, \dots, \pi_p\} \cap D\}$では、
-      $E[X_j^2] > E[f(E[X_j | X_{1:(m-1)}])]$となる。
+      $E(X_j^2) > E(f(E(X_j | X_{1:(m-1)})))$となる。
       そのため、因果順序が$m$番目の要素$\pi_m$は、
-      $E[X_j^2] = E[f(E[X_j | X_{1:(m-1)}])]$となるような$j \in D$である。
+      $E(X_j^2) = E(f(E(X_j | X_{1:(m-1)})))$となるような$j \in D$である。
       もし、そのような変数が存在しなければ、$X_{\pi_m}$は連続変数である。
 
       \item
       \underline{$\pi_m = j \in C$の場合} \\
-      あああ
+      定理\ref{theo:prop_identifiability}の仮定(A)より、
+      任意の頂点$k \in \{ \{ \pi_{m+1}, \dots, \pi_p \} \cap C \}$について、以下が成立する。
+      \begin{align*}
+        E(\mathit{Var}(X_{\pi_m} | X_{1:(m-1)}))
+            &= \sigma_{\pi_m}^2 \\
+            &< \sigma_k^2 + E(\mathit{Var}(E(X_k | X_{Pa(k)}) | X_{1:(m-1)})) \\
+            &= E(E(\mathit{Var}(X_k | X_{Pa(k)}) | X_{1:(m-1)})) + E(\mathit{Var}(E(X_k | X_{Pa(k)}) | X_{1:(m-1)})) \\
+            &= E(\mathit{Var}(X_k | X_{1:(m-1)}))
+      \end{align*}
+      よって、因果順序が$m$番目の要素$\pi_m$を特定することができる。
 
     \end{enumerate}
-
-    親変数に関しては$P(G)の因数分解$\eqref{eq:factorization}による
-    以下の条件付き独立関係より導くことができる。
-    \begin{align*}
-      E(X_{\pi_m}^2) &= E(f(E(X_{\pi_m} | X_{1:(m-1)}))) \\
-                     &= E(f(E(X_{\pi_m} | X_{Pa(\pi_m)})))
-    \end{align*}
-    つまり、上記の関係が成立するような最小の集合を
-    $X_{1:(m-1)}$の中から$\pi_m$の親として選択することができる。
   \end{quote}
+
+
+    各頂点の親に関しては、因果マルコフ条件に基づく
+    $P(G)の因数分解$\eqref{eq:factorization}によって表現される
+    条件付き独立関係と、
+    因果極小性~\eqref{minimality}により導くことができる。
+    つまり、以下を満たす頂点$k$を$\pi_m$の親として特定することができる。
+    \begin{equation*}
+      Pa(k) \colon = \{ k \in \{ \pi_1, \dots, \pi_{m-1} \} |
+      X_k \notindep X_{\pi_m} | X_{\pi_1}, \dots, X_{\pi_{m-1}} \backslash X_k \}
+    \end{equation*}
+
+    よって、数学的帰納法により定理\ref{theo:prop_identifiability}の証明を完了する。
 
   \qed
 \end{proof}
