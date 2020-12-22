@@ -101,7 +101,7 @@ $\sigma_Z^2 < \sigma_X^2 + \mathit{Var}(E(X|Y))$を満たすならば、
 
 \begin{proof}
   提案モデルにおいて、離散変数が割り当てられた頂点は、式~\eqref{QVF_prop}を満たすため、
-  任意の変数$X_j \in X_D$について以下の関係が成り立つ。
+  任意の変数$X_j \in X_D$の2次モーメントは以下のように表現できる。
   \begin{equation*}
     E(X_j^2) = \beta_0 E(X_j) + (\beta_1 + 1)E(X_j)^2
   \end{equation*}
@@ -192,6 +192,26 @@ $\sigma_Z^2 < \sigma_X^2 + \mathit{Var}(E(X|Y))$を満たすならば、
   \begin{quote}
     \textbf{Step(m-1)} \\
     因果順序が$(m-1)$番目の要素について、因果順序が早い$(m-1)$個の要素とその親が正しく推定されていると仮定する。
+    つまり、以下の2つの関係が成立していると仮定する。
+
+    \begin{itemize}
+      \item
+      因果順序が($m-1$)番目の要素については、
+      $E(X_{\pi_{m-1}}^2) = E(f(E(X_{\pi_{m-1}} | X_{1:(m-2)})))$が成立している。
+      一方で、任意の頂点$k \in \{ \{\pi_m, \dots, \pi_p \} \cap D \}$については
+      以下が成立している。
+      \begin{equation*}
+        E(X_j^2) > E(f(E(X_j | X_{1:(m-2)})))
+      \end{equation*}
+
+      \item
+      任意の頂点$k \in \{ \{\pi_m, \dots, \pi_p \} \cap C \}$の
+      データ生成過程における誤差変数の分散について、以下が成立している。
+      \begin{equation*}
+        \sigma_{\pi_{m-1}}^2 < \sigma_k^2 + E(\mathit{Var}(E(X_k | X_{Pa(k)}) | X_{1:(m-2)}))
+      \end{equation*}
+
+    \end{itemize}
   \end{quote}
 
   \begin{quote}
@@ -200,7 +220,7 @@ $\sigma_Z^2 < \sigma_X^2 + \mathit{Var}(E(X|Y))$を満たすならば、
     \begin{enumerate}[label=(\roman*)]
       \item
       \underline{$\pi_m = j \in D$の場合} \\
-      補題\ref{lem_prop_MRS}より、$E(X_{\pi_m}^2) = E(f(E(X_{\pi_m} | X_{1:(m-1)})))$が成立する。
+      帰納法の仮定より、$E(X_{\pi_m}^2) = E(f(E(X_{\pi_m} | X_{1:(m-1)})))$が成立する。
       一方で、頂点$j \in \{\{ \pi_{m+1}, \dots, \pi_p\} \cap D\}$では、
       $E(X_j^2) > E(f(E(X_j | X_{1:(m-1)})))$となる。
       そのため、因果順序が$m$番目の要素$\pi_m$は、
@@ -209,7 +229,7 @@ $\sigma_Z^2 < \sigma_X^2 + \mathit{Var}(E(X|Y))$を満たすならば、
 
       \item
       \underline{$\pi_m = j \in C$の場合} \\
-      定理\ref{theo:prop_identifiability}の仮定(A)より、
+      帰納法の仮定より、
       任意の頂点$k \in \{ \{ \pi_{m+1}, \dots, \pi_p \} \cap C \}$について、以下が成立する。
       \begin{align*}
         E(\mathit{Var}(X_{\pi_m} | X_{1:(m-1)}))
@@ -231,7 +251,7 @@ $\sigma_Z^2 < \sigma_X^2 + \mathit{Var}(E(X|Y))$を満たすならば、
     つまり、以下を満たす頂点$k$を$\pi_m$の親として特定することができる。
     \begin{equation*}
       Pa(k) \colon = \{ k \in \{ \pi_1, \dots, \pi_{m-1} \} |
-      X_k \notindep X_{\pi_m} | X_{\pi_1}, \dots, X_{\pi_{m-1}} \backslash X_k \}
+      X_k \notindep X_{\pi_m} | X_{1:(m-1)} \backslash X_k \}
     \end{equation*}
 
     よって、数学的帰納法により定理\ref{theo:prop_identifiability}の証明を完了する。
