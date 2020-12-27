@@ -22,8 +22,8 @@
     その親変数$Pa(j)$と誤差変数$e_j$の線形和である。
 
     \begin{equation}
-      X_j = \theta_{j} + \sum_{k \in Pa(j)} \theta_{jk}X_k + e_j
-      \quad , e_j \sim (0, \sigma_j^2)
+      X_j = \theta_{j} + \sum_{k \in Pa(j)} \theta_{jk}X_k + e_j,
+      \quad e_j \sim (0, \sigma_j^2)
       \label{eq:anm_prop}
     \end{equation}
 
@@ -46,7 +46,7 @@
     その変数の親変数$Pa(j)$と
     任意の単調で微分可能なリンク関数$g_j \colon \mathcal X_{Pa(j)} \rightarrow \mathbb R^+$
     によって以下のように記述される。
-    ここで、それぞれの係数$\theta_{jk}$は、DAG $G$における変数$X_k$から変数$X_j$への直接的な因果効果の大きさを表す。
+    ここで、それぞれの係数$\theta_{jk}$は、DAG $G$における変数$X_k$から変数$X_j$への直接的な関係性の強さを表す。
     つまり、頂点$k$が頂点$j$の親であるときは$\theta_{jk} \neq 0$であり、それ以外のときは$\theta_{jk} = 0$である。
     \begin{equation}
       E(X_j | X_{Pa(j)})
