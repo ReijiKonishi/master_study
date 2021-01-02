@@ -43,8 +43,8 @@ $g_j(X_{Pa(j)}) = \exp(\theta_j + \sum_{k \in Pa(j)} \theta_{jk}X_k)$
 
 より一般的には、指数分布族の定義を用いて、以下のように表現することができる。
 \begin{equation}
-  P(X_j|X_{Pa(j)}) = \exp \left( \theta_{jj}X_j  + \sum_{(k,j)\in E} \theta_{jk}X_k X_j -
-  B_j(X_j) - A_j \left( \theta_{jj} + \sum_{(k,j) \in E} \theta_{jk} X_k \right) \right)
+  P(X_j|X_{Pa(j)}) = \exp \left( \theta_{j}X_j  + \sum_{(k,j)\in E} \theta_{jk}X_k X_j -
+  B_j(X_j) - A_j \left( \theta_{j} + \sum_{(k,j) \in E} \theta_{jk} X_k \right) \right)
 \end{equation}
 
 ここで、$A_j(\cdot)$は対数分配関数(log-partition function)、
@@ -54,9 +54,9 @@ DAGモデルの因数分解(\ref{eq:factorization})式により、QVF-DAGモデ�
 以下のように記述することができる。
 
 \begin{equation}
-  P(X) = \exp \left( \sum_{j\in V} \theta_{jj}X_j + \sum_{(k,j)\in E} \theta_{jk}X_k X_j
+  P(X) = \exp \left( \sum_{j\in V} \theta_{j}X_j + \sum_{(k,j)\in E} \theta_{jk}X_k X_j
   - \sum_{j \in V} B_j(X_j) - \sum_{j \in V} A_j
-  \left( \theta_{jj} + \sum_{(k,j)\in E} \theta_{jk} X_k \right)\right)
+  \left( \theta_{j} + \sum_{(k,j)\in E} \theta_{jk} X_k \right)\right)
   \label{eq:QVF_factorization}
 \end{equation}
 

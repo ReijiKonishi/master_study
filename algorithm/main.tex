@@ -3,4 +3,51 @@
 \section{推定アルゴリズム}
 \label{part:algorithm}
 
-推定アルゴリズムだよ〜
+本章では、定義\ref{prop_model}による提案モデルが
+定理\ref{theo:prop_identifiability}の識別可能条件を満たす時に、
+因果順序とDAGにおける変数間の関係性の強さを推定するアルゴリズムを提案する。
+推定アルゴリズムは、
+(i)モーメント比と条件付き分散を用いて各変数の因果順序を推定するステップ、と
+(ii) $l_1$正則化GLMを用いて各変数の親変数を推定するステップ、
+という2つのステップによって構成される。
+提案モデルには異なるデータ生成過程に従う連続変数と離散変数が混在しているため、
+(i)因果順序を推定するステップ は、連続変数と離散変数を分けて逐次的に求める。
+以下では、連続変数と離散変数の因果順序の推定法についてそれぞれ述べる。
+
+まず、離散変数の因果順序の推定法について述べる。
+離散変数の因果順序は、以下で定義される各頂点のモーメント比スコアを比較することで推定する。
+\begin{equation}
+  \begin{split}
+    \widehat{\mathcal S}(1,j) &\equiv
+          \frac{\widehat{E}(X_j^2)}{\beta_0 \widehat{E}(X_j) + (\beta_1 + 1)\widehat{E}(X_j)^2} \\
+          \\
+    \widehat{\mathcal S}(m,j) &\equiv
+          \frac{\widehat{E}(X_j^2)}
+          {\widehat{E}(\beta_0 \widehat{E}(X_j | X_{\widehat{\pi}_{1:(m-1)}}) +
+          (\beta_1 + 1)\widehat{E}(X_j | X_{\widehat{\pi}_{1:(m-1)}})^2)}
+  \end{split}
+  \label{alg:MRS}
+\end{equation}
+ここで、各推定量は以下のように求める。
+\begin{align*}
+  \widehat{E}(X_j)
+      &= \tfrac{1}{n}\textstyle \sum_{i=1}^nX_j^{(i)} \\
+  \widehat{E}(\widehat{E}(X_j | X_S))
+      &= \tfrac{1}{n}\textstyle \sum_{i=1}^n g_j(\widehat{\theta}_j^S +
+         \textstyle \sum_{k\in S} \widehat{\theta}_{jk}^S X_k^{(i)}) \\
+  \widehat{E}(\widehat{E}(X_j | X_S)^2)
+      &= \tfrac{1}{n}\textstyle \sum_{i=1}^n \{g_j(\widehat{\theta}_j^S +
+         \textstyle \sum_{k\in S} \widehat{\theta}_{jk}^S X_k^{(i)})\}^2
+\end{align*}
+ここで$(\widehat{\theta}_j^S, \widehat{\theta}_{jk}^S)$は、
+$X_j$を目的変数、$X_S$を説明変数にとった一般化線形モデルのパラメータの最尤推定量である。
+
+式~\eqref{alg:MRS}によるモーメント比スコアは、式~\eqref{prop_MRS}の推定量であるため、
+正しい因果順序の要素のスコアは1に等しくなり、それ以外の場合は1より大きくなる。
+つまり、モーメント比スコアが最小となる頂点のスコアが1に等しい場合は、
+因果順序が$m$番目の要素は離散変数であり、その変数を特定することができる。
+一方で、1より大きい場合は、因果順序が$m$番目の要素は連続変数であることが分かる。
+ただし、推定誤差があるためモーメント比スコアが正確に1となることはない。
+そのため、本論文では閾値を設定することでモーメント比スコアが1に等しいかどうかを判断する。
+
+次に、連続変数の因果順序の推定法について述べる。
