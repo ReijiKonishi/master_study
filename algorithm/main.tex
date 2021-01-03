@@ -10,7 +10,6 @@
 (i) 各変数の因果順序を推定するステップ、と
 (ii) 各変数の親変数との関係性の強さを推定するステップ、
 という2つのステップによって構成される。
-
 提案モデルには異なるデータ生成過程に従う連続変数と離散変数が混在しているため、
 (i)因果順序を推定するステップ は、連続変数と離散変数を分けて逐次的に求める。
 以下では、連続変数と離散変数の因果順序の推定法についてそれぞれ述べる。
@@ -47,7 +46,7 @@ $X_j$を目的変数、$X_S$を説明変数にとった一般化線形モデル�
 正しい因果順序の要素のスコアは1に等しくなり、それ以外の場合は1より大きくなる。
 つまり、モーメント比スコアが最小となる頂点のスコアが1に等しい場合は、
 因果順序が$m$番目の要素は離散変数であり、その変数を特定することができる。
-一方で、1より大きい場合は、因果順序が$m$番目の要素は連続変数であることが分かる。
+一方で、全てのモーメント比スコアが1より大きい場合は、因果順序が$m$番目の要素は連続変数であることが分かる。
 ただし、推定誤差があるためモーメント比スコアが厳密に1となることはない。
 そのため、本論文では閾値を設定することでモーメント比スコアが1に等しいかどうかを判断する。
 
@@ -66,7 +65,7 @@ $S =\{\widehat{\pi}_1, \dots, \widehat{\pi}_{m-1}\}$を与えたときの
 最小二乗法を用いて線形回帰分析を行ったときの残差の分散で
 条件付き分散$\mathit{Var}(X_j|X_S)$を推定する。
 
-(ii)各変数の親変数との関係性の強さを推定するステップ について述べる。
+続いて、(ii)各変数の親変数との関係性の強さを推定するステップ について述べる。
 上述の方法により因果順序$\widehat{\pi}$を推定すると、
 因果順序に従って回帰分析を行うことにより、変数間の関係性の強さを表す
 パラメータ$\theta_{jk}$を推定する。
@@ -88,17 +87,19 @@ adaptive Lassoではサンプルサイズが十分大きければ、
 \begin{itemize}
   \item
     連続変数
-    \begin{equation*}
+    \begin{equation}
+      \label{adalasso_C}
       \left\| X_j - \sum_{k \in S} \theta_{jk}X_k \right\|^2
         + \lambda \sum_{k\in S} \frac{|\theta_{jk}|}{|\widehat{\theta}_{jk}|^\gamma}
-    \end{equation*}
+    \end{equation}
   \item
     離散変数
-    \begin{equation*}
+    \begin{equation}
+      \label{adalasso_D}
       \sum_{i=1}^n \left( -X_j^{(i)}\left( \theta_j + \sum_{k\in S}\theta_{jk}X_k^{(i)} \right)
         + g_j\left( \theta_j + \sum_{k\in S}\theta_{jk}X_k^{(i)} \right) \right)
         + \lambda \sum_{k\in S} \frac{|\theta_{jk}|}{|\widehat{\theta}_{jk}|^\gamma}
-    \end{equation*}
+    \end{equation}
 \end{itemize}
 
 ここで$\lambda$と$\gamma$は調整パラメータであり、
@@ -106,3 +107,49 @@ $\widehat{\theta}_{jk}$は$\theta_{jk}$の一致推定量による推定値で�
 Zou(2006)\cite{Zou2006-pi}では、
 調整パラメータは5分割交差検証(5-fold cross-validation)によって選択し、
 $\widehat{\theta}_{jk}$は最小二乗法または最尤法によって推定することが提案されている。
+
+
+\begin{algorithm}[t]
+    \caption{提案モデルの推定アルゴリズム}
+    \label{alg1}
+    \begin{algorithmic}    %行番号をつけないときは[1]は不要
+      \REQUIRE 提案モデルから生成された$n$個のi.i.d標本 $X^{1:n}$、
+               各離散変数の条件付き確率分布の仮定
+      \ENSURE 因果順序$\widehat{\pi}=(\widehat{\pi}_1, \dots, \widehat{\pi}_p)$、
+              グラフ構造$\widehat{E} \in \{ 0,1\}^{p \times p}$、
+              頂点間の関係性の強さ$\widehat{\theta} \in \mathbb R^{p \times p}$
+
+      \STATE \underline{Step1: 因果順序の推定}
+      \STATE 初期化 $\widehat{\pi}_0 = \emptyset$
+
+      \FOR{$m = \{ 1,2,\dots, p\}$}
+      \STATE $S = \{ \widehat{\pi}_1, \dots, \widehat{\pi}_{m-1} \}$
+        \FOR{$j \in \left \{\{ V \backslash S \} \cap D \right\} $}
+        \STATE 式~\eqref{alg:MRS}を用いて$\widehat{\mathcal S}(m,j)$を計算する
+        \ENDFOR
+
+        \IF{$\min \widehat{\mathcal S}(m,j) < \text{閾値}$}
+        \STATE 因果順序$m$番目の要素を推定 $\widehat{\pi}_m = \argmin_{j} \widehat{\mathcal S}(m,j)$
+        \ELSE
+          \FOR{$j \in \left \{\{ V \backslash S \} \cap C \right\} $}
+          \STATE $X_S$による$X_j$の条件付き分散 $\widehat{\sigma}_{j|S}^2$を計算する
+          \ENDFOR
+        \STATE 因果順序$m$番目の要素を推定 $\widehat{\pi}_m = \argmin_{j} \widehat{\sigma}_{j|S}^2$
+        \ENDIF
+      \ENDFOR
+
+      \STATE \underline{Step2: 変数間の関係性の強さの推定}
+      \FOR{$m = \{ 2,3, \dots ,p\}$}
+      \STATE $K = \{ \widehat{\pi}_1, \dots, \widehat{\pi}_{m-1} \}$
+      \STATE 目的変数 $X_{\widehat{\pi}_m}$、説明変数 $X_K$とし、
+             adaptive Lasso\eqref{adalasso_C}\eqref{adalasso_D}を用いて
+             $\widehat{\theta}_{mk}$を求める
+      \STATE 因果順序$m$番目の要素の親変数を推定
+             $\widehat{Pa}(\widehat{\pi}_m) = \{ k \in K \>|\> \widehat{\theta}_{mk} \neq 0 \}$
+      \ENDFOR
+      \STATE グラフ構造を推定
+      $\widehat{E} = \bigcup_{m\in V}\{ (k,\widehat{\pi}_m)
+      \>|\> k \in \widehat{Pa}(\widehat{\pi}_m) \}$
+
+    \end{algorithmic}
+\end{algorithm}

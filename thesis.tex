@@ -6,6 +6,8 @@
 \usepackage{color}
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algorithmic}
 
 % 定理環境
 \theoremstyle{definition}
@@ -20,6 +22,10 @@
 
 \newcommand{\indep}{\mathop{\,\perp\!\!\!\!\!\perp\,}}
 \newcommand{\notindep}{\mathop{\,\perp\!\!\!\!\!/\!\!\!\!\!\perp\,}}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\newcommand{\argmax}{\mathop{\rm arg~max}\limits}
+\newcommand{\argmin}{\mathop{\rm arg~min}\limits}
 
 %
 % \qed を自動で入れない proof 環境を再定義
