@@ -124,7 +124,7 @@ $\widehat{\theta}_{jk}$は最小二乗法または最尤法によって推定す
       \STATE 初期化 $\widehat{\pi}_0 = \emptyset$
 
       \FOR{$m = \{ 1,2,\dots, p\}$}
-      \STATE $S = \{ \widehat{\pi}_1, \dots, \widehat{\pi}_{m-1} \}$
+      \STATE $S = \{ \widehat{\pi}_0, \dots, \widehat{\pi}_{m-1} \}$
         \FOR{$j \in \left \{\{ V \backslash S \} \cap D \right\} $}
         \STATE 式~\eqref{alg:MRS}を用いて$\widehat{\mathcal S}(m,j)$を計算する
         \ENDFOR

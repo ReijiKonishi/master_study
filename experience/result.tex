@@ -1,17 +1,20 @@
 %!TEX root = ../thesis.tex
 
-\subsection{結果}
+\subsection{DAGの推定精度}
 
 各アルゴリズムのDAGの推定精度を図\ref{fig:plot_gaussian}
 と\ref{fig:plot_uniform}に示す。
 図\ref{fig:plot_gaussian}は
 連続変数の誤差変数が正規分布に従うように生成したデータにおける推定精度を、
 図\ref{fig:plot_uniform}は一様分布に従うように生成したデータにおける推定精度を示す。
+また、生成されたデータの都合上、
+稀に一般化線形モデルやadaptive Lassoの推定が収束しない場合があった。
+その際は推定精度を欠測とし、精度指標の算出時に除外した。
 
 実験結果より、提案アルゴリズムは他のアルゴリズムと比較して適合率も再現率も高いことが分かる。
 また、提案アルゴリズムは他のアルゴリズムと比較して、サンプルサイズが大きくなるほど
 有向辺の向きを正しく推定していることが分かる。
-このことから、提案モデルは識別可能であり、本論文による提案アルゴリズムによって推定可能であると言える。
+このことから、提案モデルは識別可能であり、本論文による提案アルゴリズムによって推定可能である。
 一方、DirectLiNGAMの推定精度は、正規分布の場合は適合率も再現率も0.5を下回るのに対し、
 一様分布の場合はGESやMMHCの精度と同程度またはそれ以上である。
 これは、LiNGAM\cite{Shimizu2011-pd}が誤差変数に対して非正規性を
@@ -27,14 +30,12 @@
 そのため、因果関係の仮説を構築する上で、提案アルゴリズムの再現率が高いことは望ましいと言える。
 
 \begin{figure}[H]
-  \centering
   \includegraphics[width=13cm, bb=9 9 358 434]{./picture/plot_gaussian.pdf}
   \caption{連続変数の誤差変数が正規分布に従う提案モデルにおける各アルゴリズムの精度比較}
   \label{fig:plot_gaussian}
 \end{figure}
 
 \begin{figure}[H]
-  \centering
   \includegraphics[width=13cm, bb=9 9 358 434]{./picture/plot_uniform.pdf}
   \caption{連続変数の誤差変数が一様分布に従う提案モデルにおける各アルゴリズムの精度比較}
   \label{fig:plot_uniform}
