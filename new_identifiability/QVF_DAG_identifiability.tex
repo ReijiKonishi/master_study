@@ -4,11 +4,39 @@
 
 本章では、前章で導入したQVF-DAGモデル\cite{Park2017-hw}が識別可能であることを証明する。
 QVF-DAGモデルの識別可能性は
-Park and Raskutti(2017)\cite{Park2017-hw}によって初めて証明されたが、
-本論文ではPark and Park(2019)\cite{Park2019-qy}のアイデアを用いることにより、
-識別可能条件の緩和も行う。
+Park and Raskutti(2017)\cite{Park2017-hw}によって
+過分散スコア(OverDispersion Score; ODS)を用いて初めて証明された。
 
-\textcolor{red}{Park and Park 2019の方針で証明する意義付けを明確にする必要あり…}
+過分散とは、ポアソン分布などの分散が期待値に依存する確率分布において、
+期待される分散より標本分散の方が大きくなることである。
+過分散が生じる原因の1つとして、サンプルの個体差などが挙げられる。
+このような個体差などの効果を組み込んだ統計モデルに
+一般化線形混合モデル(generalized linear mixed model; GLMM)がある\cite{2012-iq}。
+
+統計的因果探索の文脈において最初に過分散を利用した例は、
+Park and Raskutti(2015)\cite{Park2015-tj}のPoisson DAGモデルである。
+Park and Raskutti(2015)\cite{Park2015-tj}では
+Poisson DAGモデルの各頂点の条件付き分散が過分散であるかどうかを検定することによって、
+識別可能性を証明している。
+Park and Raskutti(2017)\cite{Park2017-hw}では、
+Poisson DAGモデルにおける過分散が、
+QVF-DAGモデルでも成立することを利用し、QVF-DAGモデルの識別可能性を証明している。
+つまり、Park and Raskutti(2017)\cite{Park2017-hw}による
+過分散スコアを用いたQVF-DAGモデルの識別可能性の証明は、
+Park and Raskutti(2015)\cite{Park2015-tj}によるPoisson DAGモデルの識別可能性の証明の
+自然な拡張であると言える。
+
+Poisson DAGモデルの識別可能条件は、
+Park and Park(2019)\cite{Park2019-qy}による
+モーメント比スコア(Moment Ratio Score; MRS)を用いた証明も行われている。
+モーメント比スコアを用いることによって、
+識別可能条件が緩和され、DAGの推定精度やsample complexityも改善することが示されている\cite{Park2019-qy}。
+
+そこで本論文では、Park and Park(2019)\cite{Park2019-qy}による
+Poisson DAGモデルのモーメント比スコアを拡張することで、
+QVF-DAGモデルの識別可能性を証明する。
+そうすることで、従来の識別可能条件\cite{Park2017-hw}を緩和することや、
+DAGの推定精度が向上することが期待される。
 
 まず初めに、QVF-DAGモデルにおけるモーメント(積率)について
 以下のような関係性が成立していることを示し、識別可能性の証明に利用する。
@@ -16,16 +44,12 @@ Park and Raskutti(2017)\cite{Park2017-hw}によって初めて証明されたが
 \begin{prop} \label{prop:MRS}
   リンク関数$(g_j(X_{Pa(j)}))_{j \in V}$が非退化であるQVF-DAGモデル~\eqref{QVF}において、
   任意の頂点$j \in V$、任意の集合$S_j \subset \mathit{Nd}(j)$に関して、
-  以下のモーメント関係が成立している。
+  以下のモーメント関係が成立する。
   \begin{equation}
     \frac{E(X_j^2)}
     {E \left[ \beta_0 E(X_j | X_{S_j}) + (\beta_1 + 1)E(X_j | X_{S_j})^2 \right]}
     \geq 1
     \label{eq:MRS}
-  \end{equation}
-  同様に、
-  \begin{equation}
-    E(\mathrm{Var}( E(X_j | X_{Pa(j)}) | X_{S_j} )) \geq 0
   \end{equation}
   等号成立は、$S_j$が頂点$j$の親変数すべてを含むとき($Pa(j)\subset S_j$)である。
 \end{prop}
@@ -87,12 +111,6 @@ Park and Raskutti(2017)\cite{Park2017-hw}によって初めて証明されたが
     {E\bigl( \beta_0 E(X_j | S_j) + (\beta_1 + 1) E(X_j | S_j)^2 \bigl)}
     \geq 1
   \end{equation*}
-
-  ここからは、$E(X_j^2) \geq E\bigl( \beta_0 E(X_j | S_j) +
-  (\beta_1 + 1) E(X_j | S_j)^2 \bigl)$ が、
-  $E(\mathrm{Var}( E(X_j | X_{Pa(j)}) | X_{S_j} )) \geq 0$と
-  同値であることを証明する。
-  \textcolor{red}{分散の公式を用いると… 後ほど書く…}
   \qed
 
 \end{proof}
