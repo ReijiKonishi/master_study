@@ -25,7 +25,7 @@ Park and Raskutti(2017)\cite{Park2017-hw}によって初めて証明されたが
   \end{equation}
   同様に、
   \begin{equation}
-    E(\mathit{Var}( E(X_j | X_{Pa(j)}) | X_{S_j} )) \geq 0
+    E(\mathrm{Var}( E(X_j | X_{Pa(j)}) | X_{S_j} )) \geq 0
   \end{equation}
   等号成立は、$S_j$が頂点$j$の親変数すべてを含むとき($Pa(j)\subset S_j$)である。
 \end{prop}
@@ -34,7 +34,7 @@ Park and Raskutti(2017)\cite{Park2017-hw}によって初めて証明されたが
   分散とモーメントの関係性と、2次分散関数性の定義を利用すると、
   2次分散関数性を満たす確率変数$X$のモーメントについて、以下の関係性が成り立つ。
   \begin{alignat*}{2}
-    \mathit{Var}(X) &= E(X^2) - E(X)^2 & \qquad & \text{分散の公式より} \\
+    \mathrm{Var}(X) &= E(X^2) - E(X)^2 & \qquad & \text{分散の公式より} \\
                     &= \beta_0 E(X) + \beta_1 E(X)^2 && \text{2次分散関数性の定義より}
   \end{alignat*}
   よって、
@@ -90,7 +90,7 @@ Park and Raskutti(2017)\cite{Park2017-hw}によって初めて証明されたが
 
   ここからは、$E(X_j^2) \geq E\bigl( \beta_0 E(X_j | S_j) +
   (\beta_1 + 1) E(X_j | S_j)^2 \bigl)$ が、
-  $E(\mathit{Var}( E(X_j | X_{Pa(j)}) | X_{S_j} )) \geq 0$と
+  $E(\mathrm{Var}( E(X_j | X_{Pa(j)}) | X_{S_j} )) \geq 0$と
   同値であることを証明する。
   \textcolor{red}{分散の公式を用いると… 後ほど書く…}
   \qed
@@ -102,14 +102,14 @@ Park and Raskutti(2017)\cite{Park2017-hw}によって初めて証明されたが
 そこで、図\ref{fig:ex_bivariate}のようなDAGモデルを考える。
 
 \begin{itemize}
-  \item $G_1 \colon X_1 \sim \mathit{Poisson}(\lambda_1),
-         \quad X_2 \sim \mathit{Poisson}(\lambda_2) \quad$ ただし、$X_1$と$X_2$は独立
+  \item $G_1 \colon X_1 \sim \mathrm{Poisson}(\lambda_1),
+         \quad X_2 \sim \mathrm{Poisson}(\lambda_2) \quad$ ただし、$X_1$と$X_2$は独立
 
-  \item $G_2 \colon X_1 \sim \mathit{Poisson}(\lambda_1),
-         \quad X_2|X_1 \sim \mathit{Poisson}(g_2(X_1))$
+  \item $G_2 \colon X_1 \sim \mathrm{Poisson}(\lambda_1),
+         \quad X_2|X_1 \sim \mathrm{Poisson}(g_2(X_1))$
 
-  \item $G_3 \colon X_2 \sim \mathit{Poisson}(\lambda_2),
-         \quad X_1|X_2 \sim \mathit{Poisson}(g_1(X_2))$
+  \item $G_3 \colon X_2 \sim \mathrm{Poisson}(\lambda_2),
+         \quad X_1|X_2 \sim \mathrm{Poisson}(g_1(X_2))$
 
   ただし、$g_1$と$g_2$は非退化な任意の関数である。
   $(g_1, g_2 \colon \mathbb{N} \cup \{ 0 \} \rightarrow \mathbb{R}^+)$
@@ -126,12 +126,12 @@ Park and Raskutti(2017)\cite{Park2017-hw}によって初めて証明されたが
 $E(X_j^2) = E(X_j) + E(X_j)^2$である。
 $G_2$においては、以下が成り立つ。
 \begin{equation*}
-  E(X_1^2) = E(X_1) + E(X_1)^2, \quad \text{and} \quad
+  E(X_1^2) = E(X_1) + E(X_1)^2, \quad \text{かつ} \quad
   E(X_2^2) > E(X_2) + E(X_2)^2
 \end{equation*}
 同様に、$G_3$においては、以下が成り立つ。
 \begin{equation*}
-  E(X_1^2) > E(X_1) + E(X_1)^2, \quad \text{and} \quad
+  E(X_1^2) > E(X_1) + E(X_1)^2, \quad \text{かつ} \quad
   E(X_2^2) = E(X_2) + E(X_2)^2
 \end{equation*}
 つまり、モーメント比$E(X_j^2) / (E(X_j) + E(X_j)^2)$によって、
@@ -203,7 +203,7 @@ $G_2$においては、以下が成り立つ。
 Park and Raskutti(2017)\cite{Park2017-hw}によって証明された
 QVF-DAGモデルの識別可能条件には、
 $Pa(j) \nsubseteq S_j$のとき、すべての$x \in \mathcal X_{S_j}$について、
-$\mathit{Var}(E(X_j | X_{Pa(j)}) | X_{S_j} = x) > 0$という
+$\mathrm{Var}(E(X_j | X_{Pa(j)}) | X_{S_j} = x) > 0$という
 仮定が含まれていた。
 しかし、本論文における識別可能条件にはそのような仮定は含まれていない。
 つまり、従来の識別可能条件\cite{Park2017-hw}を緩和している。

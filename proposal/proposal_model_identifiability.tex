@@ -24,19 +24,19 @@
 
 \begin{align*}
   G_1 \colon & X = \theta_{X} + e_X, \quad e_X \sim N(0, \sigma_X^2) \\
-             & Y|X \sim \mathit{Poisson}(\lambda), \quad \log(\lambda) = \theta_Y + \theta_{YX}X \\
+             & Y|X \sim \mathrm{Poisson}(\lambda), \quad \log(\lambda) = \theta_Y + \theta_{YX}X \\
              & Z = \theta_Z + \theta_{ZY}Y + e_Z, \quad e_Z \sim N(0, \sigma_Z^2)
 \end{align*}
 
 \begin{align*}
   G_2 \colon & X = \theta_X + \theta_{XY}Y + e_X, \quad e_X \sim N(0, \sigma_X^2) \\
-             & Y|Z \sim \mathit{Possion}(\lambda), \quad \log(\lambda) = \theta_Y + \theta_{YZ}Z \\
+             & Y|Z \sim \mathrm{Possion}(\lambda), \quad \log(\lambda) = \theta_Y + \theta_{YZ}Z \\
              & Z = \theta_{Z} + e_Z, \quad e_Z \sim N(0, \sigma_Z^2)
 \end{align*}
 
 \begin{align*}
   G_3 \colon & X = \theta_X + \theta_{XY}Y + e_X, \quad e_X \sim N(0, \sigma_X^2) \\
-             & Y \sim \mathit{Poisson}(\lambda) \\
+             & Y \sim \mathrm{Poisson}(\lambda) \\
              & Z = \theta_{Z} + e_Z, \quad e_Z \sim N(0, \sigma_Z^2)
 \end{align*}
 
@@ -63,19 +63,19 @@ $G_1, G_2$と$G_3$は識別可能である。
 $\sigma_X^2 < \sigma_Z^2 + \mathit{Var}(E(Z|Y))$を満たすならば、
 全分散の公式を用いて以下が成り立つ。
 \begin{align*}
-  \mathit{Var}(Z) &= E(\mathit{Var}(Z|Y)) + \mathit{Var}(E(Z|Y)) \\
-                  &= \sigma_Z^2 + \mathit{Var}(E(Z|Y)) \\
+  \mathrm{Var}(Z) &= E(\mathrm{Var}(Z|Y)) + \mathrm{Var}(E(Z|Y)) \\
+                  &= \sigma_Z^2 + \mathrm{Var}(E(Z|Y)) \\
                   &> \sigma_X^2 \\
-                  &= \mathit{Var}(X)
+                  &= \mathrm{Var}(X)
 \end{align*}
 
 よって、$X$のほうが因果順序が早いことが分かる。
-つまり、誤差変数の分散が$\sigma_X^2 < \sigma_Z^2 + \mathit{Var}(E(Z|Y))$を満たすならば、
+つまり、誤差変数の分散が$\sigma_X^2 < \sigma_Z^2 + \mathrm{Var}(E(Z|Y))$を満たすならば、
 $G_1$の因果順序を特定することが可能である。
 
 $G_2$についても同様に、
 連続変数$X, Z$の誤差変数の分散が、
-$\sigma_Z^2 < \sigma_X^2 + \mathit{Var}(E(X|Y))$を満たすならば、
+$\sigma_Z^2 < \sigma_X^2 + \mathrm{Var}(E(X|Y))$を満たすならば、
 真の因果順序$\pi = (Z, Y, X)$を特定することが可能である。
 
 
@@ -139,7 +139,7 @@ $\sigma_Z^2 < \sigma_X^2 + \mathit{Var}(E(X|Y))$を満たすならば、
     連続変数が割り当てられた任意の頂点$j = \pi_m \in C, k \in De(j) \subset C$の
     データ生成過程における誤差変数の分散について、以下が満たされている。
     \begin{equation*}
-      \sigma_j^2 < \sigma_k^2 + E(\mathit{Var}(E(X_k | X_{Pa(k)}) | X_{\pi_1}, \dots, X_{\pi_{m-1}}))
+      \sigma_j^2 < \sigma_k^2 + E(\mathrm{Var}(E(X_k | X_{Pa(k)}) | X_{\pi_1}, \dots, X_{\pi_{m-1}}))
     \end{equation*}
 
     \item
@@ -181,9 +181,9 @@ $\sigma_Z^2 < \sigma_X^2 + \mathit{Var}(E(X|Y))$を満たすならば、
       任意の頂点$k \in C \backslash \{\pi_1\}$について、以下が成立する。
       \begin{align*}
         \mathit{Var}(X_{\pi_1}) &= \sigma_{\pi_1}^2 \\
-                                &< \sigma_k^2 + \mathit{Var}(E(X_k | X_{Pa(k)})) \\
-                                &= E(\mathit{Var}(X_k | X_{Pa(k)})) + \mathit{Var}(E(X_k | X_{Pa(k)})) \\
-                                &= \mathit{Var}(X_k)
+                                &< \sigma_k^2 + \mathrm{Var}(E(X_k | X_{Pa(k)})) \\
+                                &= E(\mathrm{Var}(X_k | X_{Pa(k)})) + \mathrm{Var}(E(X_k | X_{Pa(k)})) \\
+                                &= \mathrm{Var}(X_k)
       \end{align*}
       よって、因果順序が1番目の要素$\pi_1$を特定することができる。
     \end{enumerate}
@@ -208,7 +208,7 @@ $\sigma_Z^2 < \sigma_X^2 + \mathit{Var}(E(X|Y))$を満たすならば、
       任意の頂点$k \in \{ \{\pi_m, \dots, \pi_p \} \cap C \}$の
       データ生成過程における誤差変数の分散について、以下が成立している。
       \begin{equation*}
-        \sigma_{\pi_{m-1}}^2 < \sigma_k^2 + E(\mathit{Var}(E(X_k | X_{Pa(k)}) | X_{1:(m-2)}))
+        \sigma_{\pi_{m-1}}^2 < \sigma_k^2 + E(\mathrm{Var}(E(X_k | X_{Pa(k)}) | X_{1:(m-2)}))
       \end{equation*}
 
     \end{itemize}
@@ -232,11 +232,11 @@ $\sigma_Z^2 < \sigma_X^2 + \mathit{Var}(E(X|Y))$を満たすならば、
       帰納法の仮定より、
       任意の頂点$k \in \{ \{ \pi_{m+1}, \dots, \pi_p \} \cap C \}$について、以下が成立する。
       \begin{align*}
-        E(\mathit{Var}(X_{\pi_m} | X_{1:(m-1)}))
+        E(\mathrm{Var}(X_{\pi_m} | X_{1:(m-1)}))
             &= \sigma_{\pi_m}^2 \\
-            &< \sigma_k^2 + E(\mathit{Var}(E(X_k | X_{Pa(k)}) | X_{1:(m-1)})) \\
-            &= E(E(\mathit{Var}(X_k | X_{Pa(k)}) | X_{1:(m-1)})) + E(\mathit{Var}(E(X_k | X_{Pa(k)}) | X_{1:(m-1)})) \\
-            &= E(\mathit{Var}(X_k | X_{1:(m-1)}))
+            &< \sigma_k^2 + E(\mathrm{Var}(E(X_k | X_{Pa(k)}) | X_{1:(m-1)})) \\
+            &= E(E(\mathrm{Var}(X_k | X_{Pa(k)}) | X_{1:(m-1)})) + E(\mathrm{Var}(E(X_k | X_{Pa(k)}) | X_{1:(m-1)})) \\
+            &= E(\mathrm{Var}(X_k | X_{1:(m-1)}))
       \end{align*}
       よって、因果順序が$m$番目の要素$\pi_m$を特定することができる。
 

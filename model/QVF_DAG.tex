@@ -17,18 +17,34 @@ QVF-DAGモデルは、各頂点の親による条件付き分布$\mathcal P$の�
 
 すべての$j \in V$について、以下を満たすような$\beta_{j0}, \beta_{j1} \in \mathbb R$が存在する。
   \begin{equation}
-      \mathit{Var}(X_j|X_{Pa(j)}) = \beta_{j0} E(X_j | X_{Pa(j)}) + \beta_{j1} E(X_j | X_{Pa(j)})^2
+      \mathrm{Var}(X_j|X_{Pa(j)}) = \beta_{j0} E(X_j | X_{Pa(j)}) + \beta_{j1} E(X_j | X_{Pa(j)})^2
       \label{QVF}
   \end{equation}
 \end{df}
 
-QVF確率分布のクラスには、ポアソン分布、二項分布、負の二項分布、ガンマ分布などが含まれることが知られている。
+2次分散関数性を満たす確率分布のクラスには、
+ポアソン分布、二項分布、負の二項分布、ガンマ分布などが含まれることが知られている。
+これらの確率分布における$\beta_0, \beta_1$を表\ref{table:QVF}に示す。
+
+\begin{table}[ht]
+  \label{table:QVF}
+  \begin{center}
+    \begin{tabular}{llcc} \toprule
+      確率分布     & $\mathcal{P}$                  & $\beta_0$ & $\beta_1$       \\ \midrule
+      ポアソン分布  & $\text{Poisson}(\lambda)$      & 1         & 0               \\
+      二項分布     & $\text{Binomial}(N, p)$        & 1         & $-\frac{1}{N}$   \\
+      負の二項分布  & $\text{NegativeBinomial}(R,p)$ & 1         & $\frac{1}{R}$    \\
+      ガンマ分布   & $\text{Gamma}(\alpha, \beta)$   & 0         & $\frac{1}{\alpha}$ \\ \bottomrule
+    \end{tabular}
+  \end{center}
+  \caption{2次分散関数性を満たす確率分布における$\beta_0, \beta_1$の例}
+\end{table}
+
 DAGモデルにおいては、各頂点の分布がその頂点の親変数の影響を受けており、
 各頂点の条件付き期待値は、任意の単調で微分可能な
 リンク関数$g_j \colon \mathcal X_{Pa(j)} \rightarrow \mathbb R^+$によって、
 $E(X_j|X_{Pa(j)}) = g_j(X_{Pa(j)})$で表現される。
-
-また、本論文の後半では、各頂点間の関係について線形性を仮定するため、
+本論文の後半では、各頂点間の関係について線形性を仮定するため、
 QVF-DAGモデルのリンク関数$g_j$がパラメータに関して線形であることを仮定した
 QVF構造方程式モデル(structural quation model, SEM)を導入する。
 

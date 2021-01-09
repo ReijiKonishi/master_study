@@ -69,17 +69,19 @@ $(e_j)_{j\in V}$は平均ゼロでそれぞれ異なる分散$(\sigma_j^2)_{j\in
   DAG $G$は一意に識別可能である。
   ここでDAG $G$における因果順序を$\pi$で表す。
   \begin{align*}
-    (\text{A}) \quad &\sigma_j^2 < \sigma_k^2 + E(\mathit{Var}(E(X_k | X_{Pa(k)}) | X_{\pi_1}, \dots, X_{\pi_{m-1}})) \\
-    (\text{B}) \quad &\sigma_j^2 > \sigma_l^2 - E(\mathit{Var}(E(X_l | X_{\pi_1}, \dots, X_{\pi_m} \backslash X_l) | X_{Pa(l)}))
+    (\text{A}) \quad &\sigma_j^2 < \sigma_k^2 + E(\mathrm{Var}(E(X_k | X_{Pa(k)}) | X_{\pi_1}, \dots, X_{\pi_{m-1}})) \\
+    (\text{B}) \quad &\sigma_j^2 > \sigma_l^2 - E(\mathrm{Var}(E(X_l | X_{\pi_1}, \dots, X_{\pi_m} \backslash X_l) | X_{Pa(l)}))
   \end{align*}
 \end{theo}
 
 条件(A)は、頂点$j$の条件付き分散が、
 非子孫$Nd(j)$で条件づけたときの$De(j)$の条件付き分散より小さいときに、
-ANMは識別可能であることを表現している。
-また、条件(B)は、頂点$j$の条件付き分散が、
+DAG $G$が識別可能であることを表現している。
+一方、条件(B)は、頂点$j$の条件付き分散が、
 祖先$An(j)$の親と子孫の和集合で条件づけたときの$An(j)$の条件付き分散より大きいときに、
-ANMは識別可能であることを表現している。
+DAG $G$が識別可能であることを表現している。
+また、条件(A)(B)より、各頂点の誤差変数の分散が全て同じ、または因果順序に従って単調増加である時、
+DAG $G$は一意に識別であると言える。
 
 ここでは条件(A)について直感的な理解を得るために、
 図\ref{fig:ex_bivariate_SEM}のDAGで表される
@@ -106,19 +108,36 @@ ANMは識別可能であることを表現している。
 \end{figure}
 
 $G_1$において、もし誤差変数の分散について条件(A)
-$\sigma_1^2 < \sigma_2^2 + \beta_1^2 \sigma_1^2$が成立しているならば、
+$\sigma_1^2 < \sigma_2^2 + \theta_1^2 \sigma_1^2$が成立しているならば、
 全分散の公式より$X_1$と$X_2$の分散について以下の関係が導かれる。
 
 \begin{align*}
-  \mathit{Var}(X_2) &= E(\mathit{Var}(X_2|X_1)) + \mathit{Var}(E(X_2|X_1)) \\
-                    &= \sigma_2^2 + \beta_1^2 \sigma_1^2 \\
+  \mathrm{Var}(X_2) &= E(\mathrm{Var}(X_2|X_1)) + \mathrm{Var}(E(X_2|X_1)) \\
+                    &= \sigma_2^2 + \theta_1^2 \sigma_1^2 \\
                     &> \sigma_1^2 \\
-                    &= \mathit{Var}(X_1)
+                    &= \mathrm{Var}(X_1)
 \end{align*}
 
 この関係について直感的に述べると、
 $X_1$における確率変動は$e_1$のみによって起こるが、
 $X_2$における確率変動は$X_1$と$e_2$によって起こるため、
 $X_2$の不確実性(分散)のほうが$X_1$の不確実性より大きくなると理解することができる。
-よって、条件(A) $\sigma_1^2 < \sigma_2^2 + \beta_1^2 \sigma_1^2$が成立しているならば、
+よって、条件(A) $\sigma_1^2 < \sigma_2^2 + \theta_1^2 \sigma_1^2$が成立しているならば、
 $G_1$における真の因果順序が$\pi = (1,2)$という順であることを観測変数より特定することができる。
+
+さらに誤差変数の分散に関する条件(A) $\sigma_1^2 < \sigma_2^2 + \theta_1^2 \sigma_1^2$
+の性質について述べる。
+まず条件(A)は、$\sigma_2^2 / \sigma_1^2 > (1-\theta_1^2)$と変形できる。
+つまり、条件(A)は$X_1, X_2$のデータ生成過程における誤差変数の分散の比に関する条件である。
+ここで、係数$\beta_1$と誤差変数の分散の比$\sigma_2^2/ \sigma_1^2$の関係を
+図示すると図\ref{fig:error_ratio}のようになる。
+$\sigma_j^2 > 0$のため、常に$\sigma_2^2/ \sigma_1^2 > 0$が成り立つ。
+そのため$\theta_1 \leq -1, 1 \leq \theta_1$である場合は、常に識別可能である。
+また、$\theta_1 \neq 0$のため、$\sigma_2^2 \leq \sigma_1^2$である場合は、常に識別可能である。
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics{./picture/error_ratio.pdf}
+  \caption{2変数の正規線形構造方程式モデルが条件(A)を満たす領域 (境界は含まない)}
+  \label{fig:error_ratio}
+\end{figure}
