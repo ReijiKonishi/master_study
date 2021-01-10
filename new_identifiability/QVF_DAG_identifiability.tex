@@ -51,6 +51,10 @@ DAGの推定精度が向上することが期待される。
     \geq 1
     \label{eq:MRS}
   \end{equation}
+  同様に、
+  \begin{equation}
+    E(\mathrm{Var}( E(X_j | X_{Pa(j)}) | X_{S_j} )) \geq 0
+  \end{equation}
   等号成立は、$S_j$が頂点$j$の親変数すべてを含むとき($Pa(j)\subset S_j$)である。
 \end{prop}
 
@@ -95,27 +99,70 @@ DAGの推定精度が向上することが期待される。
   式~\eqref{moment_related}と式~\eqref{Jensen}を整理すると、
   \begin{equation*}
     \begin{split}
-      E(X_j^2 | S_j) - f(E(X_j | S_j)) & \geq 0 \\
-      E(X_j^2 | S_j) - \bigl( \beta_0 E(X_j | S_j) +
-      (\beta_1 + 1) E(X_j | S_j)^2 \bigl) & \geq 0
+      E(X_j^2 | S_j) &- f(E(X_j | S_j)) \geq 0 \\
+      E(X_j^2 | S_j) &- \bigl( \beta_0 E(X_j | S_j) +
+      (\beta_1 + 1) E(X_j | S_j)^2 \bigl) \geq 0
     \end{split}
   \end{equation*}
   となり、
   さらに期待値を取ることで、
-  \begin{equation*}
+  \begin{equation}
     E(X_j^2) - E\bigl(\beta_0 E(X_j | S_j) + (\beta_1 + 1) E(X_j | S_j)^2 \bigl) \geq 0
-  \end{equation*}
+    \label{proposition_1}
+  \end{equation}
   が得られる。 よって、以下が成り立つ。
-  \begin{equation*}
+  \begin{equation}
     \frac{E(X_j^2)}
     {E\bigl( \beta_0 E(X_j | S_j) + (\beta_1 + 1) E(X_j | S_j)^2 \bigl)}
     \geq 1
-  \end{equation*}
+    \label{proposition_2}
+  \end{equation}
+
+  ここからは、$E(X_j^2) \geq E\bigl( \beta_0 E(X_j | S_j) +
+  (\beta_1 + 1) E(X_j | S_j)^2 \bigl)$ が、
+  $E(\mathrm{Var}( E(X_j | X_{Pa(j)}) | X_{S_j} )) \geq 0$と
+  同値であることを証明する。
+  まず、分散の公式より以下のように書ける。
+  \begin{equation}
+    \label{variance}
+    E(\mathrm{Var}(X_j | S_j))
+     = E(E(\mathrm{Var}(X_j | X_{Pa(j)}) | S_j)) + E(\mathrm{Var}(E(X_j | X_{Pa(j)}) | S_j))
+  \end{equation}
+  ここで、モデルの定義~\eqref{QVF}を式~\eqref{variance}の右辺の第1項目に代入すると、以下のように整理できる。
+  \begin{align}
+    E(E(\mathrm{Var}(X_j | X_{Pa(j)}) | S_j))
+      &= E(E(\beta_0 E(X_j | X_{Pa(j)}) + \beta_1 E(X_j | X_{Pa(j)})^2 | S_j)) \notag \\
+      &= E(E(\beta_0 E(X_j | X_{Pa(j)}) | S_j)) + E(E(\beta_1 E(X_j | X_{Pa(j)})^2 | S_j)) \notag \\
+      &= \beta_0 E(X_j) + \beta_1 E(X_j)^2
+      \label{organize}
+  \end{align}
+  さらに、式~\eqref{organize}を用いて式~\eqref{variance}を整理すると、以下のように書ける。
+  \begin{equation}
+    \label{variance_2}
+    E(\mathrm{Var}(E(X_j | X_{Pa(j)}) | S_j))
+     = E(\mathrm{Var}(X_j | S_j)) - \beta_0 E(X_j) - \beta_1 E(X_j)^2
+  \end{equation}
+
+  ここから式~\eqref{variance_2}の右辺を整理すると、以下のように書ける。
+  ただし、最後の不等号は式~\eqref{proposition_1}より成立する。
+  \begin{align*}
+    E(&\mathrm{Var}(X_j | S_j)) - \beta_0 E(X_j) - \beta_1 E(X_j)^2 \\
+     &= E(E(X_j^2 | S_j) - E(X_j | S_j)^2) - \beta_0 E(X_j) - \beta_1 E(X_j)^2 \\
+     &= E(E(X_j^2 | S_j)) - E(E(X_j | S_j)^2) - E(\beta_0 E(X_j | S_j)) - E(\beta_1 E(X_j | S_j)^2) \\
+     &= E(X_j) - E(\beta_0 E(X_j | S_j) + (\beta_1 + 1) E(X_j | S_j)^2) \\
+     & \geq 0
+  \end{align*}
+
+  よって、式~\eqref{eq:MRS}は、
+  $E(\mathrm{Var}( E(X_j | X_{Pa(j)}) | X_{S_j} )) \geq 0$
+  と同値である。
   \qed
 
 \end{proof}
 
-直感的な理解を得るために、各頂点の親変数による条件付き確率分布がポアソン分布である
+ここからは、命題\ref{prop:MRS}が
+QVF-DAGモデルの識別可能性に利用できることを直感的に理解するために、
+各頂点の親変数による条件付き確率分布がポアソン分布である
 2変数DAGモデルを例にその識別可能性を証明する。
 そこで、図\ref{fig:ex_bivariate}のようなDAGモデルを考える。
 
