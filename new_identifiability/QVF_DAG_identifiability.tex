@@ -53,6 +53,7 @@ DAGの推定精度が向上することが期待される。
   \end{equation}
   同様に、
   \begin{equation}
+    \label{eq:MRS_2}
     E(\mathrm{Var}( E(X_j | X_{Pa(j)}) | X_{S_j} )) \geq 0
   \end{equation}
   等号成立は、$S_j$が頂点$j$の親変数すべてを含むとき($Pa(j)\subset S_j$)である。
@@ -271,6 +272,9 @@ $Pa(j) \nsubseteq S_j$のとき、すべての$x \in \mathcal X_{S_j}$につい�
 $\mathrm{Var}(E(X_j | X_{Pa(j)}) | X_{S_j} = x) > 0$という
 仮定が含まれていた。
 しかし、本論文における識別可能条件にはそのような仮定は含まれていない。
-つまり、従来の識別可能条件\cite{Park2017-hw}を緩和している。
-この識別可能条件の緩和によってPoisson-SEMの学習が容易になることが、
-Park and Park(2019)\cite{Park2019-qy}の3.2節において議論されている。
+なぜなら、2次分散関数性の定義とイェンセンの不等式を利用することで、
+式~\eqref{eq:MRS}や式~\eqref{eq:MRS_2}が成立するためである。
+つまり、QVF-DAGモデルの従来の識別可能条件\cite{Park2017-hw}を緩和している。
+このことによって、Park and Park(2019)\cite{Park2019-qy}の3.2節における議論と同様に
+QVF-SEMの学習コストを低下させることが期待される。
+ただし、本研究の目的から外れるため、学習コストに関する理論的な証明は行わない。
