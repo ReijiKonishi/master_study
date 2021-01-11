@@ -1,9 +1,40 @@
 %!TEX root = ../thesis.tex
 
-\maketitle
-%
-\input{frontmatter/abstract}
-%
+%\maketitle
+
+\newcommand{\kintou}[2]{%
+\leavevmode
+\hbox to #1{%
+\kanjiskip=0pt plus 1fill minus 1fill
+\xkanjiskip=\kanjiskip
+#2}}
+
+%表紙
+\begin{center}
+  \vspace*{15mm}
+  \huge $<$ 修士論文 $>$ \par
+  \vspace{15mm}
+  \LARGE マーケティング・リサーチにおける \\
+  統計的因果探索を用いた因果仮説構築に関する研究 \par
+  \vspace{30mm}
+  \Large 滋賀大学大学院 \par
+  \Large データサイエンス研究科 \par
+  \Large データサイエンス専攻 \par
+  \vspace{30mm}
+  \Large
+  \begin{tabular}{ccl}
+    \kintou{5zw}{修了年度}&：& 2020年度 \\
+    \kintou{5zw}{学籍番号}&：& 6019106 \\
+    \kintou{5zw}{氏名}&：& 小西 伶児 \\
+    \kintou{5zw}{指導教員}&：& 清水 昌平 \\
+    \kintou{5zw}{提出年月日}&：& \today \\
+  \end{tabular}
+\end{center}
+
+%表紙はページなし
+\thispagestyle{empty}
+
+\newpage
 \tableofcontents
 %
 %\listoffigures
