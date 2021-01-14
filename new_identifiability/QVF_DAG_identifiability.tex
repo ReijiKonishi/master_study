@@ -3,7 +3,7 @@
 % \subsection{QVF-DAGモデルの識別可能性}
 
 本章では、前章で導入したQVF-DAGモデル\cite{Park2017-hw}が識別可能であることを証明する。
-QVF-DAGモデルの識別可能性は
+QVF DAGモデルの識別可能性は
 Park and Raskutti(2017)\cite{Park2017-hw}によって
 過分散スコア(OverDispersion Score; ODS)を用いて初めて証明された。
 
@@ -16,25 +16,25 @@ Park and Raskutti(2017)\cite{Park2017-hw}によって
 統計的因果探索の文脈において最初に過分散を利用した例は、
 Park and Raskutti(2015)\cite{Park2015-tj}のPoisson DAGモデルである。
 Park and Raskutti(2015)\cite{Park2015-tj}では
-Poisson DAGモデルの各頂点の条件付き分散が過分散であるかどうかを検定することによって、
+Poisson DAGモデルの各頂点の条件付き分散が過分散であるかどうかを検定することによって
 識別可能性を証明している。
 Park and Raskutti(2017)\cite{Park2017-hw}では、
 Poisson DAGモデルにおける過分散が、
-QVF-DAGモデルでも成立することを利用し、QVF-DAGモデルの識別可能性を証明している。
+QVF DAGモデルでも成立することを利用し、QVF DAGモデルの識別可能性を証明している。
 つまり、Park and Raskutti(2017)\cite{Park2017-hw}による
-過分散スコアを用いたQVF-DAGモデルの識別可能性の証明は、
+過分散スコアを用いたQVF DAGモデルの識別可能性の証明は、
 Park and Raskutti(2015)\cite{Park2015-tj}によるPoisson DAGモデルの識別可能性の証明の
 自然な拡張であると言える。
 
-Poisson DAGモデルの識別可能条件は、
+Poisson DAGモデルの識別可能性は、
 Park and Park(2019)\cite{Park2019-qy}による
 モーメント比スコア(Moment Ratio Score; MRS)を用いた証明も行われている。
-モーメント比スコアを用いることによって、
-識別可能条件が緩和され、DAGの推定精度やsample complexityも改善することが示されている\cite{Park2019-qy}。
+モーメント比スコアを用いることによって識別可能条件が緩和され、
+DAGの推定精度やsample complexityも改善することが示されている\cite{Park2019-qy}。
 
 そこで本論文では、Park and Park(2019)\cite{Park2019-qy}による
 Poisson DAGモデルのモーメント比スコアを拡張することで、
-QVF-DAGモデルの識別可能性を証明する。
+QVF DAGモデルの識別可能性を証明する。
 そうすることで、従来の識別可能条件\cite{Park2017-hw}を緩和することや、
 DAGの推定精度が向上することが期待される。
 
@@ -129,7 +129,8 @@ DAGの推定精度が向上することが期待される。
     E(\mathrm{Var}(X_j | S_j))
      = E(E(\mathrm{Var}(X_j | X_{Pa(j)}) | S_j)) + E(\mathrm{Var}(E(X_j | X_{Pa(j)}) | S_j))
   \end{equation}
-  ここで、モデルの定義~\eqref{QVF}を式~\eqref{variance}の右辺の第1項目に代入すると、以下のように整理できる。
+  ここで、式~\eqref{variance}の右辺の第1項目は、
+  モデルの定義~\eqref{QVF}をを利用すると、以下のように展開できる。
   \begin{align}
     E(E(\mathrm{Var}(X_j | X_{Pa(j)}) | S_j))
       &= E(E(\beta_0 E(X_j | X_{Pa(j)}) + \beta_1 E(X_j | X_{Pa(j)})^2 | S_j)) \notag \\
@@ -145,12 +146,12 @@ DAGの推定精度が向上することが期待される。
   \end{equation}
 
   ここから式~\eqref{variance_2}の右辺を整理すると、以下のように書ける。
-  ただし、最後の不等号は式~\eqref{proposition_1}より成立する。
+  ここで、最後の不等号は式~\eqref{proposition_1}より成立する。
   \begin{align*}
     E(&\mathrm{Var}(X_j | S_j)) - \beta_0 E(X_j) - \beta_1 E(X_j)^2 \\
      &= E(E(X_j^2 | S_j) - E(X_j | S_j)^2) - \beta_0 E(X_j) - \beta_1 E(X_j)^2 \\
      &= E(E(X_j^2 | S_j)) - E(E(X_j | S_j)^2) - E(\beta_0 E(X_j | S_j)) - E(\beta_1 E(X_j | S_j)^2) \\
-     &= E(X_j) - E(\beta_0 E(X_j | S_j) + (\beta_1 + 1) E(X_j | S_j)^2) \\
+     &= E(X_j^2) - E(\beta_0 E(X_j | S_j) + (\beta_1 + 1) E(X_j | S_j)^2) \\
      & \geq 0
   \end{align*}
 
@@ -162,7 +163,7 @@ DAGの推定精度が向上することが期待される。
 \end{proof}
 
 ここからは、命題\ref{prop:MRS}が
-QVF-DAGモデルの識別可能性に利用できることを直感的に理解するために、
+QVF DAGモデルの識別可能性に利用できることを直感的に理解するために、
 各頂点の親変数による条件付き確率分布がポアソン分布である
 2変数DAGモデルを例にその識別可能性を証明する。
 そこで、図\ref{fig:ex_bivariate}のようなDAGモデルを考える。
@@ -204,15 +205,15 @@ $G_2$においては、以下が成り立つ。
 真のグラフ構造を同定することが可能である。
 
 命題\ref{prop:MRS}のモーメント比を用いる方法は、
-一般的な$p$変数のQVF-DAGモデルにも適用することが可能であり、
+一般的な$p$変数のQVF DAGモデルにも適用することが可能であり、
 モーメント比~\eqref{eq:MRS}が1か1以上かを確かめることで識別可能性を証明することができる。
 
-\begin{theo}[QVF-DAGモデルの識別可能性]
-  2次分散関数性を満たす係数$(\beta_{j0}, \beta{j1})_{j=1}^p$が存在し、
-  QVF-DAGモデル\eqref{eq:factorization}のクラスについて考える。
+\begin{theo}[QVF DAGモデルの識別可能性]
+  2次分散関数性を満たす係数$(\beta_{j0}, \beta_{j1})_{j \in V}$が存在し、
+  QVF DAGモデルのクラス\eqref{eq:factorization}について考える。
   任意の頂点$j \in V$について、$\beta_{j1} > -1$であり、
   リンク関数$g_j(\cdot)$が非退化であるならば、
-  QVF-DAGモデルは識別可能である。
+  QVF DAGモデルは識別可能である。
 \end{theo}
 
 \begin{proof}
@@ -220,7 +221,7 @@ $G_2$においては、以下が成り立つ。
   また、簡単のために、$X_{1:j} = (X_{\pi_1}, X_{\pi_2}, \dots, X_{\pi_j})$、
   $X_{1:0} = \emptyset$と定義する。
   加えて、モーメント関連関数$f(\mu) = \beta_0 \mu + (\beta_1 + 1)\mu^2$を定義する。
-  ここから数学的帰納法を用いてQVF-DAGモデルの識別可能性を証明する。
+  ここから数学的帰納法を用いてQVF DAGモデルの識別可能性を証明する。
 
   \begin{quote}
     \underline{\textbf{Step(1)}} \\
@@ -238,7 +239,7 @@ $G_2$においては、以下が成り立つ。
     因果順序が先の$(m-1)$個の要素とその親が正しく推定されていると仮定する。
     つまり、因果順序が($m-1$)番目の要素については、
     $E(X_{\pi_{m-1}}^2) = E(f(E(X_{\pi_{m-1}} | X_{1:(m-2)})))$が成立していると仮定する。
-    一方で、任意の頂点$k \in \{\pi_m, \dots, \pi_p \}$については
+    一方で、任意の頂点$j \in \{\pi_m, \dots, \pi_p \}$については
     以下が成立していると仮定する。
     \begin{equation*}
       E(X_j^2) > E(f(E(X_j | X_{1:(m-2)})))
@@ -267,14 +268,14 @@ $G_2$においては、以下が成り立つ。
 \end{proof}
 
 Park and Raskutti(2017)\cite{Park2017-hw}によって証明された
-QVF-DAGモデルの識別可能条件には、
+QVF DAGモデルの識別可能条件には、
 $Pa(j) \nsubseteq S_j$のとき、すべての$x \in \mathcal X_{S_j}$について、
 $\mathrm{Var}(E(X_j | X_{Pa(j)}) | X_{S_j} = x) > 0$という
 仮定が含まれていた。
 しかし、本論文における識別可能条件にはそのような仮定は含まれていない。
 なぜなら、2次分散関数性の定義とイェンセンの不等式を利用することで、
 式~\eqref{eq:MRS}や式~\eqref{eq:MRS_2}が成立するためである。
-つまり、QVF-DAGモデルの従来の識別可能条件\cite{Park2017-hw}を緩和している。
+つまり、QVF DAGモデルの従来の識別可能条件\cite{Park2017-hw}を緩和している。
 このことによって、Park and Park(2019)\cite{Park2019-qy}の3.2節における議論と同様に
 QVF-SEMの学習コストを低下させることが期待される。
 ただし、本研究の目的から外れるため、学習コストに関する理論的な証明は行わない。

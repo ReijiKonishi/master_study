@@ -5,12 +5,12 @@
 本節では、主に離散変数を扱うDAGモデルとして、
 Park and Raskutti(2017)\cite{Park2017-hw}によって提案された
 2次分散関数 (QVF) DAGモデルについて概説する。
-QVF-DAGモデルは、各頂点の親による条件付き分布$\mathcal P$の分散が、
+QVF DAGモデルは、各頂点の親による条件付き分布$\mathcal P$の分散が、
 期待値の2次式で与えられているというモデルであり、
 以下のように定義される。
 
-\begin{df}[QVF-DAGモデル\cite{Park2017-hw}]
-2次分散関数(Quadratic variance function, QVF)DAGモデルは、
+\begin{df}[QVF DAGモデル\cite{Park2017-hw}]
+2次分散関数(quadratic variance function, QVF)DAGモデルは、
 各頂点の親による条件付き確率分布が、
 以下で表現される2次分散関数性(quadratic variance function property)を
 満たすようなDAGモデルである。
@@ -40,12 +40,12 @@ QVF-DAGモデルは、各頂点の親による条件付き分布$\mathcal P$の�
   \end{center}
 \end{table}
 
-DAGモデルにおいては、各頂点の分布がその頂点の親変数の影響を受けており、
+また、QVF DAGモデルの各頂点の分布はその頂点の親変数からの因果的な影響を受けており、
 各頂点の条件付き期待値は、任意の単調で微分可能な
 リンク関数$g_j \colon \mathcal X_{Pa(j)} \rightarrow \mathbb R^+$によって、
 $E(X_j|X_{Pa(j)}) = g_j(X_{Pa(j)})$で表現される。
 本論文の後半では、各頂点間の関係について線形性を仮定するため、
-QVF-DAGモデルのリンク関数$g_j$がパラメータに関して線形であることを仮定した
+リンク関数$g_j$がパラメータに関して線形であることを仮定した
 QVF構造方程式モデル(structural quation model, SEM)を導入する。
 
 \begin{equation}
@@ -66,7 +66,7 @@ $g_j(X_{Pa(j)}) = \exp(\theta_j + \sum_{k \in Pa(j)} \theta_{jk}X_k)$
 ここで、$A_j(\cdot)$は対数分配関数(log-partition function)、
 $B_j(\cdot)$は指数分布族によって決まる関数、
 $\theta_{jk}\in \mathbb R$は頂点$j$に対応するパラメータである。
-DAGモデルの因数分解~\eqref{eq:factorization}により、QVF-SEMの同時確率分布は、
+DAGモデルの因数分解~\eqref{eq:factorization}により、QVF SEMの同時確率分布は、
 以下のように記述することができる。
 
 \begin{equation}
@@ -77,6 +77,6 @@ DAGモデルの因数分解~\eqref{eq:factorization}により、QVF-SEMの同時
 \end{equation}
 
 このモデルは、関数$A_j(\cdot)$や$B_j(\cdot)$が頂点$j$によって異なることを許容するため、
-各条件付き分布がそれぞれ異なる分布に従っているような混合DAGモデルを表現することも可能である。
+各頂点の条件付き分布がそれぞれ異なる分布に従っているような混合DAGモデルを表現することも可能である。
 また、各頂点の分布$\mathcal P$が式~\eqref{QVF}で定義される2次分散関数性を満たす場合、
 非線形モデルやノンパラメトリックモデルに拡張することも可能である。

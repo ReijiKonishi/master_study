@@ -7,7 +7,7 @@
 頂点数$p = \{ 5, 10 \}$、
 連続変数の誤差変数の分布 \{正規分布, 一様分布\} であるデータセットを、
 提案モデルに従ってそれぞれ100個ずつ生成した。
-その他のデータ生成や推定における設定の詳細は以下とした。
+データ生成や推定における設定の詳細は以下とした。
 
 \begin{enumerate}
   \setlength{\itemsep}{0.3cm}
@@ -60,7 +60,7 @@ DirectLiNGAM\cite{Shimizu2011-pd}、
 DAGを推定するアルゴリズムは、制約に基づくアプローチ(constraint-based approach)と
 スコアに基づくアプローチ(score-based approach)に大別される。
 GESはスコアに基づくアプローチであり、
-ベイズ情報量規準(Bayesian Information Criterion; BIC)を用いて
+ベイズ情報量規準(Bayesian information criterion; BIC)を用いて
 モデルの当てはまりが最も良いマルコフ同値類を推定する方法である。
 MMHCは制約に基づくアプローチとスコアに基づくアプローチの両方を組み合わせた
 ハイブリッドなアルゴリズムである。
@@ -72,7 +72,7 @@ DirectLiNGAMはLiNGAM\cite{Shimizu2006-yu}に特化したアルゴリズムで�
 回帰分析と独立性の評価を繰り返すことによって因果順序を推定する。
 
 DAGの推定精度は、適合率(precision)と再現率(recall)によって測定した。
-適合率と再現率の算出方法は以下の通りである。
+それぞれの算出方法は以下の通りである。
 \begin{itemize}
   \item 適合率(precision)
   \begin{equation*}

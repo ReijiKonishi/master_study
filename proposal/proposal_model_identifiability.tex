@@ -3,17 +3,17 @@
 \subsection{提案モデルの識別可能性}
 
 本節では、前節で定義したDAGモデルの識別可能性を証明する。
-提案モデルは、連続変数と離散変数とが混在することを許容するDAGモデルであるため、
+提案モデルは、連続変数と離散変数が混在することを許容するDAGモデルであるため、
 その特殊形として、全てが連続変数であるモデルや全てが離散変数であるモデルを考えることも可能である。
-全てが連続変数である場合は、Additive Noise Modelとなり、
+全てが連続変数である場合はANMとなり、
 モデルの識別可能条件が複数証明されている\cite{Shimizu2006-yu}
 \cite{Hoyer2008-oo}
 \cite{Peters2013-eb}
 \cite{Peters2014-ro}
 \cite{Park2020-ey}。
-また、全てが離散変数である場合は、QVF-DAGモデル\cite{Park2017-hw}となり、
-識別可能性が既に証明されている\cite{Park2017-hw}。
-そこで以下では、観測変数集合に連続変数と離散変数の両方が含まれる場合に関する識別可能条件について議論する。
+また、全てが離散変数である場合はQVF DAGモデル\cite{Park2017-hw}となり、
+3章でその識別可能性を証明した。
+そこで以下では、観測変数の集合に連続変数と離散変数の両方が含まれる場合に関する識別可能条件について議論する。
 まず、証明の方針について直感的な理解を得るために、
 図\ref{fig:prop_three_variate}のような3変数モデルを用いてその識別可能性を示す。
 ここで$X,Z$は連続変数、$Y$は離散変数であるとする。
@@ -87,7 +87,7 @@ $\sigma_Z^2 < \sigma_X^2 + \mathrm{Var}(E(X|Y))$を満たすならば、
 
 \begin{lemm}
   提案モデルにおいて、
-  離散変数が割り当てあられた任意の頂点$j \in D$、任意の集合$S_j \subset Nd(j)$に関して、
+  離散変数が割り当てあられた任意の頂点$j \in D$、任意の集合$S_j \subset \mathit{Nd}(j)$に関して、
   以下のモーメント関係が成立している。
   \begin{equation}
     \frac{E(X_j^2)}
@@ -116,7 +116,7 @@ $\sigma_Z^2 < \sigma_X^2 + \mathrm{Var}(E(X|Y))$を満たすならば、
     \label{prop_moment}
   \end{equation}
   提案モデルにおいては連続変数と離散変数が混在するモデルを考えているため、
-  離散変数が割り当てられた頂点$j \in D$の非子孫の集合$Nd(j)$には、
+  離散変数が割り当てられた頂点$j \in D$の非子孫の集合$\mathit{Nd}(j)$には、
   連続変数と離散変数の両方が含まれている可能性がある。
   つまり、式~\eqref{prop_moment}は$S_j$に連続変数と離散変数のどちらが含まれていても成立する。
 
@@ -150,7 +150,6 @@ $\sigma_Z^2 < \sigma_X^2 + \mathrm{Var}(E(X|Y))$を満たすならば、
 
 仮定(B)は、ベルヌーイ分布や多項分布によるDAGモデルを除外するための仮定である。
 なぜななら、ベルヌーイ分布や多項分布によるDAGモデルは識別不能であることが知られているためである\cite{Heckerman1995-es}。
-
 以下では、定理\ref{theo:prop_identifiability}を証明する。
 
 \begin{proof}
@@ -180,7 +179,7 @@ $\sigma_Z^2 < \sigma_X^2 + \mathrm{Var}(E(X|Y))$を満たすならば、
       定理\ref{theo:prop_identifiability}の仮定(A)より、
       任意の頂点$k \in C \backslash \{\pi_1\}$について、以下が成立する。
       \begin{align*}
-        \mathit{Var}(X_{\pi_1}) &= \sigma_{\pi_1}^2 \\
+        \mathrm{Var}(X_{\pi_1}) &= \sigma_{\pi_1}^2 \\
                                 &< \sigma_k^2 + \mathrm{Var}(E(X_k | X_{Pa(k)})) \\
                                 &= E(\mathrm{Var}(X_k | X_{Pa(k)})) + \mathrm{Var}(E(X_k | X_{Pa(k)})) \\
                                 &= \mathrm{Var}(X_k)
@@ -198,14 +197,14 @@ $\sigma_Z^2 < \sigma_X^2 + \mathrm{Var}(E(X|Y))$を満たすならば、
       \item
       因果順序が($m-1$)番目の要素については、
       $E(X_{\pi_{m-1}}^2) = E(f(E(X_{\pi_{m-1}} | X_{1:(m-2)})))$が成立している。
-      一方で、任意の頂点$k \in \{ \{\pi_m, \dots, \pi_p \} \cap D \}$については
+      一方で、任意の頂点$k \in \{\pi_m, \dots, \pi_p \} \cap D$については
       以下が成立している。
       \begin{equation*}
         E(X_j^2) > E(f(E(X_j | X_{1:(m-2)})))
       \end{equation*}
 
       \item
-      任意の頂点$k \in \{ \{\pi_m, \dots, \pi_p \} \cap C \}$の
+      任意の頂点$k \in \{\pi_m, \dots, \pi_p \} \cap C$の
       データ生成過程における誤差変数の分散について、以下が成立している。
       \begin{equation*}
         \sigma_{\pi_{m-1}}^2 < \sigma_k^2 + E(\mathrm{Var}(E(X_k | X_{Pa(k)}) | X_{1:(m-2)}))
@@ -221,7 +220,7 @@ $\sigma_Z^2 < \sigma_X^2 + \mathrm{Var}(E(X|Y))$を満たすならば、
       \item
       \underline{$\pi_m = j \in D$の場合} \\
       帰納法の仮定より、$E(X_{\pi_m}^2) = E(f(E(X_{\pi_m} | X_{1:(m-1)})))$が成立する。
-      一方で、頂点$j \in \{\{ \pi_{m+1}, \dots, \pi_p\} \cap D\}$では、
+      一方で、頂点$j \in \{ \pi_{m+1}, \dots, \pi_p\} \cap D$では、
       $E(X_j^2) > E(f(E(X_j | X_{1:(m-1)})))$となる。
       そのため、因果順序が$m$番目の要素$\pi_m$は、
       $E(X_j^2) = E(f(E(X_j | X_{1:(m-1)})))$となるような$j \in D$である。
@@ -230,7 +229,7 @@ $\sigma_Z^2 < \sigma_X^2 + \mathrm{Var}(E(X|Y))$を満たすならば、
       \item
       \underline{$\pi_m = j \in C$の場合} \\
       帰納法の仮定より、
-      任意の頂点$k \in \{ \{ \pi_{m+1}, \dots, \pi_p \} \cap C \}$について、以下が成立する。
+      任意の頂点$k \in \{ \pi_{m+1}, \dots, \pi_p \} \cap C $について、以下が成立する。
       \begin{align*}
         E(\mathrm{Var}(X_{\pi_m} | X_{1:(m-1)}))
             &= \sigma_{\pi_m}^2 \\
@@ -250,7 +249,7 @@ $\sigma_Z^2 < \sigma_X^2 + \mathrm{Var}(E(X|Y))$を満たすならば、
     因果極小性~\eqref{minimality}により導くことができる。
     つまり、以下を満たす頂点$k$を$\pi_m$の親として特定することができる。
     \begin{equation*}
-      Pa(k) \colon = \{ k \in \{ \pi_1, \dots, \pi_{m-1} \} \;|\;
+      Pa(k) \equiv \{ k \in \{ \pi_1, \dots, \pi_{m-1} \} \;|\;
       X_k \notindep X_{\pi_m} | X_{1:(m-1)} \backslash X_k \}
     \end{equation*}
 

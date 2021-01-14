@@ -5,7 +5,7 @@
 
 本章では、定義\ref{prop_model}による提案モデルが
 定理\ref{theo:prop_identifiability}の識別可能条件を満たす時に、
-因果順序とDAGにおける変数間の関係性の強さを推定するアルゴリズム(Algorithm 1)を提案する。
+因果順序とDAGにおける変数間の関係性の強さを推定するアルゴリズムを提案する。
 推定アルゴリズムは、
 (i) 各変数の因果順序を推定するステップ、と
 (ii) 各変数の親変数との関係性の強さを推定するステップ、
@@ -64,13 +64,13 @@ $S =\{\widehat{\pi}_1, \dots, \widehat{\pi}_{m-1}\}$を与えたときの
 提案モデルにおける連続変数のデータ生成過程が親変数と誤差変数との線形和であるため、
 本論文では、$X_j$を目的変数に、$X_S$を説明変数にとり、
 最小二乗法を用いて線形回帰分析を行ったときの残差の分散で
-条件付き分散$\mathit{Var}(X_j|X_S)$を推定する。
+条件付き分散$\mathrm{Var}(X_j|X_S)$を推定する。
 
 続いて、(ii)各変数の親変数との関係性の強さを推定するステップ について述べる。
 上述の方法により因果順序$\widehat{\pi}$を推定すると、
 因果順序に従って回帰分析を行うことにより、変数間の関係性の強さを表す
 パラメータ$\theta_{jk}$を推定する。
-具体的には、$X_j$を目的変数に、
+具体的には、$X_{\pi_j}$を目的変数に、
 $X_S = \{ X_{\widehat{\pi}_1}, \dots, X_{\widehat{\pi}_{j-1}}\}$を説明変数にとった
 一般化線形モデルのパラメータを最尤法によって推定する。
 ただし、パラメータ$\theta_{jk}$の値が実際には0であっても、
@@ -125,14 +125,14 @@ $\widehat{\theta}_{jk}$は最小二乗法または最尤法によって推定す
 
       \FOR{$m = \{ 1,2,\dots, p\}$}
       \STATE $S = \{ \widehat{\pi}_0, \dots, \widehat{\pi}_{m-1} \}$
-        \FOR{$j \in \left \{\{ V \backslash S \} \cap D \right\} $}
+        \FOR{$j \in \{ V \backslash S \} \cap D$}
         \STATE 式~\eqref{alg:MRS}を用いて$\widehat{\mathcal S}(m,j)$を計算する
         \ENDFOR
 
         \IF{$\min \widehat{\mathcal S}(m,j) < \text{閾値}$}
         \STATE 因果順序$m$番目の要素を推定 $\widehat{\pi}_m = \argmin_{j} \widehat{\mathcal S}(m,j)$
         \ELSE
-          \FOR{$j \in \left \{\{ V \backslash S \} \cap C \right\} $}
+          \FOR{$j \in \{ V \backslash S \} \cap C$}
           \STATE $X_S$による$X_j$の条件付き分散 $\widehat{\sigma}_{j|S}^2$を計算する
           \ENDFOR
         \STATE 因果順序$m$番目の要素を推定 $\widehat{\pi}_m = \argmin_{j} \widehat{\sigma}_{j|S}^2$
