@@ -1,0 +1,99 @@
+\documentclass[11pt,uplatex]{jsarticle}
+\usepackage{amsmath,amssymb}
+\usepackage{float}
+\usepackage[scaled]{helvet}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+
+%余白の設定
+\usepackage[top=25truemm,
+bottom=30truemm,
+left=25truemm,
+right=25truemm]{geometry}
+%行間の設定
+\renewcommand{\baselinestretch}{1.2}
+
+% 定理環境
+\theoremstyle{definition}
+\newtheorem{df}{定義}[section]
+\newtheorem{theo}[df]{定理}
+\newtheorem{prop}[df]{命題}
+\newtheorem{lemm}[df]{補題}
+\newtheorem{cor}[df]{系}
+\newtheorem{ex}[df]{例}
+\newtheorem{fact}[df]{事実}
+\newtheorem{nex}[df]{反例}
+
+\newcommand{\indep}{\mathop{\,\perp\!\!\!\!\!\!\perp\,}}
+\newcommand{\notindep}{\mathop{\,\perp\!\!\!\!\!/\!\!\!\!\!\perp\,}}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\newcommand{\argmax}{\mathop{\rm arg~max}\limits}
+\newcommand{\argmin}{\mathop{\rm arg~min}\limits}
+
+% \qed を自動で入れない proof 環境を再定義
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+  \normalfont
+  \topsep6\p@\@plus6\p@ \trivlist
+  \item[\hskip\labelsep{\bfseries #1}\@addpunct{\bfseries.}]\ignorespaces
+}{%
+  \endtrivlist
+}
+\renewcommand{\proofname}{証明}
+\newcommand{\relmiddle}[1]{\mathrel{}\middle#1\mathrel{}}
+\makeatother
+
+\makeatletter
+\renewcommand{\ALG@name}{提案アルゴリズム}
+\makeatother
+
+\newcommand{\kintou}[2]{%
+\leavevmode
+\hbox to #1{%
+\kanjiskip=0pt plus 1fill minus 1fill
+\xkanjiskip=\kanjiskip
+#2}}
+
+\begin{document}
+
+%表紙
+\begin{center}
+  \vspace*{15mm}
+  \huge $<$ 修士論文 $>$ \par
+  \vspace{15mm}
+  \LARGE マーケティング・リサーチにおける \\
+  統計的因果探索を用いた因果仮説構築に関する研究 \par
+  \vspace{10.5mm}
+  \Large (要旨) \\
+  \vspace{10.5mm}
+  \Large 滋賀大学大学院 \par
+  \Large データサイエンス研究科 \par
+  \Large データサイエンス専攻 \par
+  \vspace{30mm}
+  \Large
+  \begin{tabular}{ccl}
+    \kintou{5zw}{修了年度}&：& 2020年度 \\
+    \kintou{5zw}{学籍番号}&：& 6019106 \\
+    \kintou{5zw}{氏名}&：& 小西 伶児 \\
+    \kintou{5zw}{指導教員}&：& 清水 昌平 \\
+    \kintou{5zw}{提出年月日}&：& \today \\
+  \end{tabular}
+\end{center}
+
+%表紙はページなし
+\thispagestyle{empty}
+\newpage
+
+\section{背景}
+あああ
+あああ
+%
+\end{document}
