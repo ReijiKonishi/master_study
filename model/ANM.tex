@@ -70,7 +70,7 @@ $e_j$は平均0でそれぞれ異なる分散$\sigma_j^2$に従う
   ここで$\pi$はDAG $G$における因果順序を表す。
   \begin{align*}
     (\text{A}) \quad &\sigma_j^2 < \sigma_k^2 + E(\mathrm{Var}(E(X_k | X_{Pa(k)}) | X_{\pi_1}, \dots, X_{\pi_{m-1}})) \\
-    (\text{B}) \quad &\sigma_j^2 > \sigma_{\ell}^2 - E(\mathrm{Var}(E(X_{\ell} | X_{\pi_1}, \dots, X_{\pi_m} \backslash X_{\ell}) | X_{Pa(l)}))
+    (\text{B}) \quad &\sigma_j^2 > \sigma_{\ell}^2 - E(\mathrm{Var}(E(X_{\ell} | X_{\pi_1}, \dots, X_{\pi_m} \backslash X_{\ell}) | X_{Pa(\ell)}))
   \end{align*}
 \end{theo}
 

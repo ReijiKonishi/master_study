@@ -1,0 +1,861 @@
+
+@ARTICLE{Park2017-hw,
+  title     = "Learning quadratic variance function ({QVF}) {DAG} models via
+               overdispersion scoring ({ODS})",
+  author    = "Park, Gunwoong and Raskutti, Garvesh",
+  abstract  = "Learning DAG or Bayesian network models is an important problem
+               in multi-variate causal inference. However, a number of
+               challenges arises in learning large-scale DAG models including
+               model identifiability and computational complexity since the
+               space of directed graphs is huge. In this paper, we address
+               these issues in a number of steps for a broad class of DAG
+               models where the noise or variance is signal-dependent. Firstly
+               we introduce a new class of identifiable DAG models, where each
+               node has a distribution where the variance is a quadratic
+               function of the mean (QVF DAG models). Our QVF DAG models
+               include many interesting classes of distributions such as
+               Poisson, Binomial, Geometric, Exponential, Gamma and many other
+               distributions in which the noise variance depends on the mean.
+               We prove that this class of QVF DAG models is identifiable, and
+               introduce a new algorithm, the OverDispersion Scoring (ODS)
+               algorithm, for learning large-scale QVF DAG models. Our
+               algorithm is based on firstly learning the moralized or
+               undirected graphical model representation of the DAG to reduce
+               the DAG search-space, and then exploiting the quadratic variance
+               property to learn the ordering. We show through theoretical
+               results and simulations that our algorithm is statistically
+               consistent in the high-dimensional p > n setting provided that
+               the degree of the moralized graph is bounded and performs well
+               compared to state-of-the-art DAG-learning algorithms. We also
+               demonstrate through a real data example involving multi-variate
+               count data, that our ODS algorithm is wellsuited to estimating
+               DAG models for count data in comparison to other methods used
+               for discrete data.",
+  journal   = "J. Mach. Learn. Res.",
+  publisher = "JMLR.org",
+  volume    =  18,
+  number    =  1,
+  pages     = "8300--8342",
+  month     =  jan,
+  year      =  2017,
+  keywords  = "identifiability, directed acyclic graph, overdispersion,
+               multi-variate count distribution, Bayesian networks"
+}
+
+
+@BOOK{Pearl2009-oh,
+  title     = "Causality: Models, Reasoning and Inference",
+  author    = "Pearl, Judea",
+  abstract  = "Written by one of the preeminent researchers in the field, this
+               book provides a comprehensive exposition of modern analysis of
+               causation. It shows how causality has grown from a nebulous
+               concept into a mathematical theory with significant applications
+               in the fields of statistics, artificial intelligence, economics,
+               philosophy, cognitive science, and the health and social
+               sciences. Judea Pearl presents and unifies the probabilistic,
+               manipulative, counterfactual, and structural approaches to
+               causation and devises simple mathematical tools for studying the
+               relationships between causal connections and statistical
+               associations. The book will open the way for including causal
+               analysis in the standard curricula of statistics, artificial
+               intelligence, business, epidemiology, social sciences, and
+               economics. Students in these fields will find natural models,
+               simple inferential procedures, and precise mathematical
+               definitions of causal concepts that traditional texts have
+               evaded or made unduly complicated. The first edition of
+               Causality has led to a paradigmatic change in the way that
+               causality is treated in statistics, philosophy, computer
+               science, social science, and economics. Cited in more than 3,000
+               scientific publications, it continues to liberate scientists
+               from the traditional molds of statistical thinking. In this
+               revised edition, Judea Pearl elucidates thorny issues, answers
+               readers' questions, and offers a panoramic view of recent
+               advances in this field of research. Causality will be of
+               interests to students and professionals in a wide variety of
+               fields. Anyone who wishes to elucidate meaningful relationships
+               from data, predict effects of actions and policies, assess
+               explanations of reported events, or form theories of causal
+               understanding and causal speech will find this book stimulating
+               and invaluable.",
+  publisher = "Cambridge University Press",
+  edition   = "2nd",
+  year      =  2009,
+  address   = "USA"
+}
+
+
+@ARTICLE{Park2019-qy,
+  title    = "{High-Dimensional} Poisson Structural Equation Model Learning via
+              {$\ell_1$-Regularized} Regression",
+  author   = "Park, Gunwoong and Park, Sion",
+  journal  = "J. Mach. Learn. Res.",
+  volume   =  20,
+  number   =  95,
+  pages    = "1--41",
+  year     =  2019
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@INCOLLECTION{Park2015-tj,
+  title     = "Learning {Large-Scale} Poisson {DAG} Models based on
+               {OverDispersion} Scoring",
+  booktitle = "Advances in Neural Information Processing Systems 28",
+  author    = "Park, Gunwoong and Raskutti, Garvesh",
+  editor    = "Cortes, C and Lawrence, N D and Lee, D D and Sugiyama, M and
+               Garnett, R",
+  abstract  = "In this paper, we address the question of identifiability and
+               learning algorithms for large- scale Poisson Directed Acyclic
+               Graphical (DAG) models. We define general Poisson DAG models as
+               models where each node is a Poisson random variable with rate
+               parameter depending on the values of the parents in the
+               underlying DAG. First, we prove that Poisson DAG models are
+               identifiable from observational data, and present a
+               polynomial-time algorithm that learns the Poisson DAG model
+               under suitable regularity conditions. The main …",
+  publisher = "Curran Associates, Inc.",
+  pages     = "631--639",
+  year      =  2015
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@ARTICLE{Shimizu2006-yu,
+  title     = "A Linear {Non-Gaussian} Acyclic Model for Causal Discovery",
+  author    = "Shimizu, Shohei and Hoyer, Patrik O and Hyv{\"a}rinen, Aapo and
+               Kerminen, Antti",
+  abstract  = "In recent years, several methods have been proposed for the
+               discovery of causal structure from non-experimental data. Such
+               methods make various assumptions on the data generating process
+               to facilitate its identification from purely observational data.
+               Continuing this line of research, we show how to discover the
+               complete causal structure of continuous- valued data, under the
+               assumptions that (a) the data generating process is linear,(b)
+               there are no unobserved confounders, and (c) disturbance
+               variables have non-Gaussian …",
+  journal   = "J. Mach. Learn. Res.",
+  publisher = "jmlr.org",
+  volume    =  7,
+  number    = "Oct",
+  pages     = "2003--2030",
+  year      =  2006
+}
+
+
+@BOOK{Spirtes2000-mf,
+  title     = "Causation, Prediction, and Search",
+  author    = "Spirtes, Peter and Glymour, Clark N and Scheines, Richard and
+               Heckerman, David",
+  abstract  = "What assumptions and methods allow us to turn observations into
+               causal knowledge, and how can even incomplete causal knowledge
+               be used in planning and prediction to influence and control our
+               environment? In this book Peter Spirtes, Clark Glymour, and
+               Richard Scheines address these questions using the formalism of
+               Bayes networks, with results that have been applied in diverse
+               areas of research in the social, behavioral, and physical
+               sciences. The authors show that although experimental and
+               observational study designs may not always permit the same
+               inferences, they are subject to uniform principles. They
+               axiomatize the connection between causal structure and
+               probabilistic independence, explore several varieties of causal
+               indistinguishability, formulate a theory of manipulation, and
+               develop asymptotically reliable procedures for searching over
+               equivalence classes of causal models, including models of
+               categorical data and structural equation models with and without
+               latent variables. The authors show that the relationship between
+               causality and probability can also help to clarify such diverse
+               topics in statistics as the comparative power of experimentation
+               versus observation, Simpson's paradox, errors in regression
+               models, retrospective versus prospective sampling, and variable
+               selection. The second edition contains a new introduction and an
+               extensive survey of advances and applications that have appeared
+               since the first edition was published in 1993.",
+  publisher = "MIT Press",
+  year      =  2000,
+  language  = "en"
+}
+
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@BOOK{2019-eb,
+  title     = "マーケティングプロフェッショナルの視点",
+  author    = "{音部大輔}",
+  abstract  = "
+               P\&G、ユニリーバ、ダノン、資生堂……先進企業でマーケティング部門を育成・指揮してきた著者がビジネスを成功に導くプロマーケターの``共通言語''をやさしく解説技術による差異化が難しい今、企業が持続的に成長するには、顧客視点に立ったマーケティング戦略を立案・実行できる人材が必要です。その第一歩が、マーケティングのプロフェッショナル=プロマーケターだけが知る``共通言語''を学ぶこと。マーケティングとは何か、ブランドとは何か、競合とは何か、戦略を構成する目的と資源とは何か──。商品開発、広告宣伝、営業・販売といったマーケティング関連業務に携わるすべての人が「共通認識」を持ち、ブランドの定義書やマーケティング実行モデルを定めてマーケティング戦略を遂行する必要があります。また、最終利益を超える額のマーケティング投資をする企業が多い昨今、この``共通言語''は、経営陣にとっても必須です。本書では、P\&G、ダノンジャパン、ユニリーバ・ジャパン、日産自動車、資生堂など25年以上にわたりブランドマネジメント、マーケティング組織構築、CMO(マーケティング最高責任者)などの経験を積んだ筆者が提示する24の問いを通して、それらの``共通言語''を学ぶことができます。第1章
+               市場創造とブランドマネジメント第2章 戦略の実践第3章 ブランドマネジメント第4章 マーケティングのこれからします。",
+  publisher = "日経BP",
+  month     =  apr,
+  year      =  2019,
+  language  = "ja"
+}
+
+
+@ARTICLE{Varian2016-se,
+  title     = "Causal inference in economics and marketing",
+  author    = "Varian, Hal R",
+  abstract  = "This is an elementary introduction to causal inference in
+               economics written for readers familiar with machine learning
+               methods. The critical step in any causal analysis is estimating
+               the counterfactual-a prediction of what would have happened in
+               the absence of the treatment. The powerful techniques used in
+               machine learning may be useful for developing better estimates
+               of the counterfactual, potentially improving causal inference.",
+  journal   = "Proc. Natl. Acad. Sci. U. S. A.",
+  publisher = "National Acad Sciences",
+  volume    =  113,
+  number    =  27,
+  pages     = "7310--7315",
+  month     =  jul,
+  year      =  2016,
+  keywords  = "causal inference; economics; machine learning; marketing",
+  language  = "en"
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@BOOK{2018-ci,
+  title     = "マーケティング・リサーチ入門",
+  author    = "{星野崇宏} and {上田雅夫}",
+  abstract  = "豊富な事例をもとに、購買履歴など「集まるデータ」と消費者調査など「集めるデータ」を活用しながら、正しい顧客理解やマーケティング施策の立案・評価を行うリサーチの方法と実務の勘所を学ぶことができる、新たなスタンダードとなる一冊。実務家にもおすすめです。",
+  publisher = "有斐閣",
+  month     =  dec,
+  year      =  2018,
+  language  = "ja"
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@BOOK{2004-qj,
+  title     = "統計的因果推論: 回帰分析の新しい枠組み",
+  author    = "{宮川雅巳}",
+  abstract  = "相関関係と因果関係はどう違うのか回帰分析の正しく有効な使い方へ有向グラフを用いてアプローチする。",
+  publisher = "朝倉書店",
+  month     =  mar,
+  year      =  2004,
+  language  = "ja"
+}
+
+
+@ARTICLE{Varian2016-se,
+  title     = "Causal inference in economics and marketing",
+  author    = "Varian, Hal R",
+  abstract  = "This is an elementary introduction to causal inference in
+               economics written for readers familiar with machine learning
+               methods. The critical step in any causal analysis is estimating
+               the counterfactual-a prediction of what would have happened in
+               the absence of the treatment. The powerful techniques used in
+               machine learning may be useful for developing better estimates
+               of the counterfactual, potentially improving causal inference.",
+  journal   = "Proc. Natl. Acad. Sci. U. S. A.",
+  publisher = "National Acad Sciences",
+  volume    =  113,
+  number    =  27,
+  pages     = "7310--7315",
+  month     =  jul,
+  year      =  2016,
+  keywords  = "causal inference; economics; machine learning; marketing",
+  language  = "en"
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@INCOLLECTION{Park2015-tj,
+  title     = "Learning {Large-Scale} Poisson {DAG} Models based on
+               {OverDispersion} Scoring",
+  booktitle = "Advances in Neural Information Processing Systems 28",
+  author    = "Park, Gunwoong and Raskutti, Garvesh",
+  editor    = "Cortes, C and Lawrence, N D and Lee, D D and Sugiyama, M and
+               Garnett, R",
+  abstract  = "In this paper, we address the question of identifiability and
+               learning algorithms for large- scale Poisson Directed Acyclic
+               Graphical (DAG) models. We define general Poisson DAG models as
+               models where each node is a Poisson random variable with rate
+               parameter depending on the values of the parents in the
+               underlying DAG. First, we prove that Poisson DAG models are
+               identifiable from observational data, and present a
+               polynomial-time algorithm that learns the Poisson DAG model
+               under suitable regularity conditions. The main …",
+  publisher = "Curran Associates, Inc.",
+  pages     = "631--639",
+  year      =  2015
+}
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@INPROCEEDINGS{Wenjuan2018-nm,
+  title       = "Mixed causal structure discovery with application to
+                 prescriptive pricing",
+  booktitle   = "Proceedings of the 27th International Joint Conference on
+                 Artificial Intelligence",
+  author      = "Wenjuan, Wei and Lu, Feng and Chunchen, Liu",
+  abstract    = "Prescriptive pricing is one of the most advanced pricing
+                 techniques, which derives the optimal price strategy to
+                 maximize the future profit/revenue by carrying out a two-stage
+                 process, demand modeling and price optimization. Demand
+                 modeling tries to reveal price- demand laws by discovering
+                 causal relationships among demands, prices, and objective
+                 factors, which is the foundation of price optimization.
+                 Existing methods either use regression or causal learning for
+                 uncovering the price-demand relations, but suffer from pain
+                 points in …",
+  publisher   = "ijcai.org",
+  pages       = "5126--5134",
+  institution = "AAAI Press",
+  year        =  2018
+}
+
+
+@ARTICLE{Li2018-aw,
+  title         = "Combining Linear {Non-Gaussian} Acyclic Model with Logistic
+                   Regression Model for Estimating Causal Structure from Mixed
+                   Continuous and Discrete Data",
+  author        = "Li, Chao and Shimizu, Shohei",
+  abstract      = "Estimating causal models from observational data is a
+                   crucial task in data analysis. For continuous-valued data,
+                   Shimizu et al. have proposed a linear acyclic non-Gaussian
+                   model to understand the data generating process, and have
+                   shown that their model is identifiable when the number of
+                   data is sufficiently large. However, situations in which
+                   continuous and discrete variables coexist in the same
+                   problem are common in practice. Most existing causal
+                   discovery methods either ignore the discrete data and apply
+                   a continuous-valued algorithm or discretize all the
+                   continuous data and then apply a discrete Bayesian network
+                   approach. These methods possibly loss important information
+                   when we ignore discrete data or introduce the approximation
+                   error due to discretization. In this paper, we define a
+                   novel hybrid causal model which consists of both continuous
+                   and discrete variables. The model assumes: (1) the value of
+                   a continuous variable is a linear function of its parent
+                   variables plus a non-Gaussian noise, and (2) each discrete
+                   variable is a logistic variable whose distribution
+                   parameters depend on the values of its parent variables. In
+                   addition, we derive the BIC scoring function for model
+                   selection. The new discovery algorithm can learn causal
+                   structures from mixed continuous and discrete data without
+                   discretization. We empirically demonstrate the power of our
+                   method through thorough simulations.",
+  month         =  feb,
+  year          =  2018,
+  archivePrefix = "arXiv",
+  primaryClass  = "cs.LG",
+  eprint        = "1802.05889"
+}
+
+
+@ARTICLE{Yamayoshi2020-gu,
+  title     = "An estimation of causal structure based on Latent {LiNGAM} for
+               mixed data",
+  author    = "Yamayoshi, Mako and Tsuchida, Jun and Yadohisa, Hiroshi",
+  abstract  = "The linear non-gaussian acyclic model (LiNGAM) has been proposed
+               as a method for estimating causal structures using structural
+               equation modeling (SEM). LiNGAM is useful as an exploratory
+               estimation method for a causal structure. However, the
+               assumptions that all observed variables in LiNGAM are continuous
+               is not applicable in case of mixed data (i.e., when discrete
+               variables are also included in the dataset). Therefore, we
+               propose the Latent LiNGAM (L-LiNGAM), where each variable
+               corresponds to a continuous latent variable and is observed as
+               data through transformation via a link function. In the
+               numerical study, when mixing discrete variables, the estimation
+               of causal structure using L-LiNGAM is proven useful in terms of
+               sum of squared error and path recovery. Moreover, from
+               real-world data applications, the causal structure estimated by
+               L-LiNGAM is shown to be the best for evaluation under SEM. The
+               model fit is also superior to that of existing methods.",
+  journal   = "Behaviormetrika",
+  publisher = "Springer",
+  volume    =  47,
+  number    =  1,
+  pages     = "105--121",
+  month     =  jan,
+  year      =  2020
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@BOOK{2015-pb,
+  title     = "マーケティングの統計モデル",
+  author    = "{佐藤忠彦}",
+  abstract  = "有効な研究開発に必須の手法を体系的に解説。現実的な例題、理論、実行方法からなる決定版。",
+  publisher = "朝倉書店",
+  month     =  aug,
+  year      =  2015,
+  language  = "ja"
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@BOOK{2009-qw,
+  title     = "マーケティングの統計分析",
+  author    = "{照井伸彦} and {ウィラワン・ドニ・ダハナ} and {伴正隆}",
+  abstract  = "Rを用いて統計モデルの使い方を実践的に解説",
+  publisher = "朝倉書店",
+  month     =  sep,
+  year      =  2009,
+  language  = "ja"
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@BOOK{1987-vg,
+  title     = "マーケティング・サイエンス",
+  author    = "{片平秀貴}",
+  publisher = "東京大学出版会",
+  year      =  1987,
+  language  = "ja"
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@ARTICLE{1996-bs,
+  title   = "順序付きカテゴリカルデータへの因子分析の適用に関するいくつかの注意点",
+  author  = "伸子, 萩生田 and 算男, 繁桝",
+  journal = "心理学研究",
+  volume  =  67,
+  number  =  1,
+  pages   = "1--8",
+  year    =  1996
+}
+
+
+@ARTICLE{Ehrenberg1959-ei,
+  title     = "The Pattern of Consumer Purchases",
+  author    = "Ehrenberg, A S C",
+  abstract  = "In this article Mr Ehrenberg shows how data on purchases of
+               non-durable consumer goods can be fitted by the negative
+               binomial distribution, and discusses applications of this
+               finding. He also considers a simple model for purchases made in
+               different periods of time and some quick and easy methods for
+               calculating standard errors.",
+  journal   = "J. R. Stat. Soc. Ser. C Appl. Stat.",
+  publisher = "John Wiley \& Sons, Ltd",
+  volume    =  8,
+  number    =  1,
+  pages     = "26--41",
+  month     =  mar,
+  year      =  1959
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@BOOK{2016-io,
+  title     = "確率思考の戦略論: {USJでも実証された数学マーケティングの力}",
+  author    = "{森岡毅} and {今西聖貴}",
+  abstract  = "ビジネス戦略の成否は「確率」で決まっている。その確率はある程度まで操作することができる。八方塞りに思える状況でも、市場構造や消費者の本質を理解していると、勝てなさそうに見える局面や相手に対しても勝つチャンスのある戦い方、つまり勝つ確率の高い戦略を導き出すことができる。その戦略を導か出すのが「数学マーケティング」である。",
+  publisher = "KADOKAWA",
+  month     =  may,
+  year      =  2016,
+  language  = "ja"
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@ARTICLE{Shimizu2011-pd,
+  title     = "{DirectLiNGAM}: A direct method for learning a linear
+               non-Gaussian structural equation model",
+  author    = "Shimizu, Shohei and Inazumi, Takanori and Sogawa, Yasuhiro and
+               Hyv{\"a}rinen, Aapo and Kawahara, Yoshinobu and Washio, Takashi
+               and Hoyer, Patrik O and Bollen, Kenneth",
+  abstract  = "… badly chosen (Himberg et al., 2004). In this paper, we propose
+               a new direct method to estimate a causal ordering of variables
+               in the LiNGAM with no prior knowledge on the structure. The new
+               method estimates a causal order …",
+  journal   = "J. Mach. Learn. Res.",
+  publisher = "JMLR. org",
+  volume    =  12,
+  pages     = "1225--1248",
+  year      =  2011
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@ARTICLE{Hoyer2008-oo,
+  title     = "Nonlinear causal discovery with additive noise models",
+  author    = "Hoyer, P and Janzing, D and Mooij, J M and Peters, J and
+               {others}",
+  abstract  = "The discovery of causal relationships between a set of observed
+               variables is a fundamental problem in science. For
+               continuous-valued data linear acyclic causal models are often
+               used because these models are well understood and there are
+               well-known methods to fit them to …",
+  journal   = "Adv. Neural Inf. Process. Syst.",
+  publisher = "papers.nips.cc",
+  year      =  2008
+}
+
+
+@ARTICLE{Peters2014-ro,
+  title    = "Causal Discovery with Continuous Additive Noise Models",
+  author   = "Peters, Jonas and Mooij, Joris M and Janzing, Dominik and
+              Sch{\"o}lkopf, Bernhard",
+  journal  = "J. Mach. Learn. Res.",
+  volume   =  15,
+  number   =  58,
+  pages    = "2009--2053",
+  year     =  2014
+}
+
+
+@ARTICLE{Peters2012-bt,
+  title         = "Identifiability of Causal Graphs using Functional Models",
+  author        = "Peters, Jonas and Mooij, Joris and Janzing, Dominik and
+                   Schoelkopf, Bernhard",
+  abstract      = "This work addresses the following question: Under what
+                   assumptions on the data generating process can one infer the
+                   causal graph from the joint distribution? The approach taken
+                   by conditional independence-based causal discovery methods
+                   is based on two assumptions: the Markov condition and
+                   faithfulness. It has been shown that under these assumptions
+                   the causal graph can be identified up to Markov equivalence
+                   (some arrows remain undirected) using methods like the PC
+                   algorithm. In this work we propose an alternative by
+                   defining Identifiable Functional Model Classes (IFMOCs). As
+                   our main theorem we prove that if the data generating
+                   process belongs to an IFMOC, one can identify the complete
+                   causal graph. To the best of our knowledge this is the first
+                   identifiability result of this kind that is not limited to
+                   linear functional relationships. We discuss how the IFMOC
+                   assumption and the Markov and faithfulness assumptions
+                   relate to each other and explain why we believe that the
+                   IFMOC assumption can be tested more easily on given data. We
+                   further provide a practical algorithm that recovers the
+                   causal graph from finitely many data; experiments on
+                   simulated data support the theoretical findings.",
+  month         =  feb,
+  year          =  2012,
+  archivePrefix = "arXiv",
+  primaryClass  = "cs.LG",
+  eprint        = "1202.3757"
+}
+
+
+@ARTICLE{Peters2013-eb,
+  title     = "Identifiability of Gaussian structural equation models with
+               equal error variances",
+  author    = "Peters, J and B{\"u}hlmann, P",
+  abstract  = "Abstract. We consider structural equation models in which
+               variables can be written as a function of their parents and
+               noise terms, which are assumed to be joint",
+  journal   = "Biometrika",
+  publisher = "Oxford Academic",
+  volume    =  101,
+  number    =  1,
+  pages     = "219--228",
+  month     =  nov,
+  year      =  2013,
+  language  = "en"
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@ARTICLE{Park2020-ey,
+  title     = "Identifiability of Additive Noise Models Using Conditional
+               Variances",
+  author    = "Park, Gunwoong",
+  abstract  = "… X1 X2 G1 X1 X2 G2 X1 X2 G3 Figure 1: Bivariate directed
+               acyclic graphs of G1, G2, and G3 is bigger since (1,2) and (2,1)
+               are correct orderings of G3. Hence, any choice is correct …
+               Therefore, combined with the ordering, we can recover the true
+               graph …",
+  journal   = "J. Mach. Learn. Res.",
+  publisher = "jmlr.org",
+  volume    =  21,
+  number    =  75,
+  pages     = "1--34",
+  year      =  2020
+}
+
+
+@ARTICLE{Zhang2011-da,
+  title    = "Intervention, determinism, and the causal minimality condition",
+  author   = "Zhang, Jiji and Spirtes, Peter",
+  abstract = "We clarify the status of the so-called causal minimality
+              condition in the theory of causal Bayesian networks, which has
+              received much attention in the recent literature on the
+              epistemology of causation. In doing so, we argue that the
+              condition is well motivated in the interventionist (or
+              manipulability) account of causation, assuming the causal Markov
+              condition which is essential to the semantics of causal Bayesian
+              networks. Our argument has two parts. First, we show that the
+              causal minimality condition, rather than an add-on methodological
+              assumption of simplicity, necessarily follows from the
+              substantive interventionist theses, provided that the actual
+              probability distribution is strictly positive. Second, we
+              demonstrate that the causal minimality condition can fail when
+              the actual probability distribution is not positive, as is the
+              case in the presence of deterministic relationships. But we argue
+              that the interventionist account still entails a pragmatic
+              justification of the causal minimality condition. Our argument in
+              the second part exemplifies a general perspective that we think
+              commendable: when evaluating methods for inferring causal
+              structures and their underlying assumptions, it is relevant to
+              consider how the inferred causal structure will be subsequently
+              used for counterfactual reasoning.",
+  journal  = "Synthese",
+  volume   =  182,
+  number   =  3,
+  pages    = "335--347",
+  month    =  oct,
+  year     =  2011
+}
+
+
+@ARTICLE{Heckerman1995-es,
+  title     = "Learning Bayesian networks: The combination of knowledge and
+               statistical data",
+  author    = "Heckerman, David and Geiger, Dan and Chickering, David M",
+  abstract  = "We describe a Bayesian approach for learning Bayesian networks
+               from a combination of prior knowledge and statistical data.
+               First and foremost, we develop a methodology for assessing
+               informative priors needed for learning. Our approach is derived
+               from a set of assumptions made previously as well as the
+               assumption oflikelihood equivalence, which says that data should
+               not help to discriminate network structures that represent the
+               same assertions of conditional independence. We show that
+               likelihood equivalence when combined with previously made
+               assumptions implies that the user's priors for network
+               parameters can be encoded in a single Bayesian network for the
+               next case to be seen---aprior network---and a single measure of
+               confidence for that network. Second, using these priors, we show
+               how to compute the relative posterior probabilities of network
+               structures given data. Third, we describe search methods for
+               identifying network structures with high posterior
+               probabilities. We describe polynomial algorithms for finding the
+               highest-scoring network structures in the special case where
+               every node has at mostk=1 parent. For the general case (k>1),
+               which is NP-hard, we review heuristic search algorithms
+               including local search, iterative local search, and simulated
+               annealing. Finally, we describe a methodology for evaluating
+               Bayesian-network learning algorithms, and apply this approach to
+               a comparison of various approaches.",
+  journal   = "Mach. Learn.",
+  publisher = "Springer",
+  volume    =  20,
+  number    =  3,
+  pages     = "197--243",
+  month     =  sep,
+  year      =  1995
+}
+
+
+@MISC{AMA_marketing,
+  title        = "American Marketing Association.
+                  What is Marketing? --- The Definition of Marketing ---",
+  abstract     = "The American Marketing Association provides official
+                  definitions for marketing, approved regularly by a panel of
+                  industry leaders.",
+  howpublished = "https://www.ama.org/the-definition-of-marketing-what-is-marketing/",
+  note         = "Accessed: 2020-12-21"
+}
+
+
+@ARTICLE{Zou2006-pi,
+  title     = "The Adaptive Lasso and Its Oracle Properties",
+  author    = "Zou, Hui",
+  abstract  = "The lasso is a popular technique for simultaneous estimation and
+               variable selection. Lasso variable selection has been shown to
+               be consistent under certain conditions. In this work we derive a
+               necessary condition for the lasso variable selection to be
+               consistent. Consequently, there exist certain scenarios where
+               the lasso is inconsistent for variable selection. We then
+               propose a new version of the lasso, called the adaptive lasso,
+               where adaptive weights are used for penalizing different
+               coefficients in the ?1 penalty. We show that the adaptive lasso
+               enjoys the oracle properties; namely, it performs as well as if
+               the true underlying model were given in advance. Similar to the
+               lasso, the adaptive lasso is shown to be near-minimax optimal.
+               Furthermore, the adaptive lasso can be solved by the same
+               efficient algorithm for solving the lasso. We also discuss the
+               extension of the adaptive lasso in generalized linear models and
+               show that the oracle properties still hold under mild regularity
+               conditions. As a byproduct of our theory, the nonnegative
+               garotte is shown to be consistent for variable selection.",
+  journal   = "J. Am. Stat. Assoc.",
+  publisher = "Taylor \& Francis",
+  volume    =  101,
+  number    =  476,
+  pages     = "1418--1429",
+  month     =  dec,
+  year      =  2006
+}
+
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@ARTICLE{Kalisch2007-xg,
+  title     = "Estimating {High-Dimensional} Directed Acyclic Graphs with the
+               {PC-Algorithm}",
+  author    = "Kalisch, Markus and B{\"u}hlmann, Peter",
+  abstract  = "We consider the PC-algorithm (Spirtes et al., 2000) for
+               estimating the skeleton and equivalence class of a very
+               high-dimensional directed acyclic graph (DAG) with corresponding
+               Gaussian distribution. The PC-algorithm is computationally
+               feasible and often very fast for sparse problems with many nodes
+               (variables), and it has the attractive property to automatically
+               achieve high computational efficiency as a function of
+               sparseness of the true underlying DAG. We prove uniform
+               consistency of the algorithm for very high-dimensional …",
+  journal   = "J. Mach. Learn. Res.",
+  publisher = "jmlr.org",
+  volume    =  8,
+  number    =  22,
+  pages     = "613--636",
+  year      =  2007
+}
+
+
+@ARTICLE{Tsamardinos2006-qe,
+  title     = "The max-min hill-climbing Bayesian network structure learning
+               algorithm",
+  author    = "Tsamardinos, Ioannis and Brown, Laura E and Aliferis, Constantin
+               F",
+  abstract  = "We present a new algorithm for Bayesian network structure
+               learning, called Max-Min Hill-Climbing (MMHC). The algorithm
+               combines ideas from local learning, constraint-based, and
+               search-and-score techniques in a principled and effective way.
+               It first reconstructs the skeleton of a Bayesian network and
+               then performs a Bayesian-scoring greedy hill-climbing search to
+               orient the edges. In our extensive empirical evaluation MMHC
+               outperforms on average and in terms of various metrics several
+               prototypical and state-of-the-art algorithms, namely the PC,
+               Sparse Candidate, Three Phase Dependency Analysis, Optimal
+               Reinsertion, Greedy Equivalence Search, and Greedy Search. These
+               are the first empirical results simultaneously comparing most of
+               the major Bayesian network algorithms against each other. MMHC
+               offers certain theoretical advantages, specifically over the
+               Sparse Candidate algorithm, corroborated by our experiments.
+               MMHC and detailed results of our study are publicly available at
+               http://www.dsl-lab.org/supplements/mmhc\_paper/mmhc\_index.html.",
+  journal   = "Mach. Learn.",
+  publisher = "Springer",
+  volume    =  65,
+  number    =  1,
+  pages     = "31--78",
+  month     =  oct,
+  year      =  2006
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@ARTICLE{Chickering2002-iq,
+  title     = "Optimal Structure Identification With Greedy Search",
+  author    = "Chickering, David Maxwell",
+  abstract  = "In this paper we prove the so-called`` Meek Conjecture''. In
+               particular, we show that if a DAG H is an independence map of
+               another DAG G, then there exists a finite sequence of edge
+               additions and covered edge reversals in G such that (1) after
+               each edge modification H …",
+  journal   = "J. Mach. Learn. Res.",
+  publisher = "jmlr.org",
+  volume    =  3,
+  number    = "Nov",
+  pages     = "507--554",
+  year      =  2002
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@BOOK{2012-iq,
+  title     = "データ解析のための統計モデリング入門: {一般化線形モデル・階層ベイズモデル・MCMC}",
+  author    = "{久保拓弥}",
+  abstract  = "現象を数理モデルで表現・説明するのに慣れていない人のために、章ごとに異なる例題を解決していく過程を通して、統計モデルの基本となる考えかたを紹介する。前半では、応用範囲のひろい統計モデルのひとつである一般化線形モデルの基礎を、後半では、実際のデータ解析に使えるように、階層ベイズモデル化する方法を、RとWinBUGSの具体例を用いて説明する。",
+  publisher = "岩波書店",
+  month     =  may,
+  year      =  2012,
+  language  = "ja"
+}
+
+
+% The entry below contains non-ASCII chars that could not be converted
+% to a LaTeX equivalent.
+@BOOK{2017-zx,
+  title     = "統計的因果探索",
+  author    = "{清水昌平}",
+  abstract  = "因果推論の技法LiNGAMを開発した第一線の研究者が、基礎事項から発展的話題まで平易に説き起こす。因果推論・因果探索に必携。",
+  publisher = "講談社",
+  month     =  may,
+  year      =  2017,
+  language  = "ja"
+}
+
+
+@ARTICLE{Peters2011-ew,
+  title    = "Causal Inference on Discrete Data Using Additive Noise Models",
+  author   = "Peters, Jonas and Janzing, Dominik and Sch{\"o}lkopf, Bernhard",
+  abstract = "Inferring the causal structure of a set of random variables from
+              a finite sample of the joint distribution is an important problem
+              in science. The case of two random variables is particularly
+              challenging since no (conditional) independences can be
+              exploited. Recent methods that are based on additive noise models
+              suggest the following principle: Whenever the joint distribution
+              P((X,Y)) admits such a model in one direction, e.g., Y = f(X)+N,
+              N $\bot$ X, but does not admit the reversed model X=g(Y)+{\~N},
+              {\~N} $\bot$ Y, one infers the former direction to be causal
+              (i.e., X $\rightarrow$ Y). Up to now, these approaches only dealt
+              with continuous variables. In many situations, however, the
+              variables of interest are discrete or even have only finitely
+              many states. In this work, we extend the notion of additive noise
+              models to these cases. We prove that it almost never occurs that
+              additive noise models can be fit in both directions. We further
+              propose an efficient algorithm that is able to perform this way
+              of causal inference on finite samples of discrete variables. We
+              show that the algorithm works on both synthetic and real data
+              sets.",
+  journal  = "IEEE Trans. Pattern Anal. Mach. Intell.",
+  volume   =  33,
+  number   =  12,
+  pages    = "2436--2450",
+  month    =  dec,
+  year     =  2011,
+  language = "en"
+}
+
+
+@ARTICLE{Zhang2012-ay,
+  title         = "On the Identifiability of the {Post-Nonlinear} Causal Model",
+  author        = "Zhang, Kun and Hyvarinen, Aapo",
+  abstract      = "By taking into account the nonlinear effect of the cause,
+                   the inner noise effect, and the measurement distortion
+                   effect in the observed variables, the post-nonlinear (PNL)
+                   causal model has demonstrated its excellent performance in
+                   distinguishing the cause from effect. However, its
+                   identifiability has not been properly addressed, and how to
+                   apply it in the case of more than two variables is also a
+                   problem. In this paper, we conduct a systematic
+                   investigation on its identifiability in the two-variable
+                   case. We show that this model is identifiable in most cases;
+                   by enumerating all possible situations in which the model is
+                   not identifiable, we provide sufficient conditions for its
+                   identifiability. Simulations are given to support the
+                   theoretical results. Moreover, in the case of more than two
+                   variables, we show that the whole causal structure can be
+                   found by applying the PNL causal model to each structure in
+                   the Markov equivalent class and testing if the disturbance
+                   is independent of the direct causes for each variable. In
+                   this way the exhaustive search over all possible causal
+                   structures is avoided.",
+  month         =  may,
+  year          =  2012,
+  archivePrefix = "arXiv",
+  primaryClass  = "stat.ML",
+  eprint        = "1205.2599"
+}
