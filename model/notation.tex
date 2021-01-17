@@ -60,20 +60,25 @@ $\mathcal X_S \equiv \times_{j \in S} \mathcal X_j$を定義する。
   f_G(X)=f_G(X_1, X_2, \dots, X_p) = \prod_{j=1}^p f_j(X_j | X_{Pa(j)})
   \label{eq:factorization}
 \end{equation}
-
 ここで、$f_j(X_j | X_{Pa(j)})$は、$X_j$の
 親変数$X_{Pa(j)} \equiv \{ X_k:k\in Pa(j) \subset V \}$を与えた条件付き確率である。
 
 また、本論文で扱う因果モデルには、因果極小性(causal minimality)を仮定する。
 因果極小性とは、DAG $G$で表現される因果構造に従って生成された分布$f_G(X)$は、
-$G$の部分グラフにおいては因果マルコフ条件を満たさないことを言う\cite{Zhang2011-da}。
+$G$の部分グラフ(subgraph)
+\footnote{2つの異なるDAG $G$と$G'$が与えられたとき、
+$G$と$G'$の頂点が同じであり、$G'$における矢線の集合が$G$の矢線の集合の部分集合であるならば、
+$G'$を$G$の部分グラフと言う\cite{Zhang2011-da}。}
+においては因果マルコフ条件を満たさないことを言う\cite{Zhang2011-da}。
 つまり、全ての頂点$j \in V$とその親の1つ$k \in Pa(j)$について、以下が成り立つ。
-
 \begin{equation}
-  \forall Pa(j)\backslash\{k\} \subset S \subset Nd(k) \backslash\{k\},
+  \forall Pa(j)\backslash\{k\} \subset S \subset \mathit{Nd}(j) \backslash\{k\},
   \quad X_j \notindep X_k | X_S
   \label{minimality}
 \end{equation}
+因果極小性を仮定することによって、
+「変数$X$と$Y$は因果グラフにおいて親子関係があるにもかかわらず、
+$X$と$Y$の分布が独立である」といった特殊な場合を排除することができる。
 
 最後に、本論文では観察データから因果グラフを同定するという問題を扱うため、
 因果グラフの識別可能性について定義する。
