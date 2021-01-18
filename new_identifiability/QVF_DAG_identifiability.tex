@@ -2,10 +2,10 @@
 
 % \subsection{QVF-DAGモデルの識別可能性}
 
-本章では、前章で導入したQVF-DAGモデル\cite{Park2017-hw}が識別可能であることを証明する。
+本章では、前章で導入したQVF DAGモデル\cite{Park2017-hw}が識別可能であることを証明する。
 QVF DAGモデルの識別可能性は
 Park and Raskutti(2017)\cite{Park2017-hw}によって
-過分散スコア(OverDispersion Score; ODS)を用いて初めて証明された。
+過分散スコア(OverDispersion Score, ODS)を用いて初めて証明された。
 
 過分散とは、ポアソン分布などの分散が期待値に依存する確率分布において、
 期待される分散より標本分散の方が大きくなることである。
@@ -28,7 +28,7 @@ Park and Raskutti(2015)\cite{Park2015-tj}によるPoisson DAGモデルの識別�
 
 Poisson DAGモデルの識別可能性は、
 Park and Park(2019)\cite{Park2019-qy}による
-モーメント比スコア(Moment Ratio Score; MRS)を用いた証明も行われている。
+モーメント比スコア(Moment Ratio Score, MRS)を用いた証明も行われている。
 モーメント比スコアを用いることによって識別可能条件が緩和され、
 DAGの推定精度やsample complexityも改善することが示されている\cite{Park2019-qy}。
 
@@ -42,7 +42,7 @@ DAGの推定精度が向上することが期待される。
 以下のような関係性が成立していることを示し、識別可能性の証明に利用する。
 
 \begin{prop} \label{prop:MRS}
-  リンク関数$(g_j(X_{Pa(j)}))_{j \in V}$が非退化であるQVF-DAGモデル~\eqref{QVF}において、
+  リンク関数$(g_j(X_{Pa(j)}))_{j \in V}$が非退化であるQVF DAGモデル~\eqref{QVF}において、
   任意の頂点$j \in V$、任意の集合$S_j \subset \mathit{Nd}(j)$に関して、
   以下のモーメント関係が成立する。
   \begin{equation}
@@ -185,7 +185,7 @@ QVF DAGモデルの識別可能性に利用できることを直感的に理解�
 \begin{figure}[h]
   \centering
   \includegraphics{./picture/bivariate.pdf}
-  \caption{2変数のPoisson-DAGモデル}
+  \caption{2変数のPoisson DAGモデル}
   \label{fig:ex_bivariate}
 \end{figure}
 
@@ -277,5 +277,5 @@ $\mathrm{Var}(E(X_j | X_{Pa(j)}) | X_{S_j} = x) > 0$という
 式~\eqref{eq:MRS}や式~\eqref{eq:MRS_2}が成立するためである。
 つまり、QVF DAGモデルの従来の識別可能条件\cite{Park2017-hw}を緩和している。
 このことによって、Park and Park(2019)\cite{Park2019-qy}の3.2節における議論と同様に
-QVF-SEMの学習コストを低下させることが期待される。
+QVF SEMの学習コストを低下させることが期待される。
 ただし、本研究の目的から外れるため、学習コストに関する理論的な証明は行わない。
