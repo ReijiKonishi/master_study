@@ -125,14 +125,14 @@ $\widehat{\theta}_{jk}$は最小二乗法または最尤法によって推定す
 
       \FOR{$m = \{ 1,2,\dots, p\}$}
       \STATE $S = \{ \widehat{\pi}_0, \dots, \widehat{\pi}_{m-1} \}$
-        \FOR{$j \in \{ V \backslash S \} \cap D$}
+        \FOR{$j \in ( V \backslash S ) \cap D$}
         \STATE 式~\eqref{alg:MRS}を用いて$\widehat{\mathcal S}(m,j)$を計算する
         \ENDFOR
 
         \IF{$\min \widehat{\mathcal S}(m,j) < \text{閾値}$}
         \STATE 因果順序$m$番目の要素を推定 $\widehat{\pi}_m = \argmin_{j} \widehat{\mathcal S}(m,j)$
         \ELSE
-          \FOR{$j \in \{ V \backslash S \} \cap C$}
+          \FOR{$j \in ( V \backslash S ) \cap C$}
           \STATE $X_S$による$X_j$の条件付き分散 $\widehat{\sigma}_{j|S}^2$を計算する
           \ENDFOR
         \STATE 因果順序$m$番目の要素を推定 $\widehat{\pi}_m = \argmin_{j} \widehat{\sigma}_{j|S}^2$
